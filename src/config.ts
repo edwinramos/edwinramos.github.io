@@ -13,7 +13,7 @@ export const isSet = (v?: string | null): v is string =>
 
 export const SITE = {
   // PLACEHOLDER: your public URL. For a repo named <usuario>.github.io → 'https://<usuario>.github.io'
-  url: 'https://TU-USUARIO.github.io',
+  url: 'https://edwinramos.github.io',
   // Base path. '/' for a <usuario>.github.io repo. For any other repo name use '/<repo-name>' (see README).
   base: '/',
   name: 'Edwin Ramos Madera',
@@ -22,7 +22,7 @@ export const SITE = {
   email: 'edwinramos.93@gmail.com',
   linkedin: 'https://www.linkedin.com/in/edwin-ramos-madera-29b185123',
   // PLACEHOLDER: your GitHub profile URL (hidden until set)
-  github: 'https://github.com/TU-USUARIO',
+  github: 'https://github.com/edwinramos',
   // Optional: path to a CV PDF placed in /public, e.g. '/cv-edwin-ramos.pdf'. Empty = button hidden.
   cvUrl: '',
   // Header availability indicator (set `available: false` to hide the green dot)
@@ -36,7 +36,7 @@ export const SITE = {
  * Until repoId/categoryId are set, a friendly "coming soon" box is shown instead.
  */
 export const GISCUS = {
-  repo: 'TU-USUARIO/TU-USUARIO.github.io', // PLACEHOLDER 'owner/repo'
+  repo: 'edwinramos/edwinramos.github.io', // PLACEHOLDER 'owner/repo'
   repoId: '', // PLACEHOLDER e.g. 'R_kgDO...'
   // Blog comments category (create it in GitHub › Discussions, type "Announcement" recommended)
   category: 'Comments',

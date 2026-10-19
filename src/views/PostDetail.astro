@@ -1,0 +1,64 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Giscus from '../components/Giscus.astro';
+import ExampleBadge from '../components/ExampleBadge.astro';
+import { SITE } from '../config';
+import { useT, type Lang } from '../i18n/ui';
+import { href, asset, formatDate, readingMinutes } from '../lib/paths';
+import { slugOf, hasTranslation } from '../lib/content';
+interface Props { lang: Lang; entry: CollectionEntry<'posts'> }
+const { lang, entry } = Astro.props;
+const { data } = entry;
+const t = useT(lang);
+const slug = slugOf(entry.id);
+const other: Lang = lang === 'es' ? 'en' : 'es';
+const alternates = { [other]: (await hasTranslation('posts', other, slug)) ? href(other, `blog/${slug}`) : href(other, 'blog') };
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h) => h.depth === 2);
+---
+<Base lang={lang} path={`blog/${slug}`} active="blog" title={data.title} description={data.description} image={data.cover} type="article" publishedTime={data.date} alternates={alternates}>
+  <div class="container-site grid gap-space-lg py-space-md lg:grid-cols-12 lg:gap-space-xl lg:py-space-xl">
+    <article class="flex flex-col gap-space-lg lg:col-span-8">
+      <a href={href(lang, 'blog')} class="inline-flex w-fit items-center gap-1 font-mono text-label-sm text-on-surface-variant hover:text-secondary"><Icon name="arrow_back" size="1rem" />{t('nav.blog')}</a>
+      <header class="flex flex-col gap-space-sm">
+        <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] text-on-surface-variant">
+          <time datetime={data.date.toISOString()}>{formatDate(data.date, lang, { year: 'numeric', month: 'long', day: 'numeric' })}</time><span>·</span><span>{readingMinutes(entry.body)} {t('common.minRead')}</span>
+          {data.project && <span class="badge">{data.project}{data.version ? ` ${data.version}` : ''}</span>}
+          <ExampleBadge lang={lang} show={data.example} />
+        </div>
+        <h1 class="text-headline-lg-mobile font-bold tracking-tight text-on-surface lg:text-headline-lg">{data.title}</h1>
+        <p class="text-body-md text-on-surface-variant lg:text-body-lg">{data.description}</p>
+        <div class="flex items-center gap-2 pt-1">
+          <img src={asset('images/avatar.svg')} alt="" class="h-8 w-8 rounded-full" width="32" height="32" />
+          <span class="text-body-sm text-on-surface">{SITE.name}</span>
+        </div>
+      </header>
+      {data.cover && <img src={asset(data.cover)} alt="" class="w-full rounded-2xl" />}
+      <div class="prose prose-site"><Content /></div>
+      <ul class="flex flex-wrap gap-1.5">{data.tags.map((tag) => <li class="chip"><Icon name="tag" size="0.9rem" />{tag}</li>)}</ul>
+      <section class="flex flex-col gap-space-sm" id="comments">
+        <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="forum" class="text-secondary" size="1.25rem" />{t('blog.comments')}</h2>
+        <Giscus lang={lang} mode="comments" />
+      </section>
+    </article>
+    <aside class="hidden lg:col-span-4 lg:block">
+      <div class="sticky top-28 flex flex-col gap-space-md">
+        {toc.length > 0 && (
+          <nav class="card" aria-label="Table of contents">
+            <span class="section-tag">{lang === 'es' ? 'En este artículo' : 'In this article'}</span>
+            <ul class="mt-3 flex flex-col gap-2 border-l border-outline-variant/40 pl-3">
+              {toc.map((h) => <li><a href={`#${h.slug}`} class="text-body-sm text-on-surface-variant hover:text-secondary">{h.text}</a></li>)}
+            </ul>
+          </nav>
+        )}
+        <div class="card flex flex-col gap-2">
+          <h2 class="text-body-lg font-semibold text-on-surface">{t('home.hire.title')}</h2>
+          <p class="text-body-sm text-on-surface-variant">{t('home.hire.text')}</p>
+          <a href={href(lang, 'services#contact')} class="btn-primary mt-1"><Icon name="handshake" size="1.1rem" />{t('nav.hire')}</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</Base>

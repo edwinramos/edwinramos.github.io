@@ -1,0 +1,116 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ExampleBadge from '../components/ExampleBadge.astro';
+import TechBadges from '../components/TechBadges.astro';
+import Form from '../components/Form.astro';
+import { SITE } from '../config';
+import { useT, type Lang } from '../i18n/ui';
+import { byLang } from '../lib/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const services = (await byLang('services', lang)).sort((a, b) => a.data.order - b.data.order);
+const testimonials = (await byLang('testimonials', lang)).sort((a, b) => a.data.order - b.data.order);
+const steps = [1, 2, 3, 4] as const;
+const es = lang === 'es';
+---
+<Base lang={lang} path="services" active="services" title={t('services.title')} description={t('services.lead')}>
+  <div class="container-site flex flex-col gap-space-xl py-space-md lg:py-space-xl">
+    <header class="grid gap-space-md lg:grid-cols-12 lg:items-end">
+      <div class="flex flex-col gap-1 lg:col-span-8">
+        <span class="eyebrow">{t('services.eyebrow')}</span>
+        <h1 class="text-headline-lg-mobile font-bold tracking-tight text-on-surface lg:text-headline-lg">{t('services.title')}</h1>
+        <p class="mt-1 max-w-2xl text-body-sm text-on-surface-variant lg:text-body-md">{t('services.lead')}</p>
+      </div>
+      <div class="lg:col-span-4 lg:justify-self-end"><a href="#contact" class="btn-primary"><Icon name="handshake" size="1.125rem" />{t('nav.hire')}</a></div>
+    </header>
+
+    <section class="grid gap-space-md md:grid-cols-2">
+      {await Promise.all(services.map(async (s) => {
+        const { Content } = await render(s);
+        return (
+          <article class="card-raised card-hover flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between">
+              <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-container-highest text-secondary"><Icon name={s.data.icon} size="1.5rem" /></span>
+              {s.data.priceNote && <span class="font-mono text-label-sm text-on-surface-variant">{s.data.priceNote}</span>}
+            </div>
+            <h2 class="text-headline-sm font-bold text-on-surface">{s.data.title}</h2>
+            <p class="text-body-sm text-on-surface-variant">{s.data.summary}</p>
+            {s.data.features.length > 0 && (
+              <ul class="flex flex-col gap-1.5">
+                {s.data.features.map((f) => <li class="flex items-start gap-2 text-body-sm text-on-surface"><Icon name="check" class="mt-0.5 text-emerald-400" size="1rem" />{f}</li>)}
+              </ul>
+            )}
+            <div class="prose prose-site text-body-sm"><Content /></div>
+            <div class="mt-auto pt-1"><TechBadges tags={s.data.tags} /></div>
+          </article>
+        );
+      }))}
+    </section>
+
+    <section class="flex flex-col gap-space-sm">
+      <SectionHeader icon="sync" title={t('services.process')} />
+      <ol class="grid gap-space-sm sm:grid-cols-2 lg:grid-cols-4">
+        {steps.map((n) => (
+          <li class="card flex flex-col gap-1.5">
+            <span class="font-mono text-label-md text-primary">0{n}</span>
+            <h3 class="text-body-lg font-semibold text-on-surface">{t(`services.process.${n}.t`)}</h3>
+            <p class="text-body-sm text-on-surface-variant">{t(`services.process.${n}.d`)}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {testimonials.length > 0 && (
+      <section class="flex flex-col gap-space-sm">
+        <SectionHeader icon="format_quote" iconClass="text-tertiary" title={t('services.testimonials')} tag={t('services.testimonials.tag')} />
+        <div class="grid gap-space-md md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((q) => (
+            <figure class="card flex flex-col gap-3 border border-outline-variant/20">
+              <div class="flex items-center justify-between"><Icon name="format_quote" class="text-primary" size="1.75rem" fill /><ExampleBadge lang={lang} show={q.data.example} /></div>
+              <blockquote class="text-body-md text-on-surface">“{q.data.quote}”</blockquote>
+              <figcaption class="mt-auto flex items-center gap-3 border-t border-outline-variant/30 pt-3">
+                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-surface-container-highest font-mono text-label-md text-secondary">{q.data.name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2)}</span>
+                <span class="flex flex-col"><span class="text-body-sm font-semibold text-on-surface">{q.data.name}</span><span class="font-mono text-[11px] text-on-surface-variant">{[q.data.role, q.data.company].filter(Boolean).join(' · ')}</span></span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section id="contact" class="scroll-mt-28 grid gap-space-lg rounded-2xl border border-violet-electric/30 bg-linear-to-br from-violet-electric/15 via-surface-container to-surface-container p-5 lg:grid-cols-12 lg:p-8">
+      <div class="flex flex-col gap-2 lg:col-span-5">
+        <span class="eyebrow">{t('services.eyebrow')}</span>
+        <h2 class="text-headline-md font-bold text-on-surface lg:text-headline-lg">{t('services.hire')}</h2>
+        <p class="text-body-md text-on-surface-variant">{t('services.hire.lead')}</p>
+        <a href={`mailto:${SITE.email}`} class="mt-2 inline-flex w-fit items-center gap-2 font-mono text-code-md text-secondary hover:text-primary"><Icon name="mail" size="1.1rem" />{SITE.email}</a>
+        <a href={SITE.linkedin} target="_blank" rel="noreferrer" class="inline-flex w-fit items-center gap-2 font-mono text-code-md text-secondary hover:text-primary"><Icon name="share" size="1.1rem" />LinkedIn</a>
+      </div>
+      <div class="lg:col-span-7">
+        <Form kind="hire" lang={lang} subject={es ? 'Nuevo proyecto (web)' : 'New project (website)'}>
+          <div class="grid gap-space-md sm:grid-cols-2">
+            <div><label class="field-label" for="h-name">{t('form.name')}</label><input id="h-name" name="name" required class="field" autocomplete="name" /></div>
+            <div><label class="field-label" for="h-email">{t('form.email')}</label><input id="h-email" name="email" type="email" required class="field" autocomplete="email" placeholder={t('form.placeholder.email')} /></div>
+            <div><label class="field-label" for="h-company">{t('form.company')}</label><input id="h-company" name="company" class="field" autocomplete="organization" /></div>
+            <div>
+              <label class="field-label" for="h-service">{t('nav.services')}</label>
+              <select id="h-service" name="service" class="field">{services.map((s) => <option>{s.data.title}</option>)}<option>{es ? 'Otro' : 'Other'}</option></select>
+            </div>
+            <div>
+              <label class="field-label" for="h-budget">{t('form.budget')}</label>
+              <select id="h-budget" name="budget" class="field">
+                <option>{t('form.budget.opt')}</option><option>&lt; 1,000 USD</option><option>1,000 – 5,000 USD</option><option>5,000 – 15,000 USD</option><option>&gt; 15,000 USD</option>
+              </select>
+            </div>
+            <div><label class="field-label" for="h-time">{t('form.timeline')}</label><input id="h-time" name="timeline" class="field" placeholder={es ? 'Ej. en 2 meses' : 'e.g. in 2 months'} /></div>
+          </div>
+          <div><label class="field-label" for="h-msg">{t('form.message')}</label><textarea id="h-msg" name="message" rows="5" required class="field resize-y"></textarea></div>
+        </Form>
+      </div>
+    </section>
+  </div>
+</Base>

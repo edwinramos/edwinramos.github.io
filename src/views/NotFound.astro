@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { useT, type Lang } from '../i18n/ui';
+import { href } from '../lib/paths';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+<Base lang={lang} path="404" title={t('notfound.title')} noindex>
+  <div class="container-site flex flex-1 flex-col items-center justify-center gap-4 py-space-2xl text-center">
+    <span class="font-mono text-display text-primary">404</span>
+    <h1 class="text-headline-md font-bold text-on-surface">{t('notfound.title')}</h1>
+    <p class="text-on-surface-variant">{t('notfound.text')}</p>
+    <div class="flex gap-2">
+      <a class="btn-primary" href={href('es')}><Icon name="home" size="1.1rem" />{useT('es')('notfound.cta')}</a>
+      <a class="btn-ghost" href={href('en')}>English</a>
+    </div>
+  </div>
+</Base>

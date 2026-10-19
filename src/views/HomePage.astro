@@ -1,0 +1,114 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import UpdateCard from '../components/UpdateCard.astro';
+import CurrentlyBuilding from '../components/CurrentlyBuilding.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { SITE } from '../config';
+import { useT, type Lang } from '../i18n/ui';
+import { href, asset } from '../lib/paths';
+import { byLang } from '../lib/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const profile = await getEntry('profile', lang);
+const posts = (await byLang('posts', lang)).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+const projects = (await byLang('projects', lang)).sort((a, b) => a.data.order - b.data.order);
+const current = projects.filter((p) => p.data.current);
+const featured = projects.filter((p) => !p.data.current).slice(0, 3);
+const services = (await byLang('services', lang)).sort((a, b) => a.data.order - b.data.order).slice(0, 4);
+const stats = profile?.data.stats ?? [];
+---
+<Base lang={lang} path="" active="home">
+  <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-2xl lg:py-space-xl">
+    <!-- Hero -->
+    <section class="grid gap-space-lg pt-2 lg:grid-cols-12 lg:items-center lg:gap-space-xl">
+      <div class="flex flex-col gap-space-md lg:col-span-7">
+        <div class="flex items-center gap-3 pt-1">
+          <div class="relative">
+            <img src={asset('images/avatar.svg')} alt={SITE.name} width="48" height="48" class="h-12 w-12 rounded-full object-cover shadow-[0_0_0_1.5px_rgba(208,188,255,0.5)] lg:h-16 lg:w-16" />
+            <span class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-surface bg-emerald-400"></span>
+          </div>
+          <div class="inline-flex items-center gap-1.5 rounded-full bg-surface-container-high px-2.5 py-1">
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse-indicator"></span>
+            <span class="font-mono text-label-sm uppercase tracking-wide text-secondary">{t('header.available')}</span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h1 class="text-headline-lg-mobile font-extrabold tracking-tight text-on-surface sm:text-display-mobile lg:text-display">{t('home.hello')} <span aria-hidden="true">👋</span></h1>
+          <p class="text-body-md text-on-surface-variant lg:max-w-2xl lg:text-body-lg">
+            {t('home.lead.1')} <span class="font-medium text-secondary">.NET / .NET MAUI</span>{t('home.lead.2')} <span class="font-medium text-primary">{t('home.lead.ai')}</span>.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-space-sm pt-2 sm:flex">
+          <a class="btn-primary" href={href(lang, 'projects')}><Icon name="grid_view" size="1.125rem" />{t('home.cta.projects')}</a>
+          <a class="btn-ghost" href={href(lang, 'about')}><Icon name="person" class="text-secondary" size="1.125rem" />{t('home.cta.about')}</a>
+        </div>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="grid grid-cols-3 gap-space-sm rounded-2xl bg-surface-container-low p-3 lg:p-5">
+          {stats.map((s) => (
+            <div class="flex flex-col items-center justify-center rounded-xl bg-surface-container px-1 py-3 text-center lg:py-6">
+              <span class="font-mono text-body-sm font-bold text-on-surface lg:text-headline-sm">{s.value}</span>
+              <span class="mt-0.5 font-mono text-[10px] text-on-surface-variant lg:text-label-sm">{s.label}</span>
+            </div>
+          ))}
+        </div>
+        <div class="mt-space-sm hidden rounded-2xl border border-white/[0.06] bg-surface-container-lowest p-4 font-mono text-code-sm lg:block" aria-hidden="true">
+          <div class="mb-2 flex gap-1.5"><span class="h-2.5 w-2.5 rounded-full bg-error/70"></span><span class="h-2.5 w-2.5 rounded-full bg-amber-400/70"></span><span class="h-2.5 w-2.5 rounded-full bg-emerald-400/70"></span></div>
+          <p><span class="text-primary">var</span> <span class="text-on-surface">edwin</span> = <span class="text-primary">new</span> <span class="text-secondary">Engineer</span>()</p>
+          <p class="pl-4 text-on-surface-variant">.With(<span class="text-emerald-300">".NET · MAUI · ASP.NET"</span>)</p>
+          <p class="pl-4 text-on-surface-variant">.With(<span class="text-emerald-300">"AWS · Azure DevOps"</span>)</p>
+          <p class="pl-4 text-on-surface-variant">.With(<span class="text-emerald-300">"React · Go · Python · LLMs"</span>)</p>
+          <p class="pl-4 text-on-surface-variant">.From(<span class="text-emerald-300">"🇩🇴 República Dominicana"</span>);</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid gap-space-lg lg:grid-cols-12 lg:gap-space-xl">
+      <!-- Latest updates -->
+      <section class="flex flex-col gap-space-sm lg:col-span-7">
+        <SectionHeader icon="rocket_launch" iconClass="text-primary" title={t('home.updates')} sub={t('home.updates.sub')} tag={t('common.viewAll')} tagHref={href(lang, 'blog')} />
+        <div class="flex flex-col gap-space-sm">
+          {posts.map((p) => <UpdateCard entry={p} lang={lang} />)}
+        </div>
+      </section>
+      <!-- Currently building -->
+      <section class="flex flex-col gap-space-sm lg:col-span-5">
+        <SectionHeader icon="code_blocks" title={t('home.building')} tag={t('home.sprint')} />
+        {current.map((p) => <CurrentlyBuilding entry={p} lang={lang} />)}
+      </section>
+    </div>
+
+    <!-- Featured projects -->
+    <section class="flex flex-col gap-space-sm">
+      <SectionHeader icon="folder_code" title={t('projects.catalog')} tag={t('common.viewAll')} tagHref={href(lang, 'projects')} />
+      <div class="grid gap-space-md sm:grid-cols-2 lg:grid-cols-3">
+        {featured.map((p) => <ProjectCard entry={p} lang={lang} />)}
+      </div>
+    </section>
+
+    <!-- Services teaser + Hire CTA -->
+    <section class="flex flex-col gap-space-sm">
+      <SectionHeader icon="handshake" iconClass="text-tertiary" title={t('home.services')} sub={t('home.services.sub')} tag={t('common.viewAll')} tagHref={href(lang, 'services')} />
+      <div class="grid gap-space-sm sm:grid-cols-2 lg:grid-cols-4">
+        {services.map((s) => (
+          <a href={href(lang, 'services')} class="card card-hover flex flex-col gap-2 border border-transparent">
+            <Icon name={s.data.icon} class="text-secondary" size="1.5rem" />
+            <h3 class="text-body-md font-semibold text-on-surface">{s.data.title}</h3>
+            <p class="text-body-sm text-on-surface-variant">{s.data.summary}</p>
+          </a>
+        ))}
+      </div>
+      <div class="mt-space-sm flex flex-col items-start gap-3 rounded-2xl border border-violet-electric/30 bg-linear-to-br from-violet-electric/15 via-surface-container to-surface-container p-5 sm:flex-row sm:items-center sm:justify-between lg:p-8">
+        <div>
+          <h2 class="text-headline-sm font-bold text-on-surface lg:text-headline-md">{t('home.hire.title')}</h2>
+          <p class="text-body-sm text-on-surface-variant lg:text-body-md">{t('home.hire.text')}</p>
+        </div>
+        <a href={href(lang, 'services#contact')} class="btn-primary shrink-0"><Icon name="handshake" size="1.125rem" />{t('nav.hire')}</a>
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,19 @@
+---
+import Icon from './Icon.astro';
+interface Props { icon?: string; iconClass?: string; title: string; sub?: string; tag?: string; tagHref?: string; level?: 'h2' | 'h3'; id?: string }
+const { icon, iconClass = 'text-secondary', title, sub, tag, tagHref, level = 'h2', id } = Astro.props;
+const H = level;
+---
+<div class="flex items-center justify-between gap-3" id={id}>
+  <div class="flex items-center gap-2 min-w-0">
+    {icon && <Icon name={icon} class={iconClass} size="1.25rem" />}
+    <div class="min-w-0">
+      <H class="text-headline-sm sm:text-headline-md font-semibold text-on-surface">{title}</H>
+      {sub && <span class="block font-mono text-[11px] text-on-surface-variant">{sub}</span>}
+    </div>
+  </div>
+  {tag && (tagHref
+    ? <a href={tagHref} class="shrink-0 font-mono text-label-sm text-secondary hover:text-primary transition-colors inline-flex items-center gap-1">{tag}<Icon name="arrow_forward" size="1rem" /></a>
+    : <span class="shrink-0 section-tag">{tag}</span>)}
+  <slot />
+</div>

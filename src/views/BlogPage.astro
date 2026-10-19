@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ExampleBadge from '../components/ExampleBadge.astro';
+import { useT, type Lang } from '../i18n/ui';
+import { href, asset, formatDate, readingMinutes } from '../lib/paths';
+import { byLang, slugOf } from '../lib/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const posts = (await byLang('posts', lang)).sort((a, b) => +b.data.date - +a.data.date);
+const [first, ...rest] = posts;
+const tags = [...new Set(posts.flatMap((p) => p.data.tags))].slice(0, 12);
+---
+<Base lang={lang} path="blog" active="blog" title={t('blog.title')} description={t('blog.lead')}>
+  <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-xl lg:py-space-xl">
+    <header class="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <span class="eyebrow">{t('blog.eyebrow')}</span>
+        <h1 class="text-headline-lg-mobile font-bold tracking-tight text-on-surface lg:text-headline-lg">{t('blog.title')}</h1>
+        <p class="mt-1 max-w-2xl text-body-sm text-on-surface-variant lg:text-body-md">{t('blog.lead')}</p>
+      </div>
+      <a href={asset(lang === 'en' ? 'en/rss.xml' : 'rss.xml')} class="btn-ghost btn-sm mt-2 w-fit"><Icon name="rss_feed" class="text-secondary" size="1rem" />{t('blog.rss')}</a>
+    </header>
+    {tags.length > 0 && (
+      <ul class="no-scrollbar -mt-2 flex gap-1.5 overflow-x-auto" aria-label={t('blog.tags')}>
+        {tags.map((tag) => <li class="chip shrink-0"><Icon name="tag" size="0.9rem" />{tag}</li>)}
+      </ul>
+    )}
+    {first && (
+      <a href={href(lang, `blog/${slugOf(first.id)}`)} class="card-raised card-hover group grid gap-space-md overflow-hidden lg:grid-cols-2 lg:items-center lg:p-0">
+        <div class="relative h-44 overflow-hidden rounded-xl bg-surface-container-low sm:h-60 lg:h-full lg:min-h-72 lg:rounded-none">
+          {first.data.cover
+            ? <img src={asset(first.data.cover)} alt="" class="h-full w-full object-cover" />
+            : <div class="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_20%_30%,rgba(208,188,255,0.25),transparent_60%),radial-gradient(circle_at_85%_75%,rgba(123,208,255,0.2),transparent_55%)]"><Icon name="terminal" class="text-primary" size="4rem" /></div>}
+        </div>
+        <div class="flex flex-col gap-2 lg:p-8">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] text-on-surface-variant">
+            <span>{formatDate(first.data.date, lang)}</span><span>·</span><span>{readingMinutes(first.body)} {t('common.minRead')}</span>
+            {first.data.project && <span class="badge">{first.data.project}</span>}
+            <ExampleBadge lang={lang} show={first.data.example} />
+          </div>
+          <h2 class="text-headline-md font-bold text-on-surface group-hover:text-primary lg:text-headline-lg">{first.data.title}</h2>
+          <p class="text-body-md text-on-surface-variant">{first.data.description}</p>
+          <span class="mt-2 inline-flex items-center gap-1 text-body-sm font-semibold text-secondary">{t('common.readMore')} <Icon name="arrow_forward" size="1rem" /></span>
+        </div>
+      </a>
+    )}
+    <div class="grid gap-space-md sm:grid-cols-2 lg:grid-cols-3">
+      {rest.map((p) => (
+        <a href={href(lang, `blog/${slugOf(p.id)}`)} class="card card-hover group flex flex-col gap-2 border border-transparent">
+          <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] text-on-surface-variant">
+            <span>{formatDate(p.data.date, lang)}</span><span>·</span><span>{readingMinutes(p.body)} {t('common.minRead')}</span>
+            {p.data.version && <span class="badge">{p.data.version}</span>}
+            <ExampleBadge lang={lang} show={p.data.example} />
+          </div>
+          {p.data.project && <span class="font-mono text-label-sm uppercase tracking-wider text-primary">{p.data.project}</span>}
+          <h2 class="text-headline-sm font-semibold text-on-surface group-hover:text-primary">{p.data.title}</h2>
+          <p class="text-body-sm text-on-surface-variant">{p.data.description}</p>
+          <ul class="mt-auto flex flex-wrap gap-1.5 pt-2">{p.data.tags.slice(0, 3).map((tag) => <li class="chip">{tag}</li>)}</ul>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,8 @@
+---
+interface Props { value: number; gradient?: boolean; label?: string }
+const { value, gradient = true, label } = Astro.props;
+const v = Math.max(0, Math.min(100, value));
+---
+<div class="h-2 w-full overflow-hidden rounded-full bg-surface-container-highest" role="progressbar" aria-valuenow={v} aria-valuemin="0" aria-valuemax="100" aria-label={label}>
+  <div class:list={['h-full rounded-full', gradient ? 'bg-linear-to-r from-primary to-secondary' : 'bg-secondary']} style={`width:${v}%`}></div>
+</div>

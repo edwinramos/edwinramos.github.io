@@ -1,0 +1,60 @@
+---
+import { SITE, isSet, formAction } from '../config';
+import { useT, type Lang } from '../i18n/ui';
+import { href, asset } from '../lib/paths';
+import Icon from './Icon.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const action = formAction('newsletter');
+const year = new Date().getFullYear();
+const links = [
+  { path: 'projects', label: t('nav.projects') },
+  { path: 'blog', label: t('nav.blog') },
+  { path: 'roadmap', label: t('nav.roadmap') },
+  { path: 'services', label: t('nav.services') },
+  { path: 'about', label: t('nav.about') },
+  { path: 'feedback', label: t('nav.feedback') },
+];
+---
+<footer class="mt-space-2xl w-full bg-surface-container-low pb-28 lg:pb-10">
+  <div class="container-site grid gap-space-xl py-space-xl lg:grid-cols-12">
+    <div class="flex flex-col gap-3 lg:col-span-6">
+      <div class="flex items-center gap-2">
+        <Icon name="mail" class="text-secondary" size="1.25rem" />
+        <h2 class="text-body-lg font-semibold text-on-surface">{t('newsletter.title')}</h2>
+      </div>
+      <p class="max-w-prose text-body-sm text-on-surface-variant">{t('newsletter.text')}</p>
+      {action ? (
+        <form action={action} method="POST" class="mt-1 flex max-w-md items-center gap-2">
+          <input type="hidden" name="form" value="newsletter" />
+          <input type="hidden" name="_subject" value="Newsletter signup" />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+          <label class="sr-only" for="nl-email">{t('form.email')}</label>
+          <input id="nl-email" name="email" type="email" required placeholder={t('form.placeholder.email')} class="field flex-1" />
+          <button class="btn-primary py-2.5" type="submit">{t('newsletter.cta')}</button>
+        </form>
+      ) : (
+        <div class="mt-1 flex flex-wrap gap-2">
+          <a class="btn-primary py-2.5" href={asset(lang === 'en' ? 'en/rss.xml' : 'rss.xml')}><Icon name="rss_feed" size="1.1rem" />RSS</a>
+          <a class="btn-ghost py-2.5" href={href(lang, 'feedback#beta')}><Icon name="install_mobile" size="1.1rem" class="text-secondary" />{t('feedback.beta')}</a>
+        </div>
+      )}
+    </div>
+    <nav aria-label="Footer" class="lg:col-span-6 lg:justify-self-end">
+      <ul class="grid grid-cols-2 gap-x-8 gap-y-2 sm:grid-cols-3">
+        {links.map((l) => <li><a class="text-body-sm text-on-surface-variant transition-colors hover:text-secondary" href={href(lang, l.path)}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+  <div class="container-site">
+    <div class="flex flex-col items-center justify-between gap-3 border-t border-outline-variant/30 pt-space-md text-on-surface-variant sm:flex-row">
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        {isSet(SITE.github) && <a class="flex items-center gap-1 text-body-sm transition-colors hover:text-secondary" href={SITE.github} rel="me noreferrer" target="_blank"><Icon name="code" size="1.125rem" />GitHub</a>}
+        <a class="flex items-center gap-1 text-body-sm transition-colors hover:text-secondary" href={SITE.linkedin} rel="me noreferrer" target="_blank"><Icon name="share" size="1.125rem" />LinkedIn</a>
+        <a class="flex items-center gap-1 text-body-sm transition-colors hover:text-secondary" href={asset(lang === 'en' ? 'en/rss.xml' : 'rss.xml')}><Icon name="rss_feed" size="1.125rem" />RSS</a>
+      </div>
+      <span class="text-center font-mono text-label-sm text-outline">© {year} {SITE.name} · {t('footer.made')}</span>
+    </div>
+  </div>
+</footer>

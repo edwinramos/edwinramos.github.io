@@ -1,0 +1,775 @@
+# Pages CMS configuration — https://pagescms.org/docs/configuration/
+# Sign in at https://app.pagescms.org with GitHub, pick this repository and edit.
+# Each save = a commit to `main` = automatic deploy via GitHub Actions.
+#
+# Content lives in src/content/<collection>/<es|en>/<slug>.md
+# TIP: use the SAME file name (slug) in /es and /en so the language switcher links the translations.
+
+media:
+  input: public/images
+  output: /images
+
+settings:
+  content:
+    merge: true
+
+components:
+  title:
+    type: string
+    label: Título / Title
+    required: true
+  example:
+    type: boolean
+    label: "¿Es contenido de ejemplo? (muestra la etiqueta EJEMPLO)"
+    description: Desactívalo cuando el contenido sea real.
+    default: false
+  draft:
+    type: boolean
+    label: Borrador (no se publica)
+    default: false
+  date:
+    type: date
+    label: Fecha
+    options:
+      format: yyyy-MM-dd
+  order:
+    type: number
+    label: Orden (1 = primero)
+    default: 10
+  tags:
+    type: string
+    label: Etiquetas / tecnologías
+    list: true
+  body:
+    type: rich-text
+    label: Contenido
+    options:
+      format: markdown
+  url:
+    type: string
+    label: URL
+    pattern:
+      regex: "^(https?://.*)?$"
+      message: "Debe empezar con https:// (o dejarlo vacío)"
+
+content:
+  - name: group-es
+    label: "🇪🇸 Español"
+    type: group
+    items:
+      - name: projects-es
+        label: "Proyectos (ES)"
+        type: collection
+        path: src/content/projects/es
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, status, current, example, date]
+          primary: title
+          sort: [order, date, title]
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: title
+            component: title
+          - name: summary
+            type: text
+            label: Resumen corto (tarjeta)
+            required: true
+          - name: status
+            type: select
+            label: Estado
+            required: true
+            default: in-development
+            options:
+              values:
+                - { name: live, label: "Live / En producción" }
+                - { name: in-development, label: "En desarrollo" }
+                - { name: idea, label: "Idea" }
+          - name: category
+            type: select
+            label: Categoría (filtro)
+            default: mobile
+            options:
+              values:
+                - { name: mobile, label: "Móvil" }
+                - { name: backend, label: "Backend & Cloud" }
+                - { name: ai, label: "IA" }
+                - { name: web, label: "Web" }
+                - { name: oss, label: "Open Source" }
+          - name: kind
+            type: string
+            label: "Etiqueta superior (ej. App móvil · Salud)"
+          - name: tags
+            component: tags
+          - name: version
+            type: string
+            label: "Versión (ej. v1.2 Beta)"
+          - name: metric
+            type: string
+            label: "Métrica destacada (ej. 99.9% uptime)"
+          - name: cover
+            type: image
+            label: Imagen de portada
+          - name: icon
+            type: string
+            label: "Ícono si no hay portada (nombre de Material Symbols, ej. phone_android)"
+          - name: repoUrl
+            component: url
+            label: "Enlace GitHub / código"
+          - name: playStoreUrl
+            component: url
+            label: Enlace Google Play
+          - name: appStoreUrl
+            component: url
+            label: Enlace App Store
+          - name: betaUrl
+            component: url
+            label: "Enlace beta (Play testing / TestFlight)"
+          - name: demoUrl
+            component: url
+            label: Enlace demo / sitio
+          - name: current
+            type: boolean
+            label: "Mostrar en «En qué estoy trabajando»"
+            default: false
+          - name: progress
+            type: number
+            label: "Progreso % (0-100)"
+            options: { min: 0, max: 100 }
+          - name: currentTask
+            type: string
+            label: Tarea actual
+          - name: eta
+            type: string
+            label: "Entrega estimada (texto libre)"
+          - name: order
+            component: order
+          - name: date
+            component: date
+            label: Fecha (última actualización)
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: "Caso de estudio (problema, solución, resultados)"
+      - name: posts-es
+        label: "Devlog (ES)"
+        type: collection
+        path: src/content/posts/es
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, date, project, example, draft]
+          primary: title
+          sort: [date, title]
+          default:
+            sort: date
+            order: desc
+        fields:
+          - name: title
+            component: title
+          - name: description
+            type: text
+            label: "Descripción (SEO y tarjeta)"
+            required: true
+          - name: date
+            component: date
+            label: Fecha de publicación
+          - name: tags
+            component: tags
+          - name: project
+            type: string
+            label: "Proyecto relacionado (nombre)"
+          - name: version
+            type: string
+            label: "Versión publicada (ej. v1.2.4)"
+          - name: cover
+            type: image
+            label: Imagen de portada
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: Artículo
+      - name: roadmap-es
+        label: "Roadmap (ES)"
+        type: collection
+        path: src/content/roadmap/es
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, status, project, order]
+          primary: title
+          sort: [order, title]
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: title
+            component: title
+          - name: summary
+            type: text
+            label: Resumen
+            required: true
+          - name: status
+            type: select
+            label: Estado
+            default: planned
+            options:
+              values:
+                - { name: idea, label: "Idea" }
+                - { name: planned, label: "Planeado" }
+                - { name: in-progress, label: "En curso" }
+                - { name: done, label: "Completado" }
+          - name: project
+            type: string
+            label: Proyecto
+          - name: tags
+            component: tags
+          - name: order
+            component: order
+          - name: date
+            component: date
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: Detalle
+      - name: services-es
+        label: "Servicios (ES)"
+        type: collection
+        path: src/content/services/es
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, order]
+          primary: title
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: title
+            component: title
+          - name: summary
+            type: text
+            label: Resumen
+            required: true
+          - name: icon
+            type: string
+            label: "Ícono (Material Symbols: smartphone, api, cloud, smart_toy…)"
+            default: code
+          - name: features
+            type: string
+            label: Qué incluye (viñetas)
+            list: true
+          - name: tags
+            component: tags
+          - name: priceNote
+            type: string
+            label: "Nota de precio (ej. Por proyecto)"
+          - name: order
+            component: order
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: Texto adicional (opcional)
+      - name: testimonials-es
+        label: "Testimonios (ES)"
+        type: collection
+        path: src/content/testimonials/es
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [name, company, example]
+          primary: name
+        fields:
+          - name: name
+            type: string
+            label: Nombre del cliente
+            required: true
+          - name: role
+            type: string
+            label: Cargo
+          - name: company
+            type: string
+            label: Empresa
+          - name: quote
+            type: text
+            label: Testimonio (cita)
+            required: true
+          - name: url
+            component: url
+            label: "Enlace (LinkedIn del cliente, opcional)"
+          - name: order
+            component: order
+          - name: example
+            component: example
+            label: "¿Es un testimonio de EJEMPLO? (desactívalo SOLO si es real y tienes permiso)"
+            default: true
+          - name: draft
+            component: draft
+      - name: experience-es
+        label: "Experiencia (ES)"
+        type: collection
+        path: src/content/experience/es
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [role, company, start, end]
+          primary: role
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: role
+            type: string
+            label: Puesto
+            required: true
+          - name: company
+            type: string
+            label: Empresa
+            required: true
+          - name: start
+            type: string
+            label: "Desde (ej. 2019)"
+            required: true
+          - name: end
+            type: string
+            label: "Hasta (vacío = actual)"
+          - name: summary
+            type: text
+            label: Descripción
+            required: true
+          - name: tags
+            component: tags
+          - name: order
+            component: order
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+      - name: profile-es
+        label: "Perfil / Sobre mí (ES)"
+        type: file
+        path: src/content/profile/es.md
+        fields:
+          - name: role
+            type: string
+            label: Título profesional
+          - name: specialty
+            type: string
+            label: Especialidad (línea corta)
+          - name: location
+            type: string
+            label: Ubicación
+          - name: stats
+            type: object
+            label: "Cifras (3 recuadros)"
+            list: { max: 3 }
+            fields:
+              - { name: value, type: string, label: Valor }
+              - { name: label, type: string, label: Etiqueta }
+          - name: skills
+            type: object
+            label: Habilidades
+            list:
+              collapsible: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
+              - { name: description, type: text, label: Descripción }
+              - { name: items, type: string, label: Tecnologías, list: true }
+          - name: education
+            type: object
+            label: "Certificaciones y formación"
+            list: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: subtitle, type: string, label: Institución / detalle }
+              - { name: icon, type: string, label: "Ícono (school, workspace_premium…)" }
+              - { name: example, type: boolean, label: "¿Ejemplo?" }
+          - name: languages
+            type: object
+            label: Idiomas
+            list: true
+            fields:
+              - { name: name, type: string, label: Idioma }
+              - { name: level, type: string, label: Nivel }
+          - name: body
+            component: body
+            label: Biografía
+  - name: group-en
+    label: "🇺🇸 English"
+    type: group
+    items:
+      - name: projects-en
+        label: "Proyectos (EN)"
+        type: collection
+        path: src/content/projects/en
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, status, current, example, date]
+          primary: title
+          sort: [order, date, title]
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: title
+            component: title
+          - name: summary
+            type: text
+            label: Resumen corto (tarjeta)
+            required: true
+          - name: status
+            type: select
+            label: Estado
+            required: true
+            default: in-development
+            options:
+              values:
+                - { name: live, label: "Live / En producción" }
+                - { name: in-development, label: "En desarrollo" }
+                - { name: idea, label: "Idea" }
+          - name: category
+            type: select
+            label: Categoría (filtro)
+            default: mobile
+            options:
+              values:
+                - { name: mobile, label: "Móvil" }
+                - { name: backend, label: "Backend & Cloud" }
+                - { name: ai, label: "IA" }
+                - { name: web, label: "Web" }
+                - { name: oss, label: "Open Source" }
+          - name: kind
+            type: string
+            label: "Etiqueta superior (ej. App móvil · Salud)"
+          - name: tags
+            component: tags
+          - name: version
+            type: string
+            label: "Versión (ej. v1.2 Beta)"
+          - name: metric
+            type: string
+            label: "Métrica destacada (ej. 99.9% uptime)"
+          - name: cover
+            type: image
+            label: Imagen de portada
+          - name: icon
+            type: string
+            label: "Ícono si no hay portada (nombre de Material Symbols, ej. phone_android)"
+          - name: repoUrl
+            component: url
+            label: "Enlace GitHub / código"
+          - name: playStoreUrl
+            component: url
+            label: Enlace Google Play
+          - name: appStoreUrl
+            component: url
+            label: Enlace App Store
+          - name: betaUrl
+            component: url
+            label: "Enlace beta (Play testing / TestFlight)"
+          - name: demoUrl
+            component: url
+            label: Enlace demo / sitio
+          - name: current
+            type: boolean
+            label: "Mostrar en «En qué estoy trabajando»"
+            default: false
+          - name: progress
+            type: number
+            label: "Progreso % (0-100)"
+            options: { min: 0, max: 100 }
+          - name: currentTask
+            type: string
+            label: Tarea actual
+          - name: eta
+            type: string
+            label: "Entrega estimada (texto libre)"
+          - name: order
+            component: order
+          - name: date
+            component: date
+            label: Fecha (última actualización)
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: "Caso de estudio (problema, solución, resultados)"
+      - name: posts-en
+        label: "Devlog (EN)"
+        type: collection
+        path: src/content/posts/en
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, date, project, example, draft]
+          primary: title
+          sort: [date, title]
+          default:
+            sort: date
+            order: desc
+        fields:
+          - name: title
+            component: title
+          - name: description
+            type: text
+            label: "Descripción (SEO y tarjeta)"
+            required: true
+          - name: date
+            component: date
+            label: Fecha de publicación
+          - name: tags
+            component: tags
+          - name: project
+            type: string
+            label: "Proyecto relacionado (nombre)"
+          - name: version
+            type: string
+            label: "Versión publicada (ej. v1.2.4)"
+          - name: cover
+            type: image
+            label: Imagen de portada
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: Artículo
+      - name: roadmap-en
+        label: "Roadmap (EN)"
+        type: collection
+        path: src/content/roadmap/en
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, status, project, order]
+          primary: title
+          sort: [order, title]
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: title
+            component: title
+          - name: summary
+            type: text
+            label: Resumen
+            required: true
+          - name: status
+            type: select
+            label: Estado
+            default: planned
+            options:
+              values:
+                - { name: idea, label: "Idea" }
+                - { name: planned, label: "Planeado" }
+                - { name: in-progress, label: "En curso" }
+                - { name: done, label: "Completado" }
+          - name: project
+            type: string
+            label: Proyecto
+          - name: tags
+            component: tags
+          - name: order
+            component: order
+          - name: date
+            component: date
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: Detalle
+      - name: services-en
+        label: "Servicios (EN)"
+        type: collection
+        path: src/content/services/en
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [title, order]
+          primary: title
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: title
+            component: title
+          - name: summary
+            type: text
+            label: Resumen
+            required: true
+          - name: icon
+            type: string
+            label: "Ícono (Material Symbols: smartphone, api, cloud, smart_toy…)"
+            default: code
+          - name: features
+            type: string
+            label: Qué incluye (viñetas)
+            list: true
+          - name: tags
+            component: tags
+          - name: priceNote
+            type: string
+            label: "Nota de precio (ej. Por proyecto)"
+          - name: order
+            component: order
+          - name: draft
+            component: draft
+          - name: body
+            component: body
+            label: Texto adicional (opcional)
+      - name: testimonials-en
+        label: "Testimonios (EN)"
+        type: collection
+        path: src/content/testimonials/en
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [name, company, example]
+          primary: name
+        fields:
+          - name: name
+            type: string
+            label: Nombre del cliente
+            required: true
+          - name: role
+            type: string
+            label: Cargo
+          - name: company
+            type: string
+            label: Empresa
+          - name: quote
+            type: text
+            label: Testimonio (cita)
+            required: true
+          - name: url
+            component: url
+            label: "Enlace (LinkedIn del cliente, opcional)"
+          - name: order
+            component: order
+          - name: example
+            component: example
+            label: "¿Es un testimonio de EJEMPLO? (desactívalo SOLO si es real y tienes permiso)"
+            default: true
+          - name: draft
+            component: draft
+      - name: experience-en
+        label: "Experiencia (EN)"
+        type: collection
+        path: src/content/experience/en
+        filename:
+          template: "{primary}.md"
+          field: create
+        view:
+          fields: [role, company, start, end]
+          primary: role
+          default:
+            sort: order
+            order: asc
+        fields:
+          - name: role
+            type: string
+            label: Puesto
+            required: true
+          - name: company
+            type: string
+            label: Empresa
+            required: true
+          - name: start
+            type: string
+            label: "Desde (ej. 2019)"
+            required: true
+          - name: end
+            type: string
+            label: "Hasta (vacío = actual)"
+          - name: summary
+            type: text
+            label: Descripción
+            required: true
+          - name: tags
+            component: tags
+          - name: order
+            component: order
+          - name: example
+            component: example
+          - name: draft
+            component: draft
+      - name: profile-en
+        label: "Perfil / Sobre mí (EN)"
+        type: file
+        path: src/content/profile/en.md
+        fields:
+          - name: role
+            type: string
+            label: Título profesional
+          - name: specialty
+            type: string
+            label: Especialidad (línea corta)
+          - name: location
+            type: string
+            label: Ubicación
+          - name: stats
+            type: object
+            label: "Cifras (3 recuadros)"
+            list: { max: 3 }
+            fields:
+              - { name: value, type: string, label: Valor }
+              - { name: label, type: string, label: Etiqueta }
+          - name: skills
+            type: object
+            label: Habilidades
+            list:
+              collapsible: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
+              - { name: description, type: text, label: Descripción }
+              - { name: items, type: string, label: Tecnologías, list: true }
+          - name: education
+            type: object
+            label: "Certificaciones y formación"
+            list: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: subtitle, type: string, label: Institución / detalle }
+              - { name: icon, type: string, label: "Ícono (school, workspace_premium…)" }
+              - { name: example, type: boolean, label: "¿Ejemplo?" }
+          - name: languages
+            type: object
+            label: Idiomas
+            list: true
+            fields:
+              - { name: name, type: string, label: Idioma }
+              - { name: level, type: string, label: Nivel }
+          - name: body
+            component: body
+            label: Biografía

@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Form from '../components/Form.astro';
+import { useT, type Lang } from '../i18n/ui';
+import { href } from '../lib/paths';
+import { byLang } from '../lib/content';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useT(lang);
+const projects = (await byLang('projects', lang)).sort((a, b) => a.data.order - b.data.order);
+const betaProjects = projects.filter((p) => p.data.status !== 'live');
+const es = lang === 'es';
+---
+<Base lang={lang} path="feedback" active="feedback" title={t('feedback.title')} description={t('feedback.lead')}>
+  <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-xl lg:py-space-xl">
+    <header class="flex flex-col gap-1">
+      <span class="eyebrow">{t('feedback.eyebrow')}</span>
+      <h1 class="text-headline-lg-mobile font-bold tracking-tight text-on-surface lg:text-headline-lg">{t('feedback.title')}</h1>
+      <p class="mt-1 max-w-2xl text-body-sm text-on-surface-variant lg:text-body-md">{t('feedback.lead')}</p>
+    </header>
+    <div class="grid gap-space-lg lg:grid-cols-2">
+      <section class="card-raised flex flex-col gap-space-md" id="feedback">
+        <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="chat" class="text-secondary" size="1.3rem" />{t('feedback.form')}</h2>
+        <Form kind="feedback" lang={lang} subject={es ? 'Feedback (web)' : 'Feedback (website)'}>
+          <div class="grid gap-space-md sm:grid-cols-2">
+            <div>
+              <label class="field-label" for="f-type">{t('form.type')}</label>
+              <select id="f-type" name="type" class="field"><option>{t('form.type.idea')}</option><option>{t('form.type.bug')}</option><option>{t('form.type.other')}</option></select>
+            </div>
+            <div>
+              <label class="field-label" for="f-project">{t('form.project')}</label>
+              <select id="f-project" name="project" class="field"><option>{t('form.project.any')}</option>{projects.map((p) => <option>{p.data.title}</option>)}</select>
+            </div>
+            <div><label class="field-label" for="f-name">{t('form.name')}</label><input id="f-name" name="name" class="field" autocomplete="name" /></div>
+            <div><label class="field-label" for="f-email">{t('form.email')}</label><input id="f-email" name="email" type="email" class="field" autocomplete="email" placeholder={t('form.placeholder.email')} /></div>
+          </div>
+          <div><label class="field-label" for="f-msg">{t('form.message')}</label><textarea id="f-msg" name="message" rows="5" required class="field resize-y"></textarea></div>
+        </Form>
+      </section>
+      <section class="card-raised flex flex-col gap-space-md scroll-mt-28" id="beta">
+        <div>
+          <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="science" class="text-primary" size="1.3rem" />{t('feedback.beta')}</h2>
+          <p class="mt-1 text-body-sm text-on-surface-variant">{t('feedback.beta.lead')}</p>
+        </div>
+        <Form kind="beta" lang={lang} subject={es ? 'Beta tester (web)' : 'Beta tester (website)'} submitLabel={t('feedback.beta')}>
+          <div class="grid gap-space-md sm:grid-cols-2">
+            <div><label class="field-label" for="b-name">{t('form.name')}</label><input id="b-name" name="name" required class="field" autocomplete="name" /></div>
+            <div><label class="field-label" for="b-email">{t('form.email')}</label><input id="b-email" name="email" type="email" required class="field" autocomplete="email" placeholder={t('form.placeholder.email')} /></div>
+          </div>
+          <fieldset>
+            <legend class="field-label">{t('form.platform')}</legend>
+            <div class="flex flex-wrap gap-2">
+              {['Android', 'iOS'].map((pl) => (
+                <label class="inline-flex cursor-pointer items-center gap-2 rounded-full bg-surface-container-highest px-3 py-1.5 font-mono text-label-md text-on-surface has-[:checked]:bg-primary has-[:checked]:text-on-primary">
+                  <input type="checkbox" name="platform" value={pl} class="sr-only" />{pl}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          {betaProjects.length > 0 && (
+            <div>
+              <label class="field-label" for="b-project">{t('form.project')}</label>
+              <select id="b-project" name="project" class="field"><option>{t('form.project.any')}</option>{betaProjects.map((p) => <option>{p.data.title}</option>)}</select>
+            </div>
+          )}
+          <div><label class="field-label" for="b-msg">{es ? 'Dispositivo / comentarios (opcional)' : 'Device / notes (optional)'}</label><input id="b-msg" name="device" class="field" placeholder={es ? 'Ej. Pixel 7, Android 15' : 'e.g. Pixel 7, Android 15'} /></div>
+        </Form>
+      </section>
+    </div>
+    <p class="text-body-sm text-on-surface-variant">{es ? '¿Prefieres votar ideas existentes?' : 'Prefer voting on existing ideas?'} <a class="text-secondary hover:underline" href={href(lang, 'roadmap')}>{t('nav.roadmap')} →</a></p>
+  </div>
+</Base>

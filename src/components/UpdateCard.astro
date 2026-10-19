@@ -1,0 +1,35 @@
+---
+/** Devlog entry displayed as an "app update" row (home + projects "Bitácora"). */
+import type { CollectionEntry } from 'astro:content';
+import { useT, type Lang } from '../i18n/ui';
+import { href, formatDate, readingMinutes } from '../lib/paths';
+import { slugOf } from '../lib/content';
+import Icon from './Icon.astro';
+import ExampleBadge from './ExampleBadge.astro';
+interface Props { entry: CollectionEntry<'posts'>; lang: Lang }
+const { entry, lang } = Astro.props;
+const { data } = entry;
+const t = useT(lang);
+const url = href(lang, `blog/${slugOf(entry.id)}`);
+const initials = (data.project ?? data.title).split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+---
+<article class="card card-hover relative flex flex-col gap-3 border border-transparent">
+  <div class="flex items-center justify-between gap-3">
+    <div class="flex min-w-0 items-center gap-3">
+      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-surface-container-high font-mono text-label-md text-primary">{initials}</div>
+      <div class="flex min-w-0 flex-col">
+        <div class="flex items-center gap-1.5">
+          <h3 class="truncate text-body-lg font-semibold text-on-surface">{data.project ?? data.title}</h3>
+          {data.version && <span class="badge">{data.version}</span>}
+        </div>
+        <span class="font-mono text-[11px] text-on-surface-variant">{formatDate(data.date, lang)} · {readingMinutes(entry.body)} {t('common.minRead')}</span>
+      </div>
+    </div>
+    <a href={url} class="btn-sm inline-flex shrink-0 items-center gap-1 rounded-lg bg-primary/10 text-body-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-on-primary after:absolute after:inset-0">
+      <Icon name="visibility" size="1rem" /><span class="hidden sm:inline">{t('links.details')}</span>
+    </a>
+  </div>
+  {data.project && <p class="text-body-md font-semibold text-on-surface">{data.title}</p>}
+  <p class="text-body-sm text-on-surface-variant">{data.description}</p>
+  {data.example && <div><ExampleBadge lang={lang} /></div>}
+</article>

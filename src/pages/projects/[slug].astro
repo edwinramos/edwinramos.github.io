@@ -1,0 +1,10 @@
+---
+import View from '../../views/ProjectDetail.astro';
+import { byLang, slugOf } from '../../lib/content';
+export async function getStaticPaths() {
+  const entries = await byLang('projects', 'es');
+  return entries.map((entry) => ({ params: { slug: slugOf(entry.id) }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+<View lang="es" entry={entry} />

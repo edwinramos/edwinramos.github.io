@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../i18n/ui';
+import { href } from '../lib/paths';
+import { slugOf } from '../lib/content';
+import Icon from './Icon.astro';
+import StatusPill from './StatusPill.astro';
+import TechBadges from './TechBadges.astro';
+import ProjectLinks from './ProjectLinks.astro';
+import ExampleBadge from './ExampleBadge.astro';
+interface Props { entry: CollectionEntry<'projects'>; lang: Lang }
+const { entry, lang } = Astro.props;
+const { data } = entry;
+const url = href(lang, `projects/${slugOf(entry.id)}`);
+---
+<article class="project-item card-raised card-hover flex flex-col gap-space-sm" data-category={data.category}>
+  <div class="flex items-center justify-between gap-2">
+    <div class="flex flex-wrap items-center gap-1.5">
+      <StatusPill status={data.status} lang={lang} />
+      <ExampleBadge lang={lang} show={data.example} />
+    </div>
+    {data.metric ? <span class="flex items-center gap-0.5 font-mono text-code-sm text-emerald-400"><Icon name="check_circle" size="0.95rem" />{data.metric}</span>
+      : data.version ? <span class="font-mono text-code-sm text-on-surface-variant">{data.version}</span> : null}
+  </div>
+  <div class="flex flex-col gap-1">
+    {data.kind && <span class="font-mono text-label-sm text-secondary">{data.kind}</span>}
+    <h3 class="text-headline-sm font-bold text-on-surface"><a href={url} class="after:absolute after:inset-0 hover:text-primary transition-colors">{data.title}</a></h3>
+    <p class="text-body-sm text-on-surface-variant">{data.summary}</p>
+  </div>
+  <div class="pt-1"><TechBadges tags={data.tags} max={4} /></div>
+  <div class="mt-auto flex items-center justify-between gap-2 border-t border-outline-variant/30 pt-2">
+    <div class="relative z-10"><ProjectLinks data={data} lang={lang} /></div>
+    <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant" aria-hidden="true"><Icon name="arrow_forward" size="1.1rem" /></span>
+  </div>
+</article>
+<style>
+  article { position: relative; }
+</style>

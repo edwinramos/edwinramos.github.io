@@ -1,0 +1,11 @@
+---
+interface Props { tags: string[]; max?: number }
+const { tags, max } = Astro.props;
+const list = max ? tags.slice(0, max) : tags;
+const tone = ['text-secondary', 'text-tertiary', 'text-on-surface-variant'];
+---
+{list.length > 0 && (
+  <ul class="flex flex-wrap gap-1.5" role="list">
+    {list.map((tag, i) => <li class:list={['chip', tone[Math.min(i, 2)]]}>{tag}</li>)}
+  </ul>
+)}

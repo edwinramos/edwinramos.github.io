@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- PLACEHOLDER avatar: replace with your photo (e.g. public/images/avatar.jpg) and update the path in the views, or just overwrite this file -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2d3449"/><stop offset="1" stop-color="#131b2e"/></linearGradient>
+    <linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d0bcff"/><stop offset="1" stop-color="#7bd0ff"/></linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="64" fill="url(#bg)"/>
+  <text x="64" y="78" text-anchor="middle" font-family="Plus Jakarta Sans, Segoe UI, sans-serif" font-size="44" font-weight="800" fill="url(#fg)" letter-spacing="-1">ER</text>
+</svg>

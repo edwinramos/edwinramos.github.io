@@ -1,0 +1,7 @@
+---
+/** Material Symbols Outlined icon. Names must be listed in src/lib/icons.ts (font is subset). */
+interface Props { name: string; class?: string; size?: string; fill?: boolean }
+const { name, class: cls = '', size, fill = false } = Astro.props;
+const style = [size ? `font-size:${size}` : '', fill ? "font-variation-settings:'FILL' 1" : ''].filter(Boolean).join(';');
+---
+<span class:list={['material-symbols-outlined', cls]} style={style || undefined} aria-hidden="true">{name}</span>

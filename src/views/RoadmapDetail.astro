@@ -1,0 +1,39 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Giscus from '../components/Giscus.astro';
+import StatusPill from '../components/StatusPill.astro';
+import ExampleBadge from '../components/ExampleBadge.astro';
+import { useT, type Lang } from '../i18n/ui';
+import { href } from '../lib/paths';
+import { slugOf, hasTranslation } from '../lib/content';
+interface Props { lang: Lang; entry: CollectionEntry<'roadmap'> }
+const { lang, entry } = Astro.props;
+const { data } = entry;
+const t = useT(lang);
+const slug = slugOf(entry.id);
+const other: Lang = lang === 'es' ? 'en' : 'es';
+const alternates = { [other]: (await hasTranslation('roadmap', other, slug)) ? href(other, `roadmap/${slug}`) : href(other, 'roadmap') };
+const { Content } = await render(entry);
+---
+<Base lang={lang} path={`roadmap/${slug}`} active="roadmap" title={data.title} description={data.summary} alternates={alternates}>
+  <article class="container-site mx-auto flex max-w-3xl flex-col gap-space-lg py-space-md lg:py-space-xl">
+    <a href={href(lang, 'roadmap')} class="inline-flex w-fit items-center gap-1 font-mono text-label-sm text-on-surface-variant hover:text-secondary"><Icon name="arrow_back" size="1rem" />{t('nav.roadmap')}</a>
+    <header class="flex flex-col gap-space-sm">
+      <div class="flex flex-wrap items-center gap-2">
+        <StatusPill status={data.status} lang={lang} kind="roadmap" />
+        {data.project && <span class="font-mono text-label-sm text-primary">{data.project}</span>}
+        <ExampleBadge lang={lang} show={data.example} />
+      </div>
+      <h1 class="text-headline-lg-mobile font-bold tracking-tight text-on-surface lg:text-headline-lg">{data.title}</h1>
+      <p class="text-body-md text-on-surface-variant">{data.summary}</p>
+    </header>
+    <div class="prose prose-site"><Content /></div>
+    <section class="flex flex-col gap-space-sm" id="vote">
+      <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="thumb_up" class="text-primary" size="1.25rem" />{t('roadmap.vote')}</h2>
+      <p class="font-mono text-code-sm text-on-surface-variant">{t('roadmap.votesHow')}</p>
+      <Giscus lang={lang} mode="votes" term={`roadmap:${slug}`} />
+    </section>
+  </article>
+</Base>

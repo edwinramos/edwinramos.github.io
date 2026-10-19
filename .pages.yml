@@ -322,54 +322,6 @@ content:
             default: true
           - name: draft
             component: draft
-      - name: experience-es
-        label: "Experiencia (ES)"
-        type: collection
-        path: src/content/experience/es
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [role, company, start, end]
-          primary: role
-          default:
-            sort: order
-            order: asc
-        fields:
-          - name: role
-            type: string
-            label: Puesto
-            required: true
-          - name: company
-            type: string
-            label: Empresa
-            required: true
-          - name: start
-            type: string
-            label: "Desde (ej. 2019)"
-            required: true
-          - name: end
-            type: string
-            label: "Hasta (vacío = actual)"
-          - name: location
-            type: string
-            label: "Ubicación / modalidad (ej. Estados Unidos · Remoto)"
-          - name: summary
-            type: text
-            label: "Descripción (empresa / contexto)"
-            required: true
-          - name: highlights
-            type: string
-            label: Logros (viñetas)
-            list: true
-          - name: tags
-            component: tags
-          - name: order
-            component: order
-          - name: example
-            component: example
-          - name: draft
-            component: draft
       - name: profile-es
         label: "Perfil / Sobre mí (ES)"
         type: file
@@ -417,6 +369,26 @@ content:
             fields:
               - { name: name, type: string, label: Idioma }
               - { name: level, type: string, label: Nivel }
+          - name: focus
+            type: object
+            label: "Qué hago (tarjetas de especialidad)"
+            list:
+              collapsible: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
+              - { name: description, type: text, label: Descripción }
+              - { name: points, type: string, label: Puntos clave, list: true }
+          - name: approach
+            type: object
+            label: "Cómo trabajo"
+            list:
+              collapsible: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
+              - { name: description, type: text, label: Descripción }
+              - { name: example, type: boolean, label: "¿Ejemplo?" }
           - name: body
             component: body
             label: Biografía
@@ -689,54 +661,6 @@ content:
             default: true
           - name: draft
             component: draft
-      - name: experience-en
-        label: "Experiencia (EN)"
-        type: collection
-        path: src/content/experience/en
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [role, company, start, end]
-          primary: role
-          default:
-            sort: order
-            order: asc
-        fields:
-          - name: role
-            type: string
-            label: Puesto
-            required: true
-          - name: company
-            type: string
-            label: Empresa
-            required: true
-          - name: start
-            type: string
-            label: "Desde (ej. 2019)"
-            required: true
-          - name: end
-            type: string
-            label: "Hasta (vacío = actual)"
-          - name: location
-            type: string
-            label: "Ubicación / modalidad (ej. Estados Unidos · Remoto)"
-          - name: summary
-            type: text
-            label: "Descripción (empresa / contexto)"
-            required: true
-          - name: highlights
-            type: string
-            label: Logros (viñetas)
-            list: true
-          - name: tags
-            component: tags
-          - name: order
-            component: order
-          - name: example
-            component: example
-          - name: draft
-            component: draft
       - name: profile-en
         label: "Perfil / Sobre mí (EN)"
         type: file
@@ -784,6 +708,26 @@ content:
             fields:
               - { name: name, type: string, label: Idioma }
               - { name: level, type: string, label: Nivel }
+          - name: focus
+            type: object
+            label: "Qué hago (tarjetas de especialidad)"
+            list:
+              collapsible: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
+              - { name: description, type: text, label: Descripción }
+              - { name: points, type: string, label: Puntos clave, list: true }
+          - name: approach
+            type: object
+            label: "Cómo trabajo"
+            list:
+              collapsible: true
+            fields:
+              - { name: title, type: string, label: Título }
+              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
+              - { name: description, type: text, label: Descripción }
+              - { name: example, type: boolean, label: "¿Ejemplo?" }
           - name: body
             component: body
             label: Biografía

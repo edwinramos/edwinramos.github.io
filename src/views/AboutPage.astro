@@ -7,16 +7,13 @@ import ExampleBadge from '../components/ExampleBadge.astro';
 import { SITE, isSet } from '../config';
 import { useT, type Lang } from '../i18n/ui';
 import { href, asset } from '../lib/paths';
-import { byLang } from '../lib/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
 const profile = (await getEntry('profile', lang))!;
 const { Content } = await render(profile);
 const p = profile.data;
-const experience = (await byLang('experience', lang)).sort((a, b) => a.data.order - b.data.order);
 const accents = ['text-secondary', 'text-primary', 'text-tertiary'];
-const dots = ['bg-secondary shadow-[0_0_8px_rgba(123,208,255,0.8)]', 'bg-primary shadow-[0_0_8px_rgba(208,188,255,0.7)]', 'bg-outline'];
 const channels = [
   { icon: 'mail', label: 'Email', value: SITE.email, url: `mailto:${SITE.email}` },
   { icon: 'share', label: 'LinkedIn', value: 'edwin-ramos-madera', url: SITE.linkedin },
@@ -39,7 +36,6 @@ const channels = [
           <p class="text-body-sm text-on-surface-variant">{p.specialty}</p>
           <p class="flex items-center gap-1 text-body-sm text-on-surface-variant"><Icon name="location_on" size="1rem" class="text-primary" />{p.location}</p>
         </div>
-        <div class="prose prose-site text-body-sm text-left sm:text-center"><Content /></div>
         <div class="grid w-full grid-cols-3 gap-space-xs">
           {p.stats.map((s) => (
             <div class="flex flex-col items-center rounded-xl bg-surface-container-high px-1 py-3">
@@ -56,6 +52,53 @@ const channels = [
     </aside>
 
     <div class="flex flex-col gap-space-xl lg:col-span-8">
+      <!-- Intro -->
+      <section class="flex flex-col gap-space-sm">
+        <span class="eyebrow">{t('about.eyebrow')}</span>
+        <h2 class="text-headline-lg-mobile font-bold tracking-tight text-on-surface lg:text-headline-lg">{t('about.intro')}</h2>
+        <div class="prose prose-site lg:prose-lg"><Content /></div>
+      </section>
+
+      <!-- What I do -->
+      {p.focus.length > 0 && (
+        <section class="flex flex-col gap-space-sm">
+          <SectionHeader icon="rocket_launch" iconClass="text-primary" title={t('about.focus')} tag={t('about.focus.tag')} />
+          <div class="grid gap-space-sm md:grid-cols-2">
+            {p.focus.map((f, i) => (
+              <article class="card-raised card-hover flex flex-col gap-space-sm">
+                <span class:list={['flex h-11 w-11 items-center justify-center rounded-xl bg-surface-container-highest', accents[i % 3]]}><Icon name={f.icon} size="1.5rem" /></span>
+                <h3 class="text-headline-sm font-bold text-on-surface">{f.title}</h3>
+                <p class="text-body-sm text-on-surface-variant">{f.description}</p>
+                {f.points.length > 0 && (
+                  <ul class="flex flex-col gap-1.5">
+                    {f.points.map((pt) => <li class="flex items-start gap-2 text-body-sm text-on-surface"><Icon name="check" class="mt-0.5 text-emerald-400" size="1rem" />{pt}</li>)}
+                  </ul>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- How I work -->
+      {p.approach.length > 0 && (
+        <section class="flex flex-col gap-space-sm">
+          <SectionHeader icon="sync" title={t('about.approach')} tag={t('about.approach.tag')} />
+          <ul class="grid gap-space-sm sm:grid-cols-2 lg:grid-cols-3">
+            {p.approach.map((ap, i) => (
+              <li class="card flex flex-col gap-1.5">
+                <div class="flex items-center justify-between gap-2">
+                  <Icon name={ap.icon} class={accents[i % 3]} size="1.35rem" />
+                  <ExampleBadge lang={lang} show={ap.example} />
+                </div>
+                <h3 class="text-body-lg font-semibold text-on-surface">{ap.title}</h3>
+                <p class="text-body-sm text-on-surface-variant">{ap.description}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       <!-- Skills -->
       <section class="flex flex-col gap-space-sm">
         <SectionHeader icon="apps" title={t('about.skills')} tag={t('about.skills.tag')} />
@@ -70,37 +113,6 @@ const channels = [
             </div>
           ))}
         </div>
-      </section>
-
-      <!-- Experience -->
-      <section class="flex flex-col gap-space-sm">
-        <SectionHeader icon="work" title={t('about.experience')} tag={t('about.experience.tag')} />
-        <ol class="flex flex-col gap-space-md">
-          {experience.map((e, i) => (
-            <li class="relative flex flex-col gap-space-xs pl-6">
-              <div class:list={['absolute left-0 top-1.5 w-1 rounded-full bg-surface-container-highest', i === experience.length - 1 ? 'h-6' : 'bottom-0']}></div>
-              <div class:list={['absolute -left-[5px] top-1.5 h-3.5 w-3.5 rounded-full', dots[Math.min(i, 2)]]}></div>
-              <div class="flex flex-col gap-1.5 rounded-xl bg-surface-container p-space-md">
-                <div class="flex flex-wrap items-center justify-between gap-1">
-                  <span class:list={['font-mono text-label-sm font-semibold', accents[i % 3]]}>{e.data.start} — {e.data.end ?? t('about.present')}</span>
-                  <div class="flex items-center gap-1.5">
-                    <ExampleBadge lang={lang} show={e.data.example} />
-                    {!e.data.end && <span class="rounded-full bg-surface-container-highest px-2 py-0.5 font-mono text-label-sm text-on-surface">{t('about.current')}</span>}
-                  </div>
-                </div>
-                <h3 class="text-body-lg font-bold text-on-surface">{e.data.role}</h3>
-                <p class="text-body-sm font-medium text-tertiary">{e.data.company}{e.data.location && <span class="font-mono text-[11px] font-normal text-outline"> · {e.data.location}</span>}</p>
-                <p class="mt-1 text-body-sm text-on-surface-variant">{e.data.summary}</p>
-                {e.data.highlights.length > 0 && (
-                  <ul class="mt-1 flex flex-col gap-1.5">
-                    {e.data.highlights.map((h) => <li class="flex items-start gap-2 text-body-sm text-on-surface"><Icon name="check" class="mt-0.5 text-emerald-400" size="1rem" />{h}</li>)}
-                  </ul>
-                )}
-                {e.data.tags.length > 0 && <ul class="flex flex-wrap gap-1.5 pt-1">{e.data.tags.map((tg) => <li class="chip">{tg}</li>)}</ul>}
-              </div>
-            </li>
-          ))}
-        </ol>
       </section>
 
       {p.education.length > 0 && (
@@ -144,6 +156,17 @@ const channels = [
               <span class="flex min-w-0 flex-col"><span class="text-body-sm font-semibold text-on-surface">{c.label}</span><span class="truncate font-mono text-[11px] text-on-surface-variant">{c.value}</span></span>
             </a>
           ))}
+        </div>
+      </section>
+      <!-- CTA -->
+      <section class="flex flex-col items-start gap-3 rounded-2xl border border-violet-electric/30 bg-linear-to-br from-violet-electric/15 via-surface-container to-surface-container p-5 sm:flex-row sm:items-center sm:justify-between lg:p-8">
+        <div>
+          <h2 class="text-headline-sm font-bold text-on-surface lg:text-headline-md">{t('about.cta.title')}</h2>
+          <p class="text-body-sm text-on-surface-variant lg:text-body-md">{t('about.cta.text')}</p>
+        </div>
+        <div class="flex shrink-0 flex-wrap gap-2">
+          <a href={href(lang, 'services')} class="btn-ghost"><Icon name="handshake" class="text-secondary" size="1.1rem" />{t('nav.services')}</a>
+          <a href={href(lang, 'services#contact')} class="btn-primary"><Icon name="mail" size="1.1rem" />{t('nav.hire')}</a>
         </div>
       </section>
     </div>

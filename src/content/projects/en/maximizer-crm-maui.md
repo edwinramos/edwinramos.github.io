@@ -10,6 +10,7 @@ icon: phone_android
 order: 2
 date: 2026-01-01
 example: false
+draft: true # hidden: names a (former) employer — rewrite anonymously before publishing
 ---
 ## Context
 

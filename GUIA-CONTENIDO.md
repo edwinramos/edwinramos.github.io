@@ -29,8 +29,7 @@ En el menú de la izquierda verás dos grupos: **🇪🇸 Español** y **🇺�
 | Roadmap | Funcionalidades futuras que la gente puede votar |
 | Servicios | Lo que ofreces como freelance |
 | Testimonios | Citas de clientes |
-| Experiencia | Tu trayectoria laboral |
-| Perfil / Sobre mí | Bio, cifras, habilidades, idiomas, formación |
+| Perfil / Sobre mí | Bio, cifras, «Qué hago», «Cómo trabajo», habilidades, idiomas, formación |
 
 #### Editar algo que ya existe
 
@@ -71,7 +70,7 @@ En el menú de la izquierda verás dos grupos: **🇪🇸 Español** y **🇺�
    - Proyectos: `src/content/projects/es/` y `src/content/projects/en/`
    - Artículos: `src/content/posts/es/` y `.../en/`
    - Roadmap: `src/content/roadmap/es/` y `.../en/`
-   - Servicios, testimonios, experiencia: `src/content/services/`, `testimonials/`, `experience/`
+   - Servicios y testimonios: `src/content/services/`, `testimonials/`
    - Perfil: `src/content/profile/es.md` y `en.md`
 3. Abre el archivo y pulsa el **lápiz ✏️ (Edit this file)**.
 4. Cada archivo tiene dos partes:

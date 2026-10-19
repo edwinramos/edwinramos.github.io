@@ -98,23 +98,6 @@ const testimonials = defineCollection({
   }),
 });
 
-const experience = defineCollection({
-  loader: md('experience'),
-  schema: z.object({
-    role: z.string(),
-    company: z.string(),
-    start: z.string(), // free text, e.g. "2019"
-    end: opt(z.string()), // empty = present
-    location: opt(z.string()), // e.g. "Estados Unidos · Remoto"
-    summary: z.string(), // one line about the company / role context
-    highlights: strList, // achievements (bullets)
-    tags: strList,
-    order: z.coerce.number().default(100),
-    example: bool(false),
-    draft: bool(false),
-  }),
-});
-
 const profile = defineCollection({
   loader: md('profile'),
   schema: z.object({
@@ -129,7 +112,15 @@ const profile = defineCollection({
       .array(z.object({ title: z.string(), subtitle: opt(z.string()), icon: z.string().default('school'), example: bool(false) }))
       .default([]),
     languages: z.array(z.object({ name: z.string(), level: z.string() })).default([]),
+    /** "Qué hago / What I do" cards */
+    focus: z
+      .array(z.object({ title: z.string(), icon: z.string().default('code'), description: z.string(), points: strList }))
+      .default([]),
+    /** "Cómo trabajo / How I work" items */
+    approach: z
+      .array(z.object({ title: z.string(), icon: z.string().default('check_circle'), description: z.string(), example: bool(false) }))
+      .default([]),
   }),
 });
 
-export const collections = { projects, posts, roadmap, services, testimonials, experience, profile };
+export const collections = { projects, posts, roadmap, services, testimonials, profile };

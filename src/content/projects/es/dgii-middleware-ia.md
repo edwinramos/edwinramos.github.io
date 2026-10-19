@@ -9,6 +9,7 @@ icon: smart_toy
 order: 3
 date: 2026-10-19
 example: false
+draft: true # hidden: names a (former) employer — rewrite anonymously before publishing
 ---
 ## Contexto
 

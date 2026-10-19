@@ -27,7 +27,7 @@ Requiere Node 20.3+ (CI usa Node 24).
 | `/projects/<slug>/` | Caso de estudio: estado (Live / En desarrollo / Idea), progreso, stack, enlaces (GitHub, Google Play, App Store, beta, demo) |
 | `/blog/` y `/blog/<slug>/` | Devlog con artículo destacado, tabla de contenido y comentarios (Giscus) |
 | `/roadmap/` y `/roadmap/<slug>/` | Roadmap público por estado; votos = reacciones 👍 en GitHub Discussions (Giscus) |
-| `/about/` | Perfil/CV: bio, cifras, habilidades, experiencia, formación, idiomas, canales |
+| `/about/` | Perfil: bio, cifras, «Qué hago», «Cómo trabajo», stack, formación, idiomas, canales (sin historial laboral, a propósito) |
 | `/services/` | Servicios freelance, proceso, testimonios, formulario **Contrátame** (`#contact`) |
 | `/feedback/` | Formulario de feedback + registro de **beta testers** (`#beta`) |
 | `/rss.xml`, `/en/rss.xml` | RSS del devlog por idioma |
@@ -42,7 +42,7 @@ public/                         # favicon, og-default.png, images/ (subidas del 
 src/config.ts                   # ← URL, base, Giscus, Formspree, Cloudflare (PLACEHOLDERS)
 src/content.config.ts           # Esquemas de las colecciones (zod)
 src/content/<colección>/<es|en>/<slug>.md
-   projects · posts · roadmap · services · testimonials · experience · profile/<es|en>.md
+   projects · posts · roadmap · services · testimonials · profile/<es|en>.md
 src/i18n/ui.ts                  # Textos de la interfaz ES/EN
 src/views/                      # Páginas (compartidas entre idiomas)
 src/pages/  y  src/pages/en/    # Rutas (envoltorios finos que pasan `lang`)
@@ -52,7 +52,7 @@ src/styles/global.css           # Tokens del design system (@theme de Tailwind 4
 
 Traducciones: usa **el mismo nombre de archivo** en `es/` y `en/`; el selector de idioma enlaza ambas versiones (si falta la traducción, lleva al listado).
 
-Contenido de ejemplo: todo lo marcado con `example: true` muestra una etiqueta **EJEMPLO / EXAMPLE** visible. Los testimonios, la experiencia laboral y la mayoría de proyectos/artículos son ejemplos: reemplázalos con datos reales (o bórralos) desde el CMS.
+Contenido de ejemplo: todo lo marcado con `example: true` muestra una etiqueta **EJEMPLO / EXAMPLE** visible. Los testimonios y la mayoría de proyectos/artículos son ejemplos: reemplázalos con datos reales (o bórralos) desde el CMS.
 
 ## Placeholders (todos en `src/config.ts`)
 

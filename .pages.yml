@@ -351,10 +351,17 @@ content:
           - name: end
             type: string
             label: "Hasta (vacío = actual)"
+          - name: location
+            type: string
+            label: "Ubicación / modalidad (ej. Estados Unidos · Remoto)"
           - name: summary
             type: text
-            label: Descripción
+            label: "Descripción (empresa / contexto)"
             required: true
+          - name: highlights
+            type: string
+            label: Logros (viñetas)
+            list: true
           - name: tags
             component: tags
           - name: order
@@ -711,10 +718,17 @@ content:
           - name: end
             type: string
             label: "Hasta (vacío = actual)"
+          - name: location
+            type: string
+            label: "Ubicación / modalidad (ej. Estados Unidos · Remoto)"
           - name: summary
             type: text
-            label: Descripción
+            label: "Descripción (empresa / contexto)"
             required: true
+          - name: highlights
+            type: string
+            label: Logros (viñetas)
+            list: true
           - name: tags
             component: tags
           - name: order

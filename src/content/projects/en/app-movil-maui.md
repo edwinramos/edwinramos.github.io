@@ -10,7 +10,7 @@ metric: 120 FPS
 icon: phone_android
 repoUrl: https://github.com/
 betaUrl: https://play.google.com/apps/testing/
-order: 2
+order: 12
 date: 2026-10-10
 example: true
 ---

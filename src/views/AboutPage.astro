@@ -89,8 +89,13 @@ const channels = [
                   </div>
                 </div>
                 <h3 class="text-body-lg font-bold text-on-surface">{e.data.role}</h3>
-                <p class="text-body-sm font-medium text-tertiary">{e.data.company}</p>
+                <p class="text-body-sm font-medium text-tertiary">{e.data.company}{e.data.location && <span class="font-mono text-[11px] font-normal text-outline"> · {e.data.location}</span>}</p>
                 <p class="mt-1 text-body-sm text-on-surface-variant">{e.data.summary}</p>
+                {e.data.highlights.length > 0 && (
+                  <ul class="mt-1 flex flex-col gap-1.5">
+                    {e.data.highlights.map((h) => <li class="flex items-start gap-2 text-body-sm text-on-surface"><Icon name="check" class="mt-0.5 text-emerald-400" size="1rem" />{h}</li>)}
+                  </ul>
+                )}
                 {e.data.tags.length > 0 && <ul class="flex flex-wrap gap-1.5 pt-1">{e.data.tags.map((tg) => <li class="chip">{tg}</li>)}</ul>}
               </div>
             </li>

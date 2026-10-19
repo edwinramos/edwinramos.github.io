@@ -6,7 +6,7 @@ category: ai
 kind: AI · Concept
 tags: [LLM, Python, Go, React]
 icon: smart_toy
-order: 5
+order: 15
 date: 2026-10-01
 example: true
 ---

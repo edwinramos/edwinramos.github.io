@@ -8,7 +8,7 @@ tags: [.NET MAUI, NuGet, C#]
 version: v2.1.4
 icon: code
 repoUrl: https://github.com/
-order: 4
+order: 14
 date: 2026-08-20
 example: true
 ---

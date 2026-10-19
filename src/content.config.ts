@@ -105,7 +105,9 @@ const experience = defineCollection({
     company: z.string(),
     start: z.string(), // free text, e.g. "2019"
     end: opt(z.string()), // empty = present
-    summary: z.string(),
+    location: opt(z.string()), // e.g. "Estados Unidos · Remoto"
+    summary: z.string(), // one line about the company / role context
+    highlights: strList, // achievements (bullets)
     tags: strList,
     order: z.coerce.number().default(100),
     example: bool(false),

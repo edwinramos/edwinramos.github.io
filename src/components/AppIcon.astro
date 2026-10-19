@@ -1,0 +1,12 @@
+---
+/** Square app icon: uploaded logo, else a Material Symbol on the brand gradient. */
+import { asset } from '../lib/paths';
+import Icon from './Icon.astro';
+interface Props { logo?: string; icon?: string; title: string; size?: 'sm' | 'md' | 'lg'; class?: string }
+const { logo, icon, title, size = 'md', class: cls } = Astro.props;
+const box = { sm: 'h-10 w-10 rounded-xl', md: 'h-14 w-14 rounded-2xl', lg: 'h-20 w-20 rounded-[1.4rem] lg:h-24 lg:w-24' }[size];
+const glyph = { sm: '1.35rem', md: '1.9rem', lg: '2.75rem' }[size];
+---
+{logo
+  ? <img src={asset(logo)} alt={title} class:list={[box, 'shrink-0 object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.08)]', cls]} loading="lazy" decoding="async" />
+  : <div class:list={[box, 'flex shrink-0 items-center justify-center bg-linear-to-br from-violet-electric to-secondary-container text-surface shadow-[0_6px_24px_rgba(139,92,246,0.35)]', cls]} aria-hidden="true"><Icon name={icon ?? 'apps'} size={glyph} /></div>}

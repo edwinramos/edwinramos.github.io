@@ -1,0 +1,35 @@
+---
+/** "Instagram kit": build-time 1080×1080 image + copy-ready caption for a post. */
+import { useT, type Lang } from '../i18n/ui';
+import { asset } from '../lib/paths';
+import Icon from './Icon.astro';
+interface Props { lang: Lang; slug: string; caption: string; igPath: string; ogPath: string }
+const { lang, slug, caption, igPath, ogPath } = Astro.props;
+const t = useT(lang);
+---
+<details class="share-kit card group" id="instagram">
+  <summary class="flex cursor-pointer list-none items-center justify-between gap-2">
+    <span class="flex items-center gap-2 text-body-lg font-semibold text-on-surface"><Icon name="photo_camera" class="text-secondary" size="1.25rem" />{t('share.title')}</span>
+    <Icon name="expand_more" class="text-on-surface-variant transition-transform group-open:rotate-180" size="1.4rem" />
+  </summary>
+  <p class="mt-1 text-body-sm text-on-surface-variant">{t('share.sub')}</p>
+  <div class="mt-space-sm grid gap-space-md sm:grid-cols-[minmax(0,15rem)_1fr]">
+    <img src={asset(igPath)} alt="" width="1080" height="1080" loading="lazy" decoding="async" class="aspect-square w-full rounded-xl border border-white/[0.06]" />
+    <div class="flex flex-col gap-2">
+      <a href={asset(igPath)} download={`${slug}-instagram.png`} class="btn-primary"><Icon name="download" size="1.1rem" />{t('share.download')}</a>
+      <a href={asset(ogPath)} download={`${slug}-1200x630.png`} class="btn-ghost btn-sm w-fit"><Icon name="image" size="1rem" />{t('share.downloadOg')}</a>
+      <label class="mt-1 font-mono text-label-sm text-on-surface-variant" for={`caption-${slug}`}>{t('share.caption')}</label>
+      <textarea id={`caption-${slug}`} readonly rows="8" class="w-full resize-y rounded-xl border border-outline-variant/40 bg-surface-container-lowest p-3 font-mono text-code-sm text-on-surface">{caption}</textarea>
+      <button type="button" class="copy-caption btn-ghost btn-sm w-fit" data-target={`caption-${slug}`} data-done={t('share.copied')}><Icon name="content_copy" size="1rem" /><span>{t('share.copy')}</span></button>
+    </div>
+  </div>
+</details>
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.copy-caption').forEach((b) => b.addEventListener('click', async () => {
+    const ta = document.getElementById(b.dataset.target!) as HTMLTextAreaElement | null;
+    if (!ta) return;
+    try { await navigator.clipboard.writeText(ta.value); } catch { ta.select(); document.execCommand('copy'); }
+    const label = b.querySelector('span:last-child');
+    if (label) { const prev = label.textContent; label.textContent = b.dataset.done ?? 'OK'; setTimeout(() => (label.textContent = prev), 1800); }
+  }));
+</script>

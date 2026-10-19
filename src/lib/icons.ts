@@ -10,7 +10,7 @@ export const ICONS = [
   'map', 'memory', 'notes', 'open_in_new', 'person', 'phone_android', 'play_arrow', 'rocket_launch', 'rss_feed',
   'schedule', 'school', 'science', 'send', 'share', 'smart_toy', 'smartphone', 'sync', 'terminal', 'thumb_up',
   'translate', 'verified', 'visibility', 'work', 'workspace_premium', 'format_quote', 'shop', 'storefront', 'database',
-  'api', 'history_edu', 'hub', 'group', 'swap_horiz', 'menu', 'close', 'tag', 'chat',
+  'api', 'history_edu', 'hub', 'group', 'swap_horiz', 'menu', 'close', 'tag', 'chat', 'new_releases', 'phone_iphone', 'photo_camera', 'expand_more', 'content_copy', 'image', 'photo_library',
 ] as const;
 
 export const iconFontUrl = () =>

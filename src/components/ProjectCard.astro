@@ -1,38 +1,46 @@
 ---
+/** App card (catalog + home grid). */
 import type { CollectionEntry } from 'astro:content';
-import type { Lang } from '../i18n/ui';
+import { useT, type Lang } from '../i18n/ui';
 import { href } from '../lib/paths';
 import { slugOf } from '../lib/content';
 import Icon from './Icon.astro';
+import AppIcon from './AppIcon.astro';
 import StatusPill from './StatusPill.astro';
 import TechBadges from './TechBadges.astro';
-import ProjectLinks from './ProjectLinks.astro';
 import ExampleBadge from './ExampleBadge.astro';
-interface Props { entry: CollectionEntry<'projects'>; lang: Lang }
-const { entry, lang } = Astro.props;
+interface Props { entry: CollectionEntry<'projects'>; lang: Lang; latest?: CollectionEntry<'posts'> }
+const { entry, lang, latest } = Astro.props;
 const { data } = entry;
-const url = href(lang, `projects/${slugOf(entry.id)}`);
+const t = useT(lang);
+const url = href(lang, `apps/${slugOf(entry.id)}`);
+const version = latest?.data.version ?? data.version;
+const pf: Record<string, string> = { android: 'Android', ios: 'iOS', web: 'Web', windows: 'Windows', macos: 'macOS' };
 ---
-<article class="project-item card-raised card-hover flex flex-col gap-space-sm" data-category={data.category}>
-  <div class="flex items-center justify-between gap-2">
-    <div class="flex flex-wrap items-center gap-1.5">
-      <StatusPill status={data.status} lang={lang} />
-      <ExampleBadge lang={lang} show={data.example} />
+<article class="project-item card-raised card-hover relative flex flex-col gap-space-sm" data-category={data.category}>
+  <div class="flex items-start gap-3">
+    <AppIcon logo={data.logo} icon={data.icon} title={data.title} />
+    <div class="flex min-w-0 flex-1 flex-col gap-1">
+      <div class="flex flex-wrap items-center gap-1.5">
+        <StatusPill status={data.status} lang={lang} />
+        <ExampleBadge lang={lang} show={data.example} />
+      </div>
+      <h3 class="text-headline-sm font-bold text-on-surface"><a href={url} class="after:absolute after:inset-0 transition-colors hover:text-primary">{data.title}</a></h3>
+      {data.kind && <span class="font-mono text-label-sm text-secondary">{data.kind}</span>}
     </div>
-    {data.metric ? <span class="flex items-center gap-0.5 font-mono text-code-sm text-emerald-400"><Icon name="check_circle" size="0.95rem" />{data.metric}</span>
-      : data.version ? <span class="font-mono text-code-sm text-on-surface-variant">{data.version}</span> : null}
+    {version && <span class="badge shrink-0">{version}</span>}
   </div>
-  <div class="flex flex-col gap-1">
-    {data.kind && <span class="font-mono text-label-sm text-secondary">{data.kind}</span>}
-    <h3 class="text-headline-sm font-bold text-on-surface"><a href={url} class="after:absolute after:inset-0 hover:text-primary transition-colors">{data.title}</a></h3>
-    <p class="text-body-sm text-on-surface-variant">{data.summary}</p>
-  </div>
+  <p class="text-body-sm text-on-surface-variant">{data.summary}</p>
+  {latest && (
+    <p class="flex items-start gap-1.5 rounded-lg bg-surface-container-low px-3 py-2 text-body-sm text-on-surface"><Icon name="new_releases" class="mt-0.5 shrink-0 text-secondary" size="1rem" /><span><span class="font-mono text-[11px] text-secondary">{t('apps.whatsNew')}:</span> {latest.data.title}</span></p>
+  )}
   <div class="pt-1"><TechBadges tags={data.tags} max={4} /></div>
   <div class="mt-auto flex items-center justify-between gap-2 border-t border-outline-variant/30 pt-2">
-    <div class="relative z-10"><ProjectLinks data={data} lang={lang} /></div>
+    <span class="flex flex-wrap gap-1.5 font-mono text-[11px] text-on-surface-variant">
+      {data.platforms.length ? data.platforms.map((p) => <span class="rounded bg-surface-container-high px-1.5 py-0.5">{pf[p]}</span>) : null}
+      {data.playStoreUrl && <span class="flex items-center gap-0.5 text-emerald-400"><Icon name="shop" size="0.9rem" />Play</span>}
+      {data.appStoreUrl && <span class="flex items-center gap-0.5 text-emerald-400"><Icon name="phone_iphone" size="0.9rem" />App Store</span>}
+    </span>
     <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant" aria-hidden="true"><Icon name="arrow_forward" size="1.1rem" /></span>
   </div>
 </article>
-<style>
-  article { position: relative; }
-</style>

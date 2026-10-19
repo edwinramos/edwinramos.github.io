@@ -11,7 +11,7 @@ interface Props { entry: CollectionEntry<'projects'>; lang: Lang; variant?: 'com
 const { entry, lang, variant = 'compact' } = Astro.props;
 const { data } = entry;
 const t = useT(lang);
-const url = href(lang, `projects/${slugOf(entry.id)}`);
+const url = href(lang, `apps/${slugOf(entry.id)}`);
 ---
 {variant === 'compact' ? (
   <div class="card flex flex-col gap-3">

@@ -58,7 +58,7 @@ content:
     type: group
     items:
       - name: projects-es
-        label: "Proyectos (ES)"
+        label: "📱 Apps (ES) — añadir o editar una app"
         type: collection
         path: src/content/projects/es
         filename:
@@ -113,9 +113,31 @@ content:
           - name: cover
             type: image
             label: Imagen de portada
+          - name: logo
+            type: image
+            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
           - name: icon
             type: string
-            label: "Ícono si no hay portada (nombre de Material Symbols, ej. phone_android)"
+            label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"
+          - name: platforms
+            type: select
+            label: Plataformas
+            options:
+              multiple: true
+              values:
+                - { name: android, label: "Android" }
+                - { name: ios, label: "iOS" }
+                - { name: web, label: "Web" }
+                - { name: windows, label: "Windows" }
+                - { name: macos, label: "macOS" }
+          - name: screenshots
+            type: image
+            label: "Capturas de pantalla (verticales, de teléfono)"
+            options:
+              multiple: true
+          - name: whatsNew
+            type: text
+            label: "Novedades (opcional — si lo dejas vacío se usa la última actualización del devlog)"
           - name: repoUrl
             component: url
             label: "Enlace GitHub / código"
@@ -156,16 +178,16 @@ content:
             component: draft
           - name: body
             component: body
-            label: "Caso de estudio (problema, solución, resultados)"
+            label: "Sobre la app (qué hace, para quién, cómo está hecha)"
       - name: posts-es
-        label: "Devlog (ES)"
+        label: "📝 Devlog (ES) — publicar una actualización de app"
         type: collection
         path: src/content/posts/es
         filename:
           template: "{primary}.md"
           field: create
         view:
-          fields: [title, date, project, example, draft]
+          fields: [title, app, version, date, draft]
           primary: title
           sort: [date, title]
           default:
@@ -183,12 +205,19 @@ content:
             label: Fecha de publicación
           - name: tags
             component: tags
-          - name: project
-            type: string
-            label: "Proyecto relacionado (nombre)"
+          - name: app
+            type: reference
+            label: "📱 App de esta actualización"
+            description: "Elige la app que mejoraste. Déjalo vacío si es un artículo general del devlog. (Genera la imagen de Instagram con el nombre de la app.)"
+            options:
+              collection: projects-es
+              value: "{name}"
+              label: "{primary}"
+              search: "title"
           - name: version
             type: string
-            label: "Versión publicada (ej. v1.2.4)"
+            label: "🏷️ Versión de la app (ej. v1.2.0)"
+            description: "Aparece en la imagen de Instagram y en el historial de la app."
           - name: cover
             type: image
             label: Imagen de portada
@@ -397,7 +426,7 @@ content:
     type: group
     items:
       - name: projects-en
-        label: "Proyectos (EN)"
+        label: "📱 Apps (EN) — añadir o editar una app"
         type: collection
         path: src/content/projects/en
         filename:
@@ -452,9 +481,31 @@ content:
           - name: cover
             type: image
             label: Imagen de portada
+          - name: logo
+            type: image
+            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
           - name: icon
             type: string
-            label: "Ícono si no hay portada (nombre de Material Symbols, ej. phone_android)"
+            label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"
+          - name: platforms
+            type: select
+            label: Plataformas
+            options:
+              multiple: true
+              values:
+                - { name: android, label: "Android" }
+                - { name: ios, label: "iOS" }
+                - { name: web, label: "Web" }
+                - { name: windows, label: "Windows" }
+                - { name: macos, label: "macOS" }
+          - name: screenshots
+            type: image
+            label: "Capturas de pantalla (verticales, de teléfono)"
+            options:
+              multiple: true
+          - name: whatsNew
+            type: text
+            label: "Novedades (opcional — si lo dejas vacío se usa la última actualización del devlog)"
           - name: repoUrl
             component: url
             label: "Enlace GitHub / código"
@@ -495,16 +546,16 @@ content:
             component: draft
           - name: body
             component: body
-            label: "Caso de estudio (problema, solución, resultados)"
+            label: "Sobre la app (qué hace, para quién, cómo está hecha)"
       - name: posts-en
-        label: "Devlog (EN)"
+        label: "📝 Devlog (EN) — publicar una actualización de app"
         type: collection
         path: src/content/posts/en
         filename:
           template: "{primary}.md"
           field: create
         view:
-          fields: [title, date, project, example, draft]
+          fields: [title, app, version, date, draft]
           primary: title
           sort: [date, title]
           default:
@@ -522,12 +573,19 @@ content:
             label: Fecha de publicación
           - name: tags
             component: tags
-          - name: project
-            type: string
-            label: "Proyecto relacionado (nombre)"
+          - name: app
+            type: reference
+            label: "📱 App de esta actualización"
+            description: "Elige la app que mejoraste. Déjalo vacío si es un artículo general del devlog. (Genera la imagen de Instagram con el nombre de la app.)"
+            options:
+              collection: projects-en
+              value: "{name}"
+              label: "{primary}"
+              search: "title"
           - name: version
             type: string
-            label: "Versión publicada (ej. v1.2.4)"
+            label: "🏷️ Versión de la app (ej. v1.2.0)"
+            description: "Aparece en la imagen de Instagram y en el historial de la app."
           - name: cover
             type: image
             label: Imagen de portada

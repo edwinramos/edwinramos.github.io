@@ -22,8 +22,10 @@ Requiere Node 20.3+ (CI usa Node 24).
 
 | Ruta (ES = `/`, EN = `/en/…`) | Contenido |
 | --- | --- |
-| `/` | Hero, cifras, últimas actualizaciones del devlog, **«En qué estoy trabajando»**, proyectos destacados, servicios, CTA *Contrátame* |
-| `/projects/` | Spotlight del proyecto actual, catálogo con filtros por categoría, bitácora |
+| `/` | Apps primero: app destacada / **«En qué estoy trabajando»**, grilla de apps, últimas actualizaciones de apps, mini «Sobre mí» y nota discreta de servicios |
+| `/apps/` | Catálogo de apps (antes `/projects/`, que ahora redirige), spotlight y últimas actualizaciones |
+| `/apps/<app>/` | Página de la app: botones Google Play / App Store, beta, capturas, «Novedades», historial de actualizaciones (`#updates`) y RSS propio (`/apps/<app>/rss.xml`) |
+| `/share/<lang>/ig/<post>.png` | Imagen 1080×1080 para Instagram generada al compilar (satori + resvg); `/share/<lang>/og/<post>.png` = 1200×630 para enlaces |
 | `/projects/<slug>/` | Caso de estudio: estado (Live / En desarrollo / Idea), progreso, stack, enlaces (GitHub, Google Play, App Store, beta, demo) |
 | `/blog/` y `/blog/<slug>/` | Devlog con artículo destacado, tabla de contenido y comentarios (Giscus) |
 | `/roadmap/` y `/roadmap/<slug>/` | Roadmap público por estado; votos = reacciones 👍 en GitHub Discussions (Giscus) |

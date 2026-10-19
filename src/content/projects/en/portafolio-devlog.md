@@ -1,12 +1,13 @@
 ---
 title: Portfolio + Devlog
-summary: This site. Portfolio, development log and public roadmap, built with Astro and hosted for free on GitHub Pages.
+summary: This site. A showcase for my apps, a devlog with every update and a public roadmap, built with Astro and hosted for free on GitHub Pages.
 status: in-development
 category: web
 kind: Web · Personal brand
 tags: [Astro, TypeScript, Tailwind CSS, GitHub Pages]
-version: v0.1
+version: v0.2
 icon: language
+platforms: [web]
 current: true
 progress: 70
 currentTask: Initial content, forms and comments powered by GitHub Discussions.
@@ -28,4 +29,4 @@ I needed my own place to showcase projects, document my apps' progress and colle
 
 ## Next steps
 
-Publish the first real case studies and open the beta tester program.
+Publish my first mobile apps in the catalog and open the beta tester program.

@@ -22,7 +22,11 @@ const projects = defineCollection({
     version: opt(z.string()),
     metric: opt(z.string()), // e.g. "99.9% uptime"
     cover: opt(z.string()),
-    icon: opt(z.string()), // Material Symbols name used when no cover
+    logo: opt(z.string()), // app icon image (square)
+    icon: opt(z.string()), // Material Symbols name used when no cover/logo
+    platforms: z.preprocess(blank, z.array(z.enum(['android', 'ios', 'web', 'windows', 'macos'])).default([])),
+    screenshots: strList, // image paths (phone screenshots)
+    whatsNew: opt(z.string()), // optional manual "what's new" text (latest linked update is used otherwise)
     repoUrl: url,
     playStoreUrl: url,
     appStoreUrl: url,
@@ -47,7 +51,8 @@ const posts = defineCollection({
     date: z.coerce.date(),
     updated: opt(z.coerce.date()),
     tags: strList,
-    project: opt(z.string()), // project name shown on the card
+    /** slug of the app (file name in src/content/projects/<lang>/, without .md). Pages CMS may store a full path — normalized here. */
+    app: opt(z.string().transform((v) => v.split('/').pop()!.replace(/\.mdx?$/, '').trim())),
     version: opt(z.string()),
     cover: opt(z.string()),
     example: bool(false),

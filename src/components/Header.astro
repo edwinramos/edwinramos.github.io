@@ -10,7 +10,7 @@ const { lang, active, alternates } = Astro.props;
 const t = useT(lang);
 const nav = [
   { key: 'home', path: '', label: t('nav.home') },
-  { key: 'projects', path: 'projects', label: t('nav.projects') },
+  { key: 'projects', path: 'apps', label: t('nav.projects') },
   { key: 'blog', path: 'blog', label: t('nav.blog') },
   { key: 'roadmap', path: 'roadmap', label: t('nav.roadmap') },
   { key: 'services', path: 'services', label: t('nav.services') },
@@ -24,7 +24,7 @@ const nav = [
       <div class="flex min-w-0 flex-col">
         <div class="flex items-center gap-space-xs">
           <span class="truncate text-headline-sm font-semibold tracking-tight text-on-surface">{SITE.shortName}</span>
-          <span class="shrink-0 rounded bg-surface-container-high px-1.5 py-0.5 font-mono text-[10px] text-secondary">.NET · AI</span>
+          <span class="shrink-0 rounded bg-surface-container-high px-1.5 py-0.5 font-mono text-[10px] text-secondary">Apps · Devlog</span>
         </div>
         <div class="flex items-center gap-1.5">
           <span class:list={['h-2 w-2 shrink-0 rounded-full', SITE.available ? 'bg-emerald-400 animate-pulse-indicator' : 'bg-amber-400']}></span>
@@ -45,8 +45,8 @@ const nav = [
     </nav>
     <div class="flex shrink-0 items-center gap-space-xs sm:gap-space-sm">
       <LangSwitch lang={lang} alternates={alternates} />
-      <a href={href(lang, 'services#contact')} class="hidden btn-primary btn-sm sm:inline-flex"><Icon name="handshake" size="1.1rem" />{t('nav.hire')}</a>
-      <a href={href(lang, 'services#contact')} aria-label={t('nav.hire')} class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-high text-primary transition-colors hover:bg-surface-container-highest sm:hidden"><Icon name="handshake" size="1.25rem" /></a>
+      <a href={href(lang, 'feedback#beta')} class="hidden btn-primary btn-sm sm:inline-flex"><Icon name="install_mobile" size="1.1rem" />{t('apps.beta')}</a>
+      <a href={href(lang, 'feedback#beta')} aria-label={t('apps.beta')} class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-container-high text-primary transition-colors hover:bg-surface-container-highest sm:hidden"><Icon name="install_mobile" size="1.25rem" /></a>
     </div>
   </div>
 </header>

@@ -4,7 +4,7 @@ import Icon from '../components/Icon.astro';
 import Form from '../components/Form.astro';
 import { useT, type Lang } from '../i18n/ui';
 import { href } from '../lib/paths';
-import { byLang } from '../lib/content';
+import { byLang, slugOf } from '../lib/content';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
@@ -61,7 +61,7 @@ const es = lang === 'es';
           {betaProjects.length > 0 && (
             <div>
               <label class="field-label" for="b-project">{t('form.project')}</label>
-              <select id="b-project" name="project" class="field"><option>{t('form.project.any')}</option>{betaProjects.map((p) => <option>{p.data.title}</option>)}</select>
+              <select id="b-project" name="project" class="field"><option>{t('form.project.any')}</option>{betaProjects.map((p) => <option data-slug={slugOf(p.id)}>{p.data.title}</option>)}</select>
             </div>
           )}
           <div><label class="field-label" for="b-msg">{es ? 'Dispositivo / comentarios (opcional)' : 'Device / notes (optional)'}</label><input id="b-msg" name="device" class="field" placeholder={es ? 'Ej. Pixel 7, Android 15' : 'e.g. Pixel 7, Android 15'} /></div>
@@ -71,3 +71,9 @@ const es = lang === 'es';
     <p class="text-body-sm text-on-surface-variant">{es ? '¿Prefieres votar ideas existentes?' : 'Prefer voting on existing ideas?'} <a class="text-secondary hover:underline" href={href(lang, 'roadmap')}>{t('nav.roadmap')} →</a></p>
   </div>
 </Base>
+<script>
+  // /feedback?app=<slug>#beta preselects that app in the beta form
+  const slug = new URLSearchParams(location.search).get('app');
+  const opt = slug ? document.querySelector<HTMLOptionElement>(`#b-project option[data-slug="${CSS.escape(slug)}"]`) : null;
+  if (opt) opt.selected = true;
+</script>

@@ -3,7 +3,7 @@ title: "Hello world: why I built this site for zero cost"
 description: Astro, GitHub Pages, Pages CMS and Giscus — the free stack behind this portfolio and devlog.
 date: 2026-10-19
 tags: [Astro, GitHub Pages, Devlog]
-project: Portfolio + Devlog
+app: portafolio-devlog
 version: v0.1
 example: false
 ---

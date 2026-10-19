@@ -5,11 +5,14 @@ import ExampleBadge from '../components/ExampleBadge.astro';
 import { useT, type Lang } from '../i18n/ui';
 import { href, asset, formatDate, readingMinutes } from '../lib/paths';
 import { byLang, slugOf } from '../lib/content';
+import { appIndex } from '../lib/apps';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
 const posts = (await byLang('posts', lang)).sort((a, b) => +b.data.date - +a.data.date);
 const [first, ...rest] = posts;
+const apps = await appIndex(lang);
+const appName = (p: (typeof posts)[number]) => (p.data.app ? apps.get(p.data.app)?.data.title : undefined);
 const tags = [...new Set(posts.flatMap((p) => p.data.tags))].slice(0, 12);
 ---
 <Base lang={lang} path="blog" active="blog" title={t('blog.title')} description={t('blog.lead')}>
@@ -37,7 +40,7 @@ const tags = [...new Set(posts.flatMap((p) => p.data.tags))].slice(0, 12);
         <div class="flex flex-col gap-2 lg:p-8">
           <div class="flex flex-wrap items-center gap-2 font-mono text-[11px] text-on-surface-variant">
             <span>{formatDate(first.data.date, lang)}</span><span>·</span><span>{readingMinutes(first.body)} {t('common.minRead')}</span>
-            {first.data.project && <span class="badge">{first.data.project}</span>}
+            {appName(first) && <span class="badge">{appName(first)}{first.data.version ? ` ${first.data.version}` : ''}</span>}
             <ExampleBadge lang={lang} show={first.data.example} />
           </div>
           <h2 class="text-headline-md font-bold text-on-surface group-hover:text-primary lg:text-headline-lg">{first.data.title}</h2>
@@ -54,7 +57,7 @@ const tags = [...new Set(posts.flatMap((p) => p.data.tags))].slice(0, 12);
             {p.data.version && <span class="badge">{p.data.version}</span>}
             <ExampleBadge lang={lang} show={p.data.example} />
           </div>
-          {p.data.project && <span class="font-mono text-label-sm uppercase tracking-wider text-primary">{p.data.project}</span>}
+          {appName(p) && <span class="font-mono text-label-sm uppercase tracking-wider text-primary">{appName(p)}</span>}
           <h2 class="text-headline-sm font-semibold text-on-surface group-hover:text-primary">{p.data.title}</h2>
           <p class="text-body-sm text-on-surface-variant">{p.data.description}</p>
           <ul class="mt-auto flex flex-wrap gap-1.5 pt-2">{p.data.tags.slice(0, 3).map((tag) => <li class="chip">{tag}</li>)}</ul>

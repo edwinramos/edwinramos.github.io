@@ -50,6 +50,7 @@ const personLd = {
     <link rel="alternate" hreflang="en" href={new URL(alternates.en, Astro.site)} />
     <link rel="alternate" hreflang="x-default" href={new URL(alternates.es, Astro.site)} />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.shortName} · Devlog`} href={asset(lang === 'en' ? 'en/rss.xml' : 'rss.xml')} />
+    <slot name="head" />
     <link rel="sitemap" href={asset('sitemap-index.xml')} />
     <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
     <meta name="theme-color" content="#0b1326" />

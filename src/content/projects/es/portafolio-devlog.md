@@ -1,12 +1,13 @@
 ---
 title: Portafolio + Devlog
-summary: Este sitio. Portafolio, bitácora de desarrollo y roadmap público, construido con Astro y alojado gratis en GitHub Pages.
+summary: Este sitio. Vitrina de mis apps, devlog con cada actualización y roadmap público, construido con Astro y alojado gratis en GitHub Pages.
 status: in-development
 category: web
 kind: Web · Marca personal
 tags: [Astro, TypeScript, Tailwind CSS, GitHub Pages]
-version: v0.1
+version: v0.2
 icon: language
+platforms: [web]
 current: true
 progress: 70
 currentTask: Contenido inicial, formularios y comentarios con GitHub Discussions.
@@ -28,4 +29,4 @@ Necesitaba un lugar propio para mostrar proyectos, documentar el progreso de mis
 
 ## Próximos pasos
 
-Publicar los primeros casos de estudio reales y abrir el programa de beta testers.
+Publicar mis primeras apps móviles en el catálogo y abrir el programa de beta testers.

@@ -1,0 +1,37 @@
+---
+/** Google Play / App Store buttons (styled, not the official badge artwork) + beta CTA fallback. */
+import type { CollectionEntry } from 'astro:content';
+import { useT, type Lang } from '../i18n/ui';
+import { href } from '../lib/paths';
+import { slugOf } from '../lib/content';
+import Icon from './Icon.astro';
+interface Props { entry: CollectionEntry<'projects'>; lang: Lang; showBeta?: boolean }
+const { entry, lang } = Astro.props;
+const { data } = entry;
+// beta CTA only makes sense for apps people can install (mobile/desktop) that aren't fully live yet, or when a beta link exists
+const installable = data.platforms.length === 0 || data.platforms.some((p) => p !== 'web');
+const showBeta = (Astro.props.showBeta ?? true) && (!!data.betaUrl || (installable && data.status !== 'live'));
+const t = useT(lang);
+const stores = [
+  data.playStoreUrl && { url: data.playStoreUrl, icon: 'shop', top: t('store.play.top'), name: 'Google Play' },
+  data.appStoreUrl && { url: data.appStoreUrl, icon: 'phone_iphone', top: t('store.app.top'), name: 'App Store' },
+].filter(Boolean) as { url: string; icon: string; top: string; name: string }[];
+const betaHref = data.betaUrl || `${href(lang, 'feedback')}?app=${encodeURIComponent(slugOf(entry.id))}#beta`;
+---
+{(stores.length > 0 || showBeta) && <div class="flex flex-wrap items-center gap-2">
+  {stores.map((s) => (
+    <a href={s.url} target="_blank" rel="noopener noreferrer" class="store-badge">
+      <Icon name={s.icon} size="1.6rem" />
+      <span class="flex flex-col leading-none"><span class="text-[10px] uppercase tracking-wide text-on-surface-variant">{s.top}</span><span class="text-body-md font-bold text-on-surface">{s.name}</span></span>
+    </a>
+  ))}
+  {showBeta && (
+    <a href={betaHref} target={data.betaUrl ? '_blank' : undefined} rel={data.betaUrl ? 'noopener noreferrer' : undefined} class:list={[stores.length ? 'btn-ghost' : 'btn-primary', 'py-2.5']}>
+      <Icon name="install_mobile" size="1.15rem" />{t('apps.beta')}
+    </a>
+  )}
+</div>}
+<style>
+  .store-badge { display: inline-flex; align-items: center; gap: .6rem; border-radius: .9rem; padding: .5rem 1rem .5rem .8rem; background: #000; border: 1px solid rgba(255,255,255,.18); color: var(--color-on-surface); transition: border-color .15s, transform .15s; }
+  .store-badge:hover { border-color: var(--color-secondary); transform: translateY(-1px); }
+</style>

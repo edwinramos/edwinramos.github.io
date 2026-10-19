@@ -4,6 +4,7 @@ import Icon from '../components/Icon.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import CurrentlyBuilding from '../components/CurrentlyBuilding.astro';
+import ComingSoonCard from '../components/ComingSoonCard.astro';
 import { useT, type Lang } from '../i18n/ui';
 import { href, formatDate } from '../lib/paths';
 import { byLang, slugOf } from '../lib/content';
@@ -12,7 +13,8 @@ const { lang } = Astro.props;
 const t = useT(lang);
 const projects = (await byLang('projects', lang)).sort((a, b) => a.data.order - b.data.order);
 const current = projects.find((p) => p.data.current);
-const posts = (await byLang('posts', lang)).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+// update log: only real (non-example) devlog entries tied to a project
+const posts = (await byLang('posts', lang)).filter((p) => p.data.project && !p.data.example).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
 const cats = [...new Set(projects.map((p) => p.data.category))];
 ---
 <Base lang={lang} path="projects" active="projects" title={t('projects.title')} description={t('projects.lead')}>
@@ -37,19 +39,20 @@ const cats = [...new Set(projects.map((p) => p.data.category))];
       <div class="flex flex-col gap-space-xs">
         <div class="flex items-center justify-between">
           <h2 class="text-headline-sm text-on-surface">{t('projects.catalog')}</h2>
-          <span class="font-mono text-code-sm text-on-surface-variant"><span id="count">{projects.length}</span> {t('common.records')}</span>
+          <span class="font-mono text-code-sm text-on-surface-variant"><span id="count">{projects.length}</span> {projects.length === 1 ? t('common.record') : t('common.records')}</span>
         </div>
-        <div class="no-scrollbar flex items-center gap-1.5 overflow-x-auto py-1" id="catalog-filters" role="toolbar" aria-label="Filter">
+        {cats.length > 1 && <div class="no-scrollbar flex items-center gap-1.5 overflow-x-auto py-1" id="catalog-filters" role="toolbar" aria-label="Filter">
           <button type="button" data-filter="all" aria-pressed="true" class="filter-btn">{t('common.all')} <span class="rounded-full bg-on-primary/20 px-1.5 text-[10px]">{projects.length}</span></button>
           {cats.map((c) => <button type="button" data-filter={c} aria-pressed="false" class="filter-btn">{t(`cat.${c}` as any)}</button>)}
-        </div>
+        </div>}
       </div>
       <div class="grid gap-space-md sm:grid-cols-2 lg:grid-cols-3" id="projects-container">
         {projects.map((p) => <ProjectCard entry={p} lang={lang} />)}
+        {projects.length < 3 && <ComingSoonCard lang={lang} class={projects.length === 0 ? 'sm:col-span-2 lg:col-span-3' : projects.length === 1 ? 'lg:col-span-2' : ''} />}
       </div>
     </section>
 
-    <section class="flex flex-col gap-space-sm">
+    {posts.length > 0 && <section class="flex flex-col gap-space-sm">
       <SectionHeader icon="history_edu" title={lang === 'es' ? 'Bitácora de Actualizaciones' : 'Update Log'} tag={t('common.viewAll')} tagHref={href(lang, 'blog')} />
       <ol class="card flex flex-col divide-y divide-outline-variant/30 p-0 sm:p-0">
         {posts.map((p) => (
@@ -65,7 +68,7 @@ const cats = [...new Set(projects.map((p) => p.data.category))];
           </li>
         ))}
       </ol>
-    </section>
+    </section>}
   </div>
 </Base>
 

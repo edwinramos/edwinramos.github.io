@@ -1,0 +1,18 @@
+---
+/** Shown when there are few/no published projects (keeps the grid from looking empty). */
+import { useT, type Lang } from '../i18n/ui';
+import { href } from '../lib/paths';
+import Icon from './Icon.astro';
+interface Props { lang: Lang; class?: string }
+const { lang, class: cls = '' } = Astro.props;
+const t = useT(lang);
+---
+<div class:list={['flex flex-col items-start justify-center gap-space-sm rounded-2xl border border-dashed border-outline-variant/60 bg-surface-container-low/60 p-space-md sm:p-6', cls]}>
+  <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-container-highest text-primary"><Icon name="rocket_launch" size="1.5rem" /></span>
+  <h3 class="text-headline-sm font-bold text-on-surface">{t('projects.soon.title')}</h3>
+  <p class="max-w-xl text-body-sm text-on-surface-variant">{t('projects.soon.text')}</p>
+  <div class="flex flex-wrap gap-2 pt-1">
+    <a href={href(lang, 'blog')} class="btn-ghost btn-sm"><Icon name="article" class="text-secondary" size="1rem" />{t('nav.blog')}</a>
+    <a href={href(lang, 'feedback#beta')} class="btn-primary btn-sm"><Icon name="install_mobile" size="1rem" />{t('feedback.beta')}</a>
+  </div>
+</div>

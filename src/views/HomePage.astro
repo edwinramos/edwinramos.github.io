@@ -6,6 +6,7 @@ import SectionHeader from '../components/SectionHeader.astro';
 import UpdateCard from '../components/UpdateCard.astro';
 import CurrentlyBuilding from '../components/CurrentlyBuilding.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import ComingSoonCard from '../components/ComingSoonCard.astro';
 import { SITE } from '../config';
 import { useT, type Lang } from '../i18n/ui';
 import { href, asset } from '../lib/paths';
@@ -87,6 +88,7 @@ const stats = profile?.data.stats ?? [];
       <SectionHeader icon="folder_code" title={t('projects.catalog')} tag={t('common.viewAll')} tagHref={href(lang, 'projects')} />
       <div class="grid gap-space-md sm:grid-cols-2 lg:grid-cols-3">
         {featured.map((p) => <ProjectCard entry={p} lang={lang} />)}
+        {featured.length < 3 && <ComingSoonCard lang={lang} class={featured.length === 0 ? 'sm:col-span-2 lg:col-span-3' : featured.length === 1 ? 'lg:col-span-2' : ''} />}
       </div>
     </section>
 

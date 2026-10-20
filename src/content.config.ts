@@ -9,33 +9,27 @@ const opt = <T extends z.ZodTypeAny>(s: T) => z.preprocess(blank, s.optional());
 const url = opt(z.string().url());
 const strList = z.preprocess((v) => (Array.isArray(v) ? v.filter((x) => x !== null && x !== '') : blank(v)), z.array(z.string()).default([]));
 const bool = (d: boolean) => z.preprocess(blank, z.boolean().default(d));
+/** "mi-app", "mi-app.md" or "src/content/projects/es/mi-app.md" → "mi-app" */
+const slugRef = z.string().transform((v) => v.split('/').pop()!.replace(/\.mdx?$/, '').trim());
 
+/** Apps (the folder keeps its historic name "projects"). File name = URL: /apps/<file-name>/ */
 const projects = defineCollection({
   loader: md('projects'),
   schema: z.object({
     title: z.string(),
     summary: z.string(),
-    status: z.enum(['live', 'in-development', 'idea']),
-    category: z.enum(['mobile', 'backend', 'ai', 'web', 'oss']).default('mobile'),
-    kind: opt(z.string()), // e.g. "App móvil · Salud digital"
-    tags: strList,
-    version: opt(z.string()),
-    metric: opt(z.string()), // e.g. "99.9% uptime"
-    cover: opt(z.string()),
-    logo: opt(z.string()), // app icon image (square)
-    icon: opt(z.string()), // Material Symbols name used when no cover/logo
+    status: z.enum(['live', 'in-development', 'idea']).default('in-development'),
     platforms: z.preprocess(blank, z.array(z.enum(['android', 'ios', 'web', 'windows', 'macos'])).default([])),
-    screenshots: strList, // image paths (phone screenshots)
-    whatsNew: opt(z.string()), // optional manual "what's new" text (latest linked update is used otherwise)
-    repoUrl: url,
+    logo: opt(z.string()), // app icon image (square)
+    icon: opt(z.string()), // Material Symbols name used when there is no logo
+    screenshots: strList,
+    whatsNew: opt(z.string()), // manual "Novedades" text (optional)
+    tags: strList, // technologies (optional)
     playStoreUrl: url,
     appStoreUrl: url,
-    demoUrl: url,
-    betaUrl: url,
-    current: bool(false), // show in "Currently building"
-    progress: opt(z.coerce.number().min(0).max(100)),
-    currentTask: opt(z.string()),
-    eta: opt(z.string()),
+    betaUrl: url, // Play testing / TestFlight link
+    websiteUrl: url,
+    featured: bool(false), // shown first on the home page
     order: z.coerce.number().default(100),
     date: z.coerce.date(),
     example: bool(false),
@@ -43,62 +37,14 @@ const projects = defineCollection({
   }),
 });
 
-const posts = defineCollection({
-  loader: md('posts'),
+/** One privacy policy per app: src/content/privacy/<lang>/<any-name>.md with `app: <app file name>` → /apps/<app>/privacy/ */
+const privacy = defineCollection({
+  loader: md('privacy'),
   schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    updated: opt(z.coerce.date()),
-    tags: strList,
-    /** slug of the app (file name in src/content/projects/<lang>/, without .md). Pages CMS may store a full path — normalized here. */
-    app: opt(z.string().transform((v) => v.split('/').pop()!.replace(/\.mdx?$/, '').trim())),
-    version: opt(z.string()),
-    cover: opt(z.string()),
-    example: bool(false),
-    draft: bool(false),
-  }),
-});
-
-const roadmap = defineCollection({
-  loader: md('roadmap'),
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    status: z.enum(['idea', 'planned', 'in-progress', 'done']).default('planned'),
-    project: opt(z.string()),
-    tags: strList,
-    order: z.coerce.number().default(100),
-    date: z.coerce.date(),
-    example: bool(false),
-    draft: bool(false),
-  }),
-});
-
-const services = defineCollection({
-  loader: md('services'),
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    icon: z.string().default('code'),
-    features: strList,
-    tags: strList,
-    priceNote: opt(z.string()),
-    order: z.coerce.number().default(100),
-    draft: bool(false),
-  }),
-});
-
-const testimonials = defineCollection({
-  loader: md('testimonials'),
-  schema: z.object({
-    name: z.string(),
-    role: opt(z.string()),
-    company: opt(z.string()),
-    quote: z.string(),
-    url: url,
-    order: z.coerce.number().default(100),
-    example: bool(true),
+    app: opt(slugRef),
+    effectiveDate: z.coerce.date(),
+    contactEmail: opt(z.string().email()),
+    example: bool(true), // true = TEMPLATE banner ("PLANTILLA — revisar")
     draft: bool(false),
   }),
 });
@@ -107,25 +53,9 @@ const profile = defineCollection({
   loader: md('profile'),
   schema: z.object({
     role: z.string(),
-    specialty: z.string(),
+    intro: z.string(), // 1–2 lines on the home page
     location: z.string(),
-    stats: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
-    skills: z
-      .array(z.object({ title: z.string(), icon: z.string().default('code'), description: z.string(), items: strList }))
-      .default([]),
-    education: z
-      .array(z.object({ title: z.string(), subtitle: opt(z.string()), icon: z.string().default('school'), example: bool(false) }))
-      .default([]),
-    languages: z.array(z.object({ name: z.string(), level: z.string() })).default([]),
-    /** "Qué hago / What I do" cards */
-    focus: z
-      .array(z.object({ title: z.string(), icon: z.string().default('code'), description: z.string(), points: strList }))
-      .default([]),
-    /** "Cómo trabajo / How I work" items */
-    approach: z
-      .array(z.object({ title: z.string(), icon: z.string().default('check_circle'), description: z.string(), example: bool(false) }))
-      .default([]),
   }),
 });
 
-export const collections = { projects, posts, roadmap, services, testimonials, profile };
+export const collections = { projects, privacy, profile };

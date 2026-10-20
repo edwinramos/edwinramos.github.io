@@ -1,20 +1,15 @@
 ---
 import { useT, type Lang } from '../i18n/ui';
-interface Props { status: 'live' | 'in-development' | 'idea' | 'planned' | 'in-progress' | 'done'; lang: Lang; kind?: 'project' | 'roadmap' }
-const { status, lang, kind = 'project' } = Astro.props;
+interface Props { status: 'live' | 'in-development' | 'idea'; lang: Lang }
+const { status, lang } = Astro.props;
 const t = useT(lang);
-const styles: Record<string, string> = {
+const styles = {
   live: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-  done: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
   'in-development': 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-  'in-progress': 'bg-amber-500/10 text-amber-400 border-amber-500/30',
   idea: 'bg-violet-500/10 text-violet-300 border-violet-500/30',
-  planned: 'bg-sky-500/10 text-secondary border-sky-500/30',
 };
-const dot: Record<string, string> = { live: 'bg-emerald-400', done: 'bg-emerald-400', 'in-development': 'bg-amber-400', 'in-progress': 'bg-amber-400', idea: 'bg-violet-400', planned: 'bg-secondary' };
-const label = kind === 'roadmap' ? t(`rstatus.${status}` as any) : t(`status.${status}` as any);
-const pulse = status === 'live' || status === 'in-development' || status === 'in-progress';
+const dot = { live: 'bg-emerald-400', 'in-development': 'bg-amber-400', idea: 'bg-violet-400' };
 ---
 <span class:list={['inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-label-sm uppercase', styles[status]]}>
-  <span class:list={['h-1.5 w-1.5 rounded-full', dot[status], pulse && 'animate-pulse-indicator']}></span>{label}
+  <span class:list={['h-1.5 w-1.5 rounded-full', dot[status], status !== 'idea' && 'animate-pulse-indicator']}></span>{t(`status.${status}`)}
 </span>

@@ -1,125 +1,56 @@
 ---
+import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import AppIcon from '../components/AppIcon.astro';
-import StatusPill from '../components/StatusPill.astro';
-import ProgressBar from '../components/ProgressBar.astro';
-import ExampleBadge from '../components/ExampleBadge.astro';
-import StoreBadges from '../components/StoreBadges.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-import UpdateCard from '../components/UpdateCard.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ComingSoonCard from '../components/ComingSoonCard.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import ContactSection from '../components/ContactSection.astro';
 import { SITE } from '../config';
 import { useT, type Lang } from '../i18n/ui';
-import { href, asset, formatDate } from '../lib/paths';
-import { slugOf } from '../lib/content';
-import { getApps, postsWithApps } from '../lib/apps';
+import { href, asset } from '../lib/paths';
+import { getApps } from '../lib/apps';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
+const profile = await getEntry('profile', lang);
+const About = profile ? (await render(profile)).Content : null;
 const apps = await getApps(lang);
-const all = await postsWithApps(lang);
-const appUpdates = all.filter((x) => x.app);
-const latestOf = (slug: string) => appUpdates.find((x) => slugOf(x.app!.id) === slug)?.post;
-const featured = apps.find((a) => a.data.current) ?? apps[0];
-const featuredSlug = featured ? slugOf(featured.id) : '';
-const featuredLatest = featured ? latestOf(featuredSlug) : undefined;
-const updates = appUpdates.slice(0, 4);
 ---
 <Base lang={lang} path="" active="home">
-  <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-2xl lg:py-space-xl">
-    <!-- Hero: apps first -->
-    <section class="grid gap-space-lg pt-2 lg:grid-cols-12 lg:items-center lg:gap-space-xl">
-      <div class="flex flex-col gap-space-md lg:col-span-7">
+  <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-xl lg:py-space-xl">
+    <!-- Intro -->
+    <section class="flex flex-col gap-space-md pt-2 lg:max-w-3xl">
+      <div class="flex items-center gap-3">
+        <img src={asset('images/avatar.svg')} alt={SITE.name} width="64" height="64" class="h-14 w-14 rounded-full shadow-[0_0_0_1.5px_rgba(208,188,255,0.5)] lg:h-16 lg:w-16" />
         <span class="eyebrow">{t('home.eyebrow')}</span>
-        <h1 class="text-headline-lg-mobile font-extrabold tracking-tight text-on-surface sm:text-display-mobile lg:text-display">{t('home.title')}</h1>
-        <p class="text-body-md text-on-surface-variant lg:max-w-2xl lg:text-body-lg">{t('home.lead')}</p>
-        <div class="grid grid-cols-2 gap-space-sm pt-1 sm:flex">
-          <a class="btn-primary" href={href(lang, 'apps')}><Icon name="apps" size="1.125rem" />{t('home.cta.projects')}</a>
-          <a class="btn-ghost" href={href(lang, 'feedback#beta')}><Icon name="install_mobile" class="text-secondary" size="1.125rem" />{t('home.cta.beta')}</a>
-        </div>
       </div>
-
-      <!-- Featured / currently building app -->
-      <div class="lg:col-span-5">
-        {featured ? (
-          <div class="card-raised relative flex flex-col gap-space-md overflow-hidden border border-violet-electric/25 lg:p-6">
-            <div class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-violet-electric/25 blur-3xl" aria-hidden="true"></div>
-            <div class="relative flex items-center justify-between gap-2">
-              <span class="flex items-center gap-2 font-mono text-label-sm uppercase tracking-wider text-secondary">
-                <span class="h-2 w-2 animate-pulse rounded-full bg-secondary"></span>{featured.data.current ? t('home.building') : t('home.featured')}
-              </span>
-              <ExampleBadge lang={lang} show={featured.data.example} />
-            </div>
-            <div class="relative flex items-center gap-space-sm">
-              <AppIcon logo={featured.data.logo} icon={featured.data.icon} title={featured.data.title} size="lg" />
-              <div class="flex min-w-0 flex-col gap-1">
-                <h2 class="text-headline-md font-bold text-on-surface"><a href={href(lang, `apps/${featuredSlug}`)} class="hover:text-primary">{featured.data.title}</a></h2>
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <StatusPill status={featured.data.status} lang={lang} />
-                  {(featuredLatest?.data.version ?? featured.data.version) && <span class="badge">{featuredLatest?.data.version ?? featured.data.version}</span>}
-                </div>
-              </div>
-            </div>
-            <p class="relative text-body-sm text-on-surface-variant">{featured.data.summary}</p>
-            {featuredLatest && (
-              <a href={href(lang, `blog/${slugOf(featuredLatest.id)}`)} class="relative flex items-start gap-2 rounded-xl bg-surface-container-low p-3 transition-colors hover:bg-surface-container-high">
-                <Icon name="new_releases" class="mt-0.5 shrink-0 text-secondary" size="1.1rem" />
-                <span class="flex flex-col"><span class="font-mono text-[11px] text-outline">{t('apps.whatsNew')} · {formatDate(featuredLatest.data.date, lang, { month: 'short', day: 'numeric' })}</span><span class="text-body-sm font-semibold text-on-surface">{featuredLatest.data.title}</span></span>
-              </a>
-            )}
-            {featured.data.progress !== undefined && featured.data.status !== 'live' && (
-              <div class="relative flex flex-col gap-1.5">
-                <div class="flex items-center justify-between gap-2 text-body-sm"><span class="truncate font-mono text-code-sm text-on-surface-variant">{featured.data.currentTask ?? t('projects.sprint')}</span><span class="font-semibold text-secondary">{featured.data.progress}%</span></div>
-                <ProgressBar value={featured.data.progress} label={t('projects.sprint')} />
-              </div>
-            )}
-            <div class="relative flex flex-wrap items-center gap-2">
-              <a href={href(lang, `apps/${featuredSlug}`)} class="btn-primary btn-sm"><Icon name="visibility" size="1rem" />{t('home.viewProject')}</a>
-              <StoreBadges entry={featured} lang={lang} showBeta={false} />
-            </div>
-          </div>
-        ) : <ComingSoonCard lang={lang} />}
+      <h1 class="text-headline-lg-mobile font-extrabold tracking-tight text-on-surface sm:text-display-mobile lg:text-display">{t('home.hello')}</h1>
+      {profile && <p class="text-body-md text-on-surface-variant lg:text-body-lg">{profile.data.intro}</p>}
+      <div class="flex flex-wrap items-center gap-space-sm">
+        <a class="btn-primary" href={href(lang, 'apps')}><Icon name="apps" size="1.125rem" />{t('home.cta.apps')}</a>
+        <SocialLinks email={false} />
       </div>
     </section>
 
-    <!-- App grid -->
+    <!-- Apps -->
     <section class="flex flex-col gap-space-sm">
-      <SectionHeader icon="apps" iconClass="text-primary" title={t('home.apps')} tag={t('common.viewAll')} tagHref={href(lang, 'apps')} />
+      <SectionHeader icon="apps" iconClass="text-primary" title={t('home.apps')} tag={apps.length > 0 ? t('common.viewAll') : undefined} tagHref={apps.length > 0 ? href(lang, 'apps') : undefined} />
       <div class="grid gap-space-md sm:grid-cols-2 lg:grid-cols-3">
-        {apps.map((a) => <ProjectCard entry={a} lang={lang} latest={latestOf(slugOf(a.id))} />)}
-        {apps.length < 3 && <ComingSoonCard lang={lang} class={apps.length === 0 ? 'sm:col-span-2 lg:col-span-3' : apps.length === 1 ? 'lg:col-span-2' : ''} />}
+        {apps.map((a) => <ProjectCard entry={a} lang={lang} />)}
+        {apps.length === 0 && <ComingSoonCard lang={lang} class="sm:col-span-2 lg:col-span-3" />}
       </div>
     </section>
 
-    <!-- Latest app updates -->
-    <section class="flex flex-col gap-space-sm">
-      <SectionHeader icon="rocket_launch" iconClass="text-secondary" title={t('home.updates')} sub={t('home.updates.sub')} tag={t('common.viewAll')} tagHref={href(lang, 'blog')} />
-      {updates.length > 0 ? (
-        <div class="grid gap-space-sm md:grid-cols-2">
-          {updates.map(({ post, app }) => <UpdateCard entry={post} app={app} lang={lang} />)}
-        </div>
-      ) : (
-        <div class="card flex items-center gap-3 border border-dashed border-outline-variant/50 bg-transparent text-body-sm text-on-surface-variant"><Icon name="history_edu" class="text-outline" size="1.4rem" />{t('home.updates.empty')}</div>
-      )}
-    </section>
+    <!-- Short about -->
+    {About && (
+      <section class="card flex flex-col gap-2 lg:p-6">
+        <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="person" class="text-secondary" size="1.25rem" />{t('home.about')}</h2>
+        <div class="prose prose-site max-w-3xl"><About /></div>
+      </section>
+    )}
 
-    <!-- About blurb + low-key hire note -->
-    <section class="grid gap-space-sm lg:grid-cols-12">
-      <a href={href(lang, 'about')} class="card card-hover flex items-center gap-space-sm border border-transparent lg:col-span-7">
-        <img src={asset('images/avatar.svg')} alt={SITE.name} width="56" height="56" class="h-14 w-14 shrink-0 rounded-full shadow-[0_0_0_1.5px_rgba(208,188,255,0.5)]" />
-        <div class="flex min-w-0 flex-col gap-0.5">
-          <span class="font-mono text-label-sm uppercase tracking-wider text-outline">{t('home.about.title')}</span>
-          <span class="text-body-lg font-semibold text-on-surface">{SITE.name}</span>
-          <span class="text-body-sm text-on-surface-variant">{t('home.about.text')}</span>
-        </div>
-        <Icon name="arrow_forward" class="ml-auto shrink-0 text-on-surface-variant" size="1.25rem" />
-      </a>
-      <div class="flex flex-col justify-center gap-2 rounded-2xl border border-white/[0.06] p-4 lg:col-span-5">
-        <p class="text-body-sm text-on-surface-variant">{t('home.hire.small')}</p>
-        <a href={href(lang, 'services')} class="inline-flex w-fit items-center gap-1 text-body-sm font-semibold text-secondary hover:text-primary"><Icon name="handshake" size="1rem" />{t('nav.services')} <Icon name="arrow_forward" size="1rem" /></a>
-      </div>
-    </section>
+    <ContactSection lang={lang} />
   </div>
 </Base>

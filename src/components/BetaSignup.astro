@@ -1,0 +1,33 @@
+---
+/** Beta sign-up for one app: external beta link (Play testing / TestFlight) if set, otherwise a Formspree form (mailto fallback). */
+import type { CollectionEntry } from 'astro:content';
+import { useT, type Lang } from '../i18n/ui';
+import { platformName } from '../lib/apps';
+import Form from './Form.astro';
+import Icon from './Icon.astro';
+interface Props { entry: CollectionEntry<'projects'>; lang: Lang }
+const { entry, lang } = Astro.props;
+const { data } = entry;
+const t = useT(lang);
+const mobile = data.platforms.filter((p) => p !== 'web');
+---
+<section id="beta" class="card-raised flex scroll-mt-28 flex-col gap-space-sm border border-violet-electric/25">
+  <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="install_mobile" class="text-secondary" size="1.3rem" />{t('apps.beta')}</h2>
+  {data.betaUrl ? (
+    <a href={data.betaUrl} target="_blank" rel="noopener noreferrer" class="btn-primary w-fit"><Icon name="open_in_new" size="1.1rem" />{t('apps.beta.open')}</a>
+  ) : (
+    <>
+      <p class="text-body-sm text-on-surface-variant">{t('apps.beta.lead')}</p>
+      <Form kind="beta" lang={lang} subject={`Beta: ${data.title}`} submitLabel={t('apps.beta')}>
+        <input type="hidden" name="app" value={data.title} />
+        <div class="grid gap-space-sm sm:grid-cols-2">
+          <div><label class="field-label" for="b-email">{t('form.email')}</label><input id="b-email" name="email" type="email" class="field" required autocomplete="email" placeholder={t('form.placeholder.email')} /></div>
+          {mobile.length > 1 && (
+            <div><label class="field-label" for="b-platform">{t('form.platform')}</label>
+              <select id="b-platform" name="platform" class="field">{mobile.map((p) => <option>{platformName[p]}</option>)}</select></div>
+          )}
+        </div>
+      </Form>
+    </>
+  )}
+</section>

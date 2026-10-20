@@ -1,0 +1,14 @@
+---
+import View from '../../../views/PrivacyPage.astro';
+import { getApps, policyFor, slugOf } from '../../../lib/apps';
+export async function getStaticPaths() {
+  const out = [];
+  for (const app of await getApps('es')) {
+    const policy = await policyFor('es', slugOf(app.id));
+    if (policy) out.push({ params: { slug: slugOf(app.id) }, props: { app, policy } });
+  }
+  return out;
+}
+const { app, policy } = Astro.props;
+---
+<View lang="es" app={app} policy={policy} />

@@ -7,14 +7,12 @@ const { lang, active } = Astro.props;
 const t = useT(lang);
 const items = [
   { key: 'home', path: '', icon: 'home', label: t('nav.home') },
-  { key: 'projects', path: 'apps', icon: 'apps', label: t('nav.projects') },
-  { key: 'blog', path: 'blog', icon: 'article', label: t('nav.blog') },
-  { key: 'roadmap', path: 'roadmap', icon: 'map', label: t('nav.roadmap') },
-  { key: 'about', path: 'about', icon: 'person', label: t('nav.profile') },
+  { key: 'apps', path: 'apps', icon: 'apps', label: t('nav.apps') },
+  { key: 'contact', path: '#contact', icon: 'mail', label: t('nav.contact') },
 ];
 ---
 <nav aria-label="Mobile" class="fixed inset-x-0 bottom-0 z-50 bg-surface-container-low/95 pb-safe shadow-[0_-4px_24px_rgba(6,14,32,0.6)] backdrop-blur-xl lg:hidden">
-  <ul class="mx-auto grid h-16 max-w-screen-md grid-cols-5 items-center gap-1 px-2">
+  <ul class="mx-auto grid h-16 max-w-screen-md grid-cols-3 items-center gap-1 px-2">
     {items.map((i) => (
       <li>
         <a href={href(lang, i.path)} aria-current={active === i.key ? 'page' : undefined}

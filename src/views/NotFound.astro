@@ -14,7 +14,16 @@ const t = useT(lang);
     <p class="text-on-surface-variant">{t('notfound.text')}</p>
     <div class="flex gap-2">
       <a class="btn-primary" href={href('es')}><Icon name="home" size="1.1rem" />{useT('es')('notfound.cta')}</a>
+      <a class="btn-ghost" href={href('es', 'apps')}><Icon name="apps" size="1.1rem" />Apps</a>
       <a class="btn-ghost" href={href('en')}>English</a>
     </div>
   </div>
 </Base>
+<script is:inline>
+  // Sections removed in the "link in bio" simplification (devlog, roadmap, services, about, feedback):
+  // send any old deep link to the matching home page instead of showing a 404.
+  (function () {
+    var m = location.pathname.match(/^\/(en\/)?(blog|roadmap|services|about|feedback|projects|share)(\/|\.|$)/);
+    if (m) location.replace((m[1] ? '/en/' : '/') + (m[2] === 'projects' || m[2] === 'feedback' || m[2] === 'roadmap' ? 'apps/' : ''));
+  })();
+</script>

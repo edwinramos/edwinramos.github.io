@@ -1,0 +1,20 @@
+---
+/** LinkedIn / Instagram / email buttons. Instagram stays hidden until SITE.instagram is set. */
+import { SITE, isSet } from '../config';
+import Icon from './Icon.astro';
+interface Props { size?: 'sm' | 'md'; email?: boolean; class?: string }
+const { size = 'md', email = true, class: cls } = Astro.props;
+const links = [
+  isSet(SITE.instagram) && { href: SITE.instagram, label: 'Instagram', icon: 'photo_camera' },
+  { href: SITE.linkedin, label: 'LinkedIn', icon: 'work' },
+  email && { href: `mailto:${SITE.email}`, label: SITE.email, icon: 'mail' },
+].filter(Boolean) as { href: string; label: string; icon: string }[];
+---
+<div class:list={['flex flex-wrap items-center gap-2', cls]}>
+  {links.map((l) => (
+    <a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel={l.href.startsWith('http') ? 'me noopener noreferrer' : undefined}
+      class:list={['btn-ghost', size === 'sm' ? 'btn-sm' : 'py-2.5']}>
+      <Icon name={l.icon} class="text-secondary" size={size === 'sm' ? '1rem' : '1.1rem'} /><span class="truncate">{l.label}</span>
+    </a>
+  ))}
+</div>

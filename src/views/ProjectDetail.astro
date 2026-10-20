@@ -5,16 +5,13 @@ import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
 import StatusPill from '../components/StatusPill.astro';
 import TechBadges from '../components/TechBadges.astro';
-import ProjectLinks from '../components/ProjectLinks.astro';
-import ProgressBar from '../components/ProgressBar.astro';
 import ExampleBadge from '../components/ExampleBadge.astro';
 import StoreBadges from '../components/StoreBadges.astro';
-import UpdatesTimeline from '../components/UpdatesTimeline.astro';
-import SectionHeader from '../components/SectionHeader.astro';
+import BetaSignup from '../components/BetaSignup.astro';
 import { useT, type Lang } from '../i18n/ui';
-import { href, asset, formatDate } from '../lib/paths';
-import { slugOf, hasTranslation } from '../lib/content';
-import { updatesFor } from '../lib/apps';
+import { href, asset } from '../lib/paths';
+import { hasTranslation } from '../lib/content';
+import { slugOf, platformName, hasPolicy } from '../lib/apps';
 interface Props { lang: Lang; entry: CollectionEntry<'projects'> }
 const { lang, entry } = Astro.props;
 const { data } = entry;
@@ -23,56 +20,43 @@ const slug = slugOf(entry.id);
 const other: Lang = lang === 'es' ? 'en' : 'es';
 const alternates = { [other]: (await hasTranslation('projects', other, slug)) ? href(other, `apps/${slug}`) : href(other, 'apps') };
 const { Content } = await render(entry);
-const updates = await updatesFor(lang, slug);
-const latest = updates[0];
-const version = latest?.data.version ?? data.version;
-const hasLinks = !!data.repoUrl;
-const pf: Record<string, string> = { android: 'Android', ios: 'iOS', web: 'Web', windows: 'Windows', macos: 'macOS' };
-const rssUrl = href(lang, `apps/${slug}/rss.xml`);
+const privacy = (await hasPolicy(lang, slug)) ? href(lang, `apps/${slug}/privacy`) : undefined;
+const showBeta = !!data.betaUrl || data.status !== 'live';
+const inStores = !!(data.playStoreUrl || data.appStoreUrl);
 const hero = data.screenshots[0];
 ---
-<Base lang={lang} path={`apps/${slug}`} active="projects" title={data.title} description={data.summary} image={data.cover ?? data.logo} alternates={alternates}>
-  <link slot="head" rel="alternate" type="application/rss+xml" title={`${data.title} · ${t('apps.updates')}`} href={rssUrl} />
+<Base lang={lang} path={`apps/${slug}`} active="apps" title={data.title} description={data.summary} image={data.logo} alternates={alternates}>
   <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-xl lg:py-space-xl">
-    <a href={href(lang, 'apps')} class="inline-flex w-fit items-center gap-1 font-mono text-label-sm text-on-surface-variant hover:text-secondary"><Icon name="arrow_back" size="1rem" />{t('nav.projects')}</a>
+    <a href={href(lang, 'apps')} class="inline-flex w-fit items-center gap-1 font-mono text-label-sm text-on-surface-variant hover:text-secondary"><Icon name="arrow_back" size="1rem" />{t('nav.apps')}</a>
 
-    <!-- App hero -->
     <header class="grid gap-space-lg lg:grid-cols-12 lg:items-center lg:gap-space-xl">
       <div class="flex flex-col gap-space-md lg:col-span-7">
         <div class="flex items-center gap-space-sm">
           <AppIcon logo={data.logo} icon={data.icon} title={data.title} size="lg" />
-          <div class="flex min-w-0 flex-col gap-1.5">
-            <div class="flex flex-wrap items-center gap-1.5">
-              <StatusPill status={data.status} lang={lang} />
-              {version && <span class="badge">{version}</span>}
-              <ExampleBadge lang={lang} show={data.example} />
-            </div>
-            {data.kind && <span class="font-mono text-label-sm text-secondary">{data.kind}</span>}
+          <div class="flex flex-wrap items-center gap-1.5">
+            <StatusPill status={data.status} lang={lang} />
+            <ExampleBadge lang={lang} show={data.example} />
           </div>
         </div>
         <h1 class="text-headline-lg-mobile font-extrabold tracking-tight text-on-surface sm:text-display-mobile lg:text-display">{data.title}</h1>
         <p class="text-body-md text-on-surface-variant lg:max-w-2xl lg:text-body-lg">{data.summary}</p>
         {data.platforms.length > 0 && (
           <div class="flex flex-wrap items-center gap-1.5 font-mono text-[11px] text-on-surface-variant">
-            <span class="text-outline">{t('apps.platforms')}:</span>{data.platforms.map((p) => <span class="rounded bg-surface-container-high px-2 py-0.5">{pf[p]}</span>)}
+            <span class="text-outline">{t('apps.platforms')}:</span>{data.platforms.map((p) => <span class="rounded bg-surface-container-high px-2 py-0.5">{platformName[p]}</span>)}
           </div>
         )}
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <StoreBadges entry={entry} lang={lang} />
-          <div class="flex flex-wrap gap-2">
-          <a href="#updates" class="btn-ghost w-fit py-2.5"><Icon name="history_edu" class="text-secondary" size="1.1rem" />{t('apps.updates')}{updates.length > 0 && <span class="badge">{updates.length}</span>}</a>
-          {data.demoUrl && <a href={data.demoUrl} target="_blank" rel="noopener noreferrer" class="btn-ghost w-fit py-2.5"><Icon name="open_in_new" size="1.1rem" />{t('links.demo')}</a>}
-          </div>
-          {!data.playStoreUrl && !data.appStoreUrl && data.platforms.some((p) => p === 'android' || p === 'ios') && <p class="font-mono text-[11px] text-outline">{t('apps.soonStores')}</p>}
+          {showBeta && <a href="#beta" class:list={[inStores ? 'btn-ghost' : 'btn-primary', 'py-2.5']}><Icon name="install_mobile" size="1.1rem" />{t('apps.beta')}</a>}
+          {data.websiteUrl && <a href={data.websiteUrl} target="_blank" rel="noopener noreferrer" class="btn-ghost py-2.5"><Icon name="open_in_new" size="1.1rem" />{t('apps.website')}</a>}
         </div>
+        {!inStores && data.platforms.some((p) => p === 'android' || p === 'ios') && <p class="font-mono text-[11px] text-outline">{t('apps.soonStores')}</p>}
       </div>
       <div class="lg:col-span-5">
         {hero ? (
           <div class="mx-auto w-56 rounded-[2.2rem] border border-white/10 bg-surface-container-lowest p-2 shadow-[0_20px_60px_rgba(139,92,246,0.25)] sm:w-64">
             <img src={asset(hero)} alt={`${data.title} — ${t('apps.screenshots')} 1`} class="aspect-[9/19.5] w-full rounded-[1.8rem] object-cover" />
           </div>
-        ) : data.cover ? (
-          <img src={asset(data.cover)} alt={data.title} class="w-full rounded-2xl object-cover" />
         ) : (
           <div class="flex h-48 w-full items-center justify-center rounded-2xl bg-surface-container-low bg-[radial-gradient(circle_at_30%_20%,rgba(208,188,255,0.25),transparent_60%),radial-gradient(circle_at_80%_80%,rgba(123,208,255,0.2),transparent_55%)] sm:h-64">
             <AppIcon logo={data.logo} icon={data.icon} title={data.title} size="lg" />
@@ -81,26 +65,13 @@ const hero = data.screenshots[0];
       </div>
     </header>
 
-    <!-- What's new -->
-    {(latest || data.whatsNew) && (
-      <section class="rounded-2xl border border-secondary/25 bg-linear-to-br from-secondary/10 via-surface-container to-surface-container p-5 lg:p-6" aria-labelledby="whats-new">
-        <div class="flex flex-wrap items-center gap-2">
-          <Icon name="new_releases" class="text-secondary" size="1.3rem" />
-          <h2 id="whats-new" class="text-headline-sm font-semibold text-on-surface">{t('apps.whatsNew')}</h2>
-          {latest?.data.version && <span class="badge bg-primary text-on-primary">{latest.data.version}</span>}
-          {latest && <span class="font-mono text-[11px] text-outline">{formatDate(latest.data.date, lang, { year: 'numeric', month: 'long', day: 'numeric' })}</span>}
-        </div>
-        {latest ? (
-          <div class="mt-2 flex flex-col gap-1">
-            <p class="text-body-lg font-semibold text-on-surface">{latest.data.title}</p>
-            <p class="text-body-sm text-on-surface-variant">{data.whatsNew ?? latest.data.description}</p>
-            <a href={href(lang, `blog/${slugOf(latest.id)}`)} class="mt-1 inline-flex w-fit items-center gap-1 text-body-sm font-semibold text-secondary hover:text-primary">{t('apps.readUpdate')} <Icon name="arrow_forward" size="1rem" /></a>
-          </div>
-        ) : <p class="mt-2 text-body-sm text-on-surface-variant">{data.whatsNew}</p>}
+    {data.whatsNew && (
+      <section class="rounded-2xl border border-secondary/25 bg-linear-to-br from-secondary/10 via-surface-container to-surface-container p-5 lg:p-6">
+        <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="new_releases" class="text-secondary" size="1.3rem" />{t('apps.whatsNew')}</h2>
+        <p class="mt-2 whitespace-pre-line text-body-md text-on-surface-variant">{data.whatsNew}</p>
       </section>
     )}
 
-    <!-- Screenshots -->
     {data.screenshots.length > 0 && (
       <section class="flex flex-col gap-space-sm" aria-labelledby="shots">
         <h2 id="shots" class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="photo_library" class="text-secondary" size="1.25rem" />{t('apps.screenshots')}</h2>
@@ -115,38 +86,20 @@ const hero = data.screenshots[0];
     )}
 
     <div class="grid gap-space-lg lg:grid-cols-12 lg:gap-space-xl">
-      <div class="flex flex-col gap-space-lg lg:col-span-8">
-        <!-- Updates timeline -->
-        <section class="flex scroll-mt-28 flex-col gap-space-sm" id="updates">
-          <SectionHeader icon="history_edu" iconClass="text-primary" title={t('apps.updates')} sub={t('apps.updates.sub')} tag={t('apps.updates.rss')} tagHref={rssUrl} />
-          <UpdatesTimeline posts={updates} lang={lang} />
-        </section>
-        <section class="flex flex-col gap-space-sm">
-          <h2 class="text-headline-sm font-semibold text-on-surface">{t('apps.about')}</h2>
-          <div class="prose prose-site"><Content /></div>
-        </section>
-      </div>
+      <section class="flex flex-col gap-space-sm lg:col-span-8">
+        <h2 class="text-headline-sm font-semibold text-on-surface">{t('apps.about')}</h2>
+        <div class="prose prose-site"><Content /></div>
+      </section>
       <aside class="flex flex-col gap-space-md lg:col-span-4">
-        <div class="card-raised flex flex-col gap-space-md lg:sticky lg:top-28">
-          <div>
-            <span class="section-tag">{t('projects.caseStudy')}</span>
-            <dl class="mt-2 grid grid-cols-2 gap-3 font-mono text-code-sm">
-              {version && <div><dt class="text-outline">{t('apps.latest')}</dt><dd class="text-on-surface">{version}</dd></div>}
-              <div><dt class="text-outline">{t('common.updated')}</dt><dd class="text-on-surface">{formatDate(latest?.data.date ?? data.date, lang)}</dd></div>
-              {data.metric && <div class="col-span-2"><dt class="text-outline">KPI</dt><dd class="text-emerald-400">{data.metric}</dd></div>}
-            </dl>
-          </div>
-          {data.progress !== undefined && data.status !== 'live' && (
-            <div class="flex flex-col gap-2">
-              <div class="flex justify-between text-body-sm"><span class="text-on-surface">{t('projects.sprint')}</span><span class="font-semibold text-secondary">{data.progress}%</span></div>
-              <ProgressBar value={data.progress} />
-              {data.currentTask && <p class="font-mono text-code-sm text-on-surface-variant">{data.currentTask}</p>}
-            </div>
-          )}
-          <div><span class="section-tag">{t('projects.stack')}</span><div class="mt-2"><TechBadges tags={data.tags} /></div></div>
-          {hasLinks && <div><span class="section-tag">{t('projects.links')}</span><div class="mt-2"><ProjectLinks data={{ ...data, playStoreUrl: undefined, appStoreUrl: undefined, betaUrl: undefined, demoUrl: undefined }} lang={lang} size="md" /></div></div>}
-        </div>
+        {data.tags.length > 0 && <div class="card"><span class="section-tag">{t('apps.stack')}</span><div class="mt-2"><TechBadges tags={data.tags} /></div></div>}
+        {privacy && (
+          <a href={privacy} class="card card-hover flex items-center gap-2 border border-transparent text-body-md font-semibold text-on-surface">
+            <Icon name="shield" class="text-secondary" size="1.25rem" />{t('apps.privacy')}<Icon name="arrow_forward" class="ml-auto text-on-surface-variant" size="1.1rem" />
+          </a>
+        )}
       </aside>
     </div>
+
+    {showBeta && <BetaSignup entry={entry} lang={lang} />}
   </div>
 </Base>

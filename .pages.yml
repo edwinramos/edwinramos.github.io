@@ -1,9 +1,9 @@
 # Pages CMS configuration — https://pagescms.org/docs/configuration/
 # Sign in at https://app.pagescms.org with GitHub, pick this repository and edit.
-# Each save = a commit to `main` = automatic deploy via GitHub Actions.
+# Each save = a commit to `main` = automatic deploy via GitHub Actions (~2 min).
 #
-# Content lives in src/content/<collection>/<es|en>/<slug>.md
-# TIP: use the SAME file name (slug) in /es and /en so the language switcher links the translations.
+# Content lives in src/content/<collection>/<es|en>/<file>.md
+# TIP: use the SAME file name in /es and /en so the ES/EN switch links the translations.
 
 media:
   input: public/images
@@ -14,10 +14,6 @@ settings:
     merge: true
 
 components:
-  title:
-    type: string
-    label: Título / Title
-    required: true
   example:
     type: boolean
     label: "¿Es contenido de ejemplo? (muestra la etiqueta EJEMPLO)"
@@ -27,24 +23,6 @@ components:
     type: boolean
     label: Borrador (no se publica)
     default: false
-  date:
-    type: date
-    label: Fecha
-    options:
-      format: yyyy-MM-dd
-  order:
-    type: number
-    label: Orden (1 = primero)
-    default: 10
-  tags:
-    type: string
-    label: Etiquetas / tecnologías
-    list: true
-  body:
-    type: rich-text
-    label: Contenido
-    options:
-      format: markdown
   url:
     type: string
     label: URL
@@ -58,25 +36,27 @@ content:
     type: group
     items:
       - name: projects-es
-        label: "📱 Apps (ES) — añadir o editar una app"
+        label: "📱 Apps (ES)"
         type: collection
         path: src/content/projects/es
         filename:
           template: "{primary}.md"
           field: create
         view:
-          fields: [title, status, current, example, date]
+          fields: [title, status, featured, draft]
           primary: title
-          sort: [order, date, title]
+          sort: [order, title]
           default:
             sort: order
             order: asc
         fields:
           - name: title
-            component: title
+            type: string
+            label: Nombre de la app
+            required: true
           - name: summary
             type: text
-            label: Resumen corto (tarjeta)
+            label: "Descripción corta (1–2 frases, sale en la tarjeta)"
             required: true
           - name: status
             type: select
@@ -85,40 +65,9 @@ content:
             default: in-development
             options:
               values:
-                - { name: live, label: "Live / En producción" }
-                - { name: in-development, label: "En desarrollo" }
+                - { name: live, label: "Disponible (publicada en tiendas)" }
+                - { name: in-development, label: "En desarrollo / beta" }
                 - { name: idea, label: "Idea" }
-          - name: category
-            type: select
-            label: Categoría (filtro)
-            default: mobile
-            options:
-              values:
-                - { name: mobile, label: "Móvil" }
-                - { name: backend, label: "Backend & Cloud" }
-                - { name: ai, label: "IA" }
-                - { name: web, label: "Web" }
-                - { name: oss, label: "Open Source" }
-          - name: kind
-            type: string
-            label: "Etiqueta superior (ej. App móvil · Salud)"
-          - name: tags
-            component: tags
-          - name: version
-            type: string
-            label: "Versión (ej. v1.2 Beta)"
-          - name: metric
-            type: string
-            label: "Métrica destacada (ej. 99.9% uptime)"
-          - name: cover
-            type: image
-            label: Imagen de portada
-          - name: logo
-            type: image
-            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
-          - name: icon
-            type: string
-            label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"
           - name: platforms
             type: select
             label: Plataformas
@@ -130,6 +79,12 @@ content:
                 - { name: web, label: "Web" }
                 - { name: windows, label: "Windows" }
                 - { name: macos, label: "macOS" }
+          - name: logo
+            type: image
+            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
+          - name: icon
+            type: string
+            label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"
           - name: screenshots
             type: image
             label: "Capturas de pantalla (verticales, de teléfono)"
@@ -137,10 +92,7 @@ content:
               multiple: true
           - name: whatsNew
             type: text
-            label: "Novedades (opcional — si lo dejas vacío se usa la última actualización del devlog)"
-          - name: repoUrl
-            component: url
-            label: "Enlace GitHub / código"
+            label: "Novedades (opcional — texto libre, ej. lo nuevo de la última versión)"
           - name: playStoreUrl
             component: url
             label: Enlace Google Play
@@ -149,302 +101,162 @@ content:
             label: Enlace App Store
           - name: betaUrl
             component: url
-            label: "Enlace beta (Play testing / TestFlight)"
-          - name: demoUrl
+            label: "Enlace beta (Play testing / TestFlight). Vacío = formulario de beta del sitio"
+          - name: websiteUrl
             component: url
-            label: Enlace demo / sitio
-          - name: current
+            label: "Sitio web de la app (opcional)"
+          - name: tags
+            type: string
+            label: "Tecnologías (opcional)"
+            list: true
+          - name: featured
             type: boolean
-            label: "Mostrar en «En qué estoy trabajando»"
+            label: "Destacada (sale primero en la portada)"
             default: false
-          - name: progress
-            type: number
-            label: "Progreso % (0-100)"
-            options: { min: 0, max: 100 }
-          - name: currentTask
-            type: string
-            label: Tarea actual
-          - name: eta
-            type: string
-            label: "Entrega estimada (texto libre)"
           - name: order
-            component: order
+            type: number
+            label: Orden (1 = primero)
+            default: 10
           - name: date
-            component: date
-            label: Fecha (última actualización)
+            type: date
+            label: Fecha
+            options:
+              format: yyyy-MM-dd
           - name: example
             component: example
           - name: draft
             component: draft
           - name: body
-            component: body
-            label: "Sobre la app (qué hace, para quién, cómo está hecha)"
-      - name: posts-es
-        label: "📝 Devlog (ES) — publicar una actualización de app"
+            type: rich-text
+            label: "Sobre la app (qué hace, para quién)"
+            options:
+              format: markdown
+      - name: privacy-es
+        label: "🔒 Privacidad (ES) — una política por app"
         type: collection
-        path: src/content/posts/es
+        path: src/content/privacy/es
         filename:
           template: "{primary}.md"
           field: create
         view:
-          fields: [title, app, version, date, draft]
-          primary: title
-          sort: [date, title]
-          default:
-            sort: date
-            order: desc
+          fields: [app, effectiveDate, example, draft]
+          primary: app
         fields:
-          - name: title
-            component: title
-          - name: description
-            type: text
-            label: "Descripción (SEO y tarjeta)"
-            required: true
-          - name: date
-            component: date
-            label: Fecha de publicación
-          - name: tags
-            component: tags
           - name: app
             type: reference
-            label: "📱 App de esta actualización"
-            description: "Elige la app que mejoraste. Déjalo vacío si es un artículo general del devlog. (Genera la imagen de Instagram con el nombre de la app.)"
+            label: "📱 App"
+            description: "La política se publica en /apps/<app>/privacy/ (esa es la URL para Google Play)."
+            required: true
             options:
               collection: projects-es
               value: "{name}"
               label: "{primary}"
               search: "title"
-          - name: version
-            type: string
-            label: "🏷️ Versión de la app (ej. v1.2.0)"
-            description: "Aparece en la imagen de Instagram y en el historial de la app."
-          - name: cover
-            type: image
-            label: Imagen de portada
-          - name: example
-            component: example
-          - name: draft
-            component: draft
-          - name: body
-            component: body
-            label: Artículo
-      - name: roadmap-es
-        label: "Roadmap (ES)"
-        type: collection
-        path: src/content/roadmap/es
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [title, status, project, order]
-          primary: title
-          sort: [order, title]
-          default:
-            sort: order
-            order: asc
-        fields:
-          - name: title
-            component: title
-          - name: summary
-            type: text
-            label: Resumen
-            required: true
-          - name: status
-            type: select
-            label: Estado
-            default: planned
+          - name: effectiveDate
+            type: date
+            label: "Vigente desde"
             options:
-              values:
-                - { name: idea, label: "Idea" }
-                - { name: planned, label: "Planeado" }
-                - { name: in-progress, label: "En curso" }
-                - { name: done, label: "Completado" }
-          - name: project
+              format: yyyy-MM-dd
+          - name: contactEmail
             type: string
-            label: Proyecto
-          - name: tags
-            component: tags
-          - name: order
-            component: order
-          - name: date
-            component: date
+            label: "Correo de contacto (vacío = el del sitio)"
           - name: example
-            component: example
-          - name: draft
-            component: draft
-          - name: body
-            component: body
-            label: Detalle
-      - name: services-es
-        label: "Servicios (ES)"
-        type: collection
-        path: src/content/services/es
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [title, order]
-          primary: title
-          default:
-            sort: order
-            order: asc
-        fields:
-          - name: title
-            component: title
-          - name: summary
-            type: text
-            label: Resumen
-            required: true
-          - name: icon
-            type: string
-            label: "Ícono (Material Symbols: smartphone, api, cloud, smart_toy…)"
-            default: code
-          - name: features
-            type: string
-            label: Qué incluye (viñetas)
-            list: true
-          - name: tags
-            component: tags
-          - name: priceNote
-            type: string
-            label: "Nota de precio (ej. Por proyecto)"
-          - name: order
-            component: order
-          - name: draft
-            component: draft
-          - name: body
-            component: body
-            label: Texto adicional (opcional)
-      - name: testimonials-es
-        label: "Testimonios (ES)"
-        type: collection
-        path: src/content/testimonials/es
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [name, company, example]
-          primary: name
-        fields:
-          - name: name
-            type: string
-            label: Nombre del cliente
-            required: true
-          - name: role
-            type: string
-            label: Cargo
-          - name: company
-            type: string
-            label: Empresa
-          - name: quote
-            type: text
-            label: Testimonio (cita)
-            required: true
-          - name: url
-            component: url
-            label: "Enlace (LinkedIn del cliente, opcional)"
-          - name: order
-            component: order
-          - name: example
-            component: example
-            label: "¿Es un testimonio de EJEMPLO? (desactívalo SOLO si es real y tienes permiso)"
+            type: boolean
+            label: "PLANTILLA — revisar (muestra un aviso). Desactívalo cuando la hayas revisado"
             default: true
           - name: draft
             component: draft
+          - name: body
+            type: rich-text
+            label: "Texto de la política (cambia cada [CORCHETE])"
+            options:
+              format: markdown
+            default: |
+              > **PLANTILLA — revisar.** Este texto es un punto de partida, no asesoría legal. Ajústalo a lo que tu app hace realmente antes de enviarla a Google Play o App Store, y borra este párrafo al terminar.
+
+              Esta política explica cómo **[NOMBRE DE LA APP]** («la app»), desarrollada por Edwin Ramos Madera, trata la información de sus usuarios.
+
+              ## Información que recopila la app
+
+              - **[Describe los datos que la app recopila, o escribe: «La app no recopila datos personales».]**
+              - Ejemplos: datos que introduces tú (nombre, correo), datos del dispositivo (modelo, versión del sistema), datos de uso o de fallos, ubicación, fotos, contactos.
+
+              ## Para qué se usa
+
+              - **[Ej.: para que la app funcione, para sincronizar tus datos, para corregir errores.]**
+              - No se venden datos personales a terceros.
+
+              ## Servicios de terceros
+
+              La app puede usar estos servicios, que tienen sus propias políticas de privacidad:
+
+              - **[Ej.: Google Play Services, Firebase Crashlytics / Analytics, Firebase Cloud Messaging, AdMob — o «ninguno».]**
+
+              ## Dónde se guardan los datos y por cuánto tiempo
+
+              - **[Ej.: solo en tu dispositivo / en servidores de [PROVEEDOR] en [REGIÓN].]**
+              - **[Cuánto tiempo se conservan y cómo se eliminan.]**
+
+              ## Tus derechos
+
+              Puedes pedir acceso, corrección o eliminación de tus datos escribiendo al correo de contacto de abajo. **[Si la app tiene cuentas: explica cómo borrar la cuenta desde la app o desde una página web.]**
+
+              ## Menores de edad
+
+              **[Ej.: La app no está dirigida a menores de 13 años y no recopila conscientemente datos de menores.]**
+
+              ## Cambios en esta política
+
+              Si esta política cambia, se publicará aquí la nueva versión con su fecha de entrada en vigor.
+
+              ## Contacto
+
+              Si tienes preguntas sobre esta política, escribe al correo indicado en esta página.
       - name: profile-es
-        label: "Perfil / Sobre mí (ES)"
+        label: "👤 Inicio / Sobre mí (ES)"
         type: file
         path: src/content/profile/es.md
         fields:
           - name: role
             type: string
             label: Título profesional
-          - name: specialty
-            type: string
-            label: Especialidad (línea corta)
+          - name: intro
+            type: text
+            label: "Presentación en la portada (1–2 líneas)"
           - name: location
             type: string
             label: Ubicación
-          - name: stats
-            type: object
-            label: "Cifras (3 recuadros)"
-            list: { max: 3 }
-            fields:
-              - { name: value, type: string, label: Valor }
-              - { name: label, type: string, label: Etiqueta }
-          - name: skills
-            type: object
-            label: Habilidades
-            list:
-              collapsible: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
-              - { name: description, type: text, label: Descripción }
-              - { name: items, type: string, label: Tecnologías, list: true }
-          - name: education
-            type: object
-            label: "Certificaciones y formación"
-            list: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: subtitle, type: string, label: Institución / detalle }
-              - { name: icon, type: string, label: "Ícono (school, workspace_premium…)" }
-              - { name: example, type: boolean, label: "¿Ejemplo?" }
-          - name: languages
-            type: object
-            label: Idiomas
-            list: true
-            fields:
-              - { name: name, type: string, label: Idioma }
-              - { name: level, type: string, label: Nivel }
-          - name: focus
-            type: object
-            label: "Qué hago (tarjetas de especialidad)"
-            list:
-              collapsible: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
-              - { name: description, type: text, label: Descripción }
-              - { name: points, type: string, label: Puntos clave, list: true }
-          - name: approach
-            type: object
-            label: "Cómo trabajo"
-            list:
-              collapsible: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
-              - { name: description, type: text, label: Descripción }
-              - { name: example, type: boolean, label: "¿Ejemplo?" }
           - name: body
-            component: body
-            label: Biografía
+            type: rich-text
+            label: "Sobre mí (párrafo corto en la portada)"
+            options:
+              format: markdown
   - name: group-en
     label: "🇺🇸 English"
     type: group
     items:
       - name: projects-en
-        label: "📱 Apps (EN) — añadir o editar una app"
+        label: "📱 Apps (EN)"
         type: collection
         path: src/content/projects/en
         filename:
           template: "{primary}.md"
           field: create
         view:
-          fields: [title, status, current, example, date]
+          fields: [title, status, featured, draft]
           primary: title
-          sort: [order, date, title]
+          sort: [order, title]
           default:
             sort: order
             order: asc
         fields:
           - name: title
-            component: title
+            type: string
+            label: Nombre de la app
+            required: true
           - name: summary
             type: text
-            label: Resumen corto (tarjeta)
+            label: "Descripción corta (1–2 frases, sale en la tarjeta)"
             required: true
           - name: status
             type: select
@@ -453,40 +265,9 @@ content:
             default: in-development
             options:
               values:
-                - { name: live, label: "Live / En producción" }
-                - { name: in-development, label: "En desarrollo" }
+                - { name: live, label: "Disponible (publicada en tiendas)" }
+                - { name: in-development, label: "En desarrollo / beta" }
                 - { name: idea, label: "Idea" }
-          - name: category
-            type: select
-            label: Categoría (filtro)
-            default: mobile
-            options:
-              values:
-                - { name: mobile, label: "Móvil" }
-                - { name: backend, label: "Backend & Cloud" }
-                - { name: ai, label: "IA" }
-                - { name: web, label: "Web" }
-                - { name: oss, label: "Open Source" }
-          - name: kind
-            type: string
-            label: "Etiqueta superior (ej. App móvil · Salud)"
-          - name: tags
-            component: tags
-          - name: version
-            type: string
-            label: "Versión (ej. v1.2 Beta)"
-          - name: metric
-            type: string
-            label: "Métrica destacada (ej. 99.9% uptime)"
-          - name: cover
-            type: image
-            label: Imagen de portada
-          - name: logo
-            type: image
-            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
-          - name: icon
-            type: string
-            label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"
           - name: platforms
             type: select
             label: Plataformas
@@ -498,6 +279,12 @@ content:
                 - { name: web, label: "Web" }
                 - { name: windows, label: "Windows" }
                 - { name: macos, label: "macOS" }
+          - name: logo
+            type: image
+            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
+          - name: icon
+            type: string
+            label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"
           - name: screenshots
             type: image
             label: "Capturas de pantalla (verticales, de teléfono)"
@@ -505,10 +292,7 @@ content:
               multiple: true
           - name: whatsNew
             type: text
-            label: "Novedades (opcional — si lo dejas vacío se usa la última actualización del devlog)"
-          - name: repoUrl
-            component: url
-            label: "Enlace GitHub / código"
+            label: "Novedades (opcional — texto libre, ej. lo nuevo de la última versión)"
           - name: playStoreUrl
             component: url
             label: Enlace Google Play
@@ -517,275 +301,133 @@ content:
             label: Enlace App Store
           - name: betaUrl
             component: url
-            label: "Enlace beta (Play testing / TestFlight)"
-          - name: demoUrl
+            label: "Enlace beta (Play testing / TestFlight). Vacío = formulario de beta del sitio"
+          - name: websiteUrl
             component: url
-            label: Enlace demo / sitio
-          - name: current
+            label: "Sitio web de la app (opcional)"
+          - name: tags
+            type: string
+            label: "Tecnologías (opcional)"
+            list: true
+          - name: featured
             type: boolean
-            label: "Mostrar en «En qué estoy trabajando»"
+            label: "Destacada (sale primero en la portada)"
             default: false
-          - name: progress
-            type: number
-            label: "Progreso % (0-100)"
-            options: { min: 0, max: 100 }
-          - name: currentTask
-            type: string
-            label: Tarea actual
-          - name: eta
-            type: string
-            label: "Entrega estimada (texto libre)"
           - name: order
-            component: order
+            type: number
+            label: Orden (1 = primero)
+            default: 10
           - name: date
-            component: date
-            label: Fecha (última actualización)
+            type: date
+            label: Fecha
+            options:
+              format: yyyy-MM-dd
           - name: example
             component: example
           - name: draft
             component: draft
           - name: body
-            component: body
-            label: "Sobre la app (qué hace, para quién, cómo está hecha)"
-      - name: posts-en
-        label: "📝 Devlog (EN) — publicar una actualización de app"
+            type: rich-text
+            label: "Sobre la app (qué hace, para quién)"
+            options:
+              format: markdown
+      - name: privacy-en
+        label: "🔒 Privacidad (EN) — una política por app"
         type: collection
-        path: src/content/posts/en
+        path: src/content/privacy/en
         filename:
           template: "{primary}.md"
           field: create
         view:
-          fields: [title, app, version, date, draft]
-          primary: title
-          sort: [date, title]
-          default:
-            sort: date
-            order: desc
+          fields: [app, effectiveDate, example, draft]
+          primary: app
         fields:
-          - name: title
-            component: title
-          - name: description
-            type: text
-            label: "Descripción (SEO y tarjeta)"
-            required: true
-          - name: date
-            component: date
-            label: Fecha de publicación
-          - name: tags
-            component: tags
           - name: app
             type: reference
-            label: "📱 App de esta actualización"
-            description: "Elige la app que mejoraste. Déjalo vacío si es un artículo general del devlog. (Genera la imagen de Instagram con el nombre de la app.)"
+            label: "📱 App"
+            description: "La política se publica en /apps/<app>/privacy/ (esa es la URL para Google Play)."
+            required: true
             options:
               collection: projects-en
               value: "{name}"
               label: "{primary}"
               search: "title"
-          - name: version
-            type: string
-            label: "🏷️ Versión de la app (ej. v1.2.0)"
-            description: "Aparece en la imagen de Instagram y en el historial de la app."
-          - name: cover
-            type: image
-            label: Imagen de portada
-          - name: example
-            component: example
-          - name: draft
-            component: draft
-          - name: body
-            component: body
-            label: Artículo
-      - name: roadmap-en
-        label: "Roadmap (EN)"
-        type: collection
-        path: src/content/roadmap/en
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [title, status, project, order]
-          primary: title
-          sort: [order, title]
-          default:
-            sort: order
-            order: asc
-        fields:
-          - name: title
-            component: title
-          - name: summary
-            type: text
-            label: Resumen
-            required: true
-          - name: status
-            type: select
-            label: Estado
-            default: planned
+          - name: effectiveDate
+            type: date
+            label: "Vigente desde"
             options:
-              values:
-                - { name: idea, label: "Idea" }
-                - { name: planned, label: "Planeado" }
-                - { name: in-progress, label: "En curso" }
-                - { name: done, label: "Completado" }
-          - name: project
+              format: yyyy-MM-dd
+          - name: contactEmail
             type: string
-            label: Proyecto
-          - name: tags
-            component: tags
-          - name: order
-            component: order
-          - name: date
-            component: date
+            label: "Correo de contacto (vacío = el del sitio)"
           - name: example
-            component: example
-          - name: draft
-            component: draft
-          - name: body
-            component: body
-            label: Detalle
-      - name: services-en
-        label: "Servicios (EN)"
-        type: collection
-        path: src/content/services/en
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [title, order]
-          primary: title
-          default:
-            sort: order
-            order: asc
-        fields:
-          - name: title
-            component: title
-          - name: summary
-            type: text
-            label: Resumen
-            required: true
-          - name: icon
-            type: string
-            label: "Ícono (Material Symbols: smartphone, api, cloud, smart_toy…)"
-            default: code
-          - name: features
-            type: string
-            label: Qué incluye (viñetas)
-            list: true
-          - name: tags
-            component: tags
-          - name: priceNote
-            type: string
-            label: "Nota de precio (ej. Por proyecto)"
-          - name: order
-            component: order
-          - name: draft
-            component: draft
-          - name: body
-            component: body
-            label: Texto adicional (opcional)
-      - name: testimonials-en
-        label: "Testimonios (EN)"
-        type: collection
-        path: src/content/testimonials/en
-        filename:
-          template: "{primary}.md"
-          field: create
-        view:
-          fields: [name, company, example]
-          primary: name
-        fields:
-          - name: name
-            type: string
-            label: Nombre del cliente
-            required: true
-          - name: role
-            type: string
-            label: Cargo
-          - name: company
-            type: string
-            label: Empresa
-          - name: quote
-            type: text
-            label: Testimonio (cita)
-            required: true
-          - name: url
-            component: url
-            label: "Enlace (LinkedIn del cliente, opcional)"
-          - name: order
-            component: order
-          - name: example
-            component: example
-            label: "¿Es un testimonio de EJEMPLO? (desactívalo SOLO si es real y tienes permiso)"
+            type: boolean
+            label: "PLANTILLA — revisar (muestra un aviso). Desactívalo cuando la hayas revisado"
             default: true
           - name: draft
             component: draft
+          - name: body
+            type: rich-text
+            label: "Texto de la política (cambia cada [CORCHETE])"
+            options:
+              format: markdown
+            default: |
+              > **TEMPLATE — review.** This text is a starting point, not legal advice. Adjust it to what your app actually does before submitting it to Google Play or the App Store, then delete this paragraph.
+
+              This policy explains how **[APP NAME]** ("the app"), developed by Edwin Ramos Madera, handles its users' information.
+
+              ## Information the app collects
+
+              - **[Describe the data the app collects, or write: "The app does not collect personal data".]**
+              - Examples: data you enter (name, email), device data (model, OS version), usage or crash data, location, photos, contacts.
+
+              ## How it is used
+
+              - **[E.g.: to make the app work, to sync your data, to fix bugs.]**
+              - Personal data is not sold to third parties.
+
+              ## Third-party services
+
+              The app may use these services, which have their own privacy policies:
+
+              - **[E.g.: Google Play Services, Firebase Crashlytics / Analytics, Firebase Cloud Messaging, AdMob — or "none".]**
+
+              ## Where data is stored and for how long
+
+              - **[E.g.: only on your device / on [PROVIDER] servers in [REGION].]**
+              - **[How long it is kept and how it is deleted.]**
+
+              ## Your rights
+
+              You can request access to, correction or deletion of your data by writing to the contact email below. **[If the app has accounts: explain how to delete the account in the app or on a web page.]**
+
+              ## Children
+
+              **[E.g.: The app is not directed at children under 13 and does not knowingly collect data from children.]**
+
+              ## Changes to this policy
+
+              If this policy changes, the new version will be published here with its effective date.
+
+              ## Contact
+
+              If you have questions about this policy, write to the email shown on this page.
       - name: profile-en
-        label: "Perfil / Sobre mí (EN)"
+        label: "👤 Inicio / Sobre mí (EN)"
         type: file
         path: src/content/profile/en.md
         fields:
           - name: role
             type: string
             label: Título profesional
-          - name: specialty
-            type: string
-            label: Especialidad (línea corta)
+          - name: intro
+            type: text
+            label: "Presentación en la portada (1–2 líneas)"
           - name: location
             type: string
             label: Ubicación
-          - name: stats
-            type: object
-            label: "Cifras (3 recuadros)"
-            list: { max: 3 }
-            fields:
-              - { name: value, type: string, label: Valor }
-              - { name: label, type: string, label: Etiqueta }
-          - name: skills
-            type: object
-            label: Habilidades
-            list:
-              collapsible: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
-              - { name: description, type: text, label: Descripción }
-              - { name: items, type: string, label: Tecnologías, list: true }
-          - name: education
-            type: object
-            label: "Certificaciones y formación"
-            list: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: subtitle, type: string, label: Institución / detalle }
-              - { name: icon, type: string, label: "Ícono (school, workspace_premium…)" }
-              - { name: example, type: boolean, label: "¿Ejemplo?" }
-          - name: languages
-            type: object
-            label: Idiomas
-            list: true
-            fields:
-              - { name: name, type: string, label: Idioma }
-              - { name: level, type: string, label: Nivel }
-          - name: focus
-            type: object
-            label: "Qué hago (tarjetas de especialidad)"
-            list:
-              collapsible: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
-              - { name: description, type: text, label: Descripción }
-              - { name: points, type: string, label: Puntos clave, list: true }
-          - name: approach
-            type: object
-            label: "Cómo trabajo"
-            list:
-              collapsible: true
-            fields:
-              - { name: title, type: string, label: Título }
-              - { name: icon, type: string, label: "Ícono (Material Symbols)" }
-              - { name: description, type: text, label: Descripción }
-              - { name: example, type: boolean, label: "¿Ejemplo?" }
           - name: body
-            component: body
-            label: Biografía
+            type: rich-text
+            label: "Sobre mí (párrafo corto en la portada)"
+            options:
+              format: markdown

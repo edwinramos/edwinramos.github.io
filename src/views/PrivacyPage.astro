@@ -1,0 +1,42 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import AppIcon from '../components/AppIcon.astro';
+import { SITE } from '../config';
+import { useT, type Lang } from '../i18n/ui';
+import { href, formatDate } from '../lib/paths';
+import { slugOf, type App, type Policy } from '../lib/apps';
+import { hasTranslation } from '../lib/content';
+interface Props { lang: Lang; app: App; policy: Policy }
+const { lang, app, policy } = Astro.props;
+const t = useT(lang);
+const slug = slugOf(app.id);
+const other: Lang = lang === 'es' ? 'en' : 'es';
+const alternates = { [other]: (await hasTranslation('projects', other, slug)) ? href(other, `apps/${slug}/privacy`) : href(other, 'privacy') };
+const { Content } = await render(policy);
+const email = policy.data.contactEmail ?? SITE.email;
+const title = `${t('privacy.of')} ${app.data.title}`;
+---
+<Base lang={lang} path={`apps/${slug}/privacy`} active="apps" title={title} description={title} alternates={alternates} noindex={policy.data.example}>
+  <article class="container-site flex max-w-3xl flex-col gap-space-md py-space-md lg:py-space-xl">
+    <a href={href(lang, `apps/${slug}`)} class="inline-flex w-fit items-center gap-1 font-mono text-label-sm text-on-surface-variant hover:text-secondary"><Icon name="arrow_back" size="1rem" />{app.data.title}</a>
+    <header class="flex flex-col gap-space-sm">
+      <div class="flex items-center gap-3">
+        <AppIcon logo={app.data.logo} icon={app.data.icon} title={app.data.title} size="sm" />
+        <span class="eyebrow">{t('privacy.title')}</span>
+      </div>
+      <h1 class="text-headline-lg-mobile font-bold tracking-tight text-on-surface lg:text-headline-lg">{title}</h1>
+      <dl class="flex flex-wrap gap-x-6 gap-y-1 font-mono text-code-sm">
+        <div class="flex gap-1.5"><dt class="text-outline">{t('privacy.effective')}:</dt><dd class="text-on-surface">{formatDate(policy.data.effectiveDate, lang, { year: 'numeric', month: 'long', day: 'numeric' })}</dd></div>
+        <div class="flex gap-1.5"><dt class="text-outline">{t('privacy.contact')}:</dt><dd><a class="text-secondary hover:text-primary" href={`mailto:${email}`}>{email}</a></dd></div>
+      </dl>
+    </header>
+    {policy.data.example && (
+      <p class="flex items-start gap-2 rounded-xl border border-dashed border-amber-400/50 bg-amber-400/10 p-3 text-body-sm text-amber-200">
+        <Icon name="construction" class="mt-0.5 shrink-0" size="1.1rem" /><span><strong class="font-mono uppercase tracking-wider">{t('privacy.template')}</strong> — {t('privacy.templateNote')}</span>
+      </p>
+    )}
+    <div class="prose prose-site"><Content /></div>
+  </article>
+</Base>

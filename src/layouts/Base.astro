@@ -10,7 +10,7 @@ import BottomNav from '../components/BottomNav.astro';
 
 interface Props {
   lang: Lang;
-  /** path without language prefix, e.g. 'projects/foo' */
+  /** path without language prefix, e.g. 'apps/foo' */
   path: string;
   title?: string;
   description?: string;
@@ -33,7 +33,7 @@ const personLd = {
   '@context': 'https://schema.org', '@type': 'Person', name: SITE.name, jobTitle: 'Senior Software Engineer',
   email: `mailto:${SITE.email}`, url: new URL(href(lang), Astro.site).toString(),
   address: { '@type': 'PostalAddress', addressCountry: 'DO' },
-  sameAs: [SITE.linkedin, isSet(SITE.github) ? SITE.github : null].filter(Boolean),
+  sameAs: [SITE.linkedin, isSet(SITE.instagram) ? SITE.instagram : null, isSet(SITE.github) ? SITE.github : null].filter(Boolean),
   knowsAbout: ['.NET', 'C#', '.NET MAUI', 'Xamarin', 'ASP.NET', 'Entity Framework Core', 'REST APIs', 'AWS', 'Azure DevOps', 'React', 'Go', 'Python', 'LLM integration'],
 };
 ---
@@ -49,7 +49,6 @@ const personLd = {
     <link rel="alternate" hreflang="es" href={new URL(alternates.es, Astro.site)} />
     <link rel="alternate" hreflang="en" href={new URL(alternates.en, Astro.site)} />
     <link rel="alternate" hreflang="x-default" href={new URL(alternates.es, Astro.site)} />
-    <link rel="alternate" type="application/rss+xml" title={`${SITE.shortName} · Devlog`} href={asset(lang === 'en' ? 'en/rss.xml' : 'rss.xml')} />
     <slot name="head" />
     <link rel="sitemap" href={asset('sitemap-index.xml')} />
     <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />

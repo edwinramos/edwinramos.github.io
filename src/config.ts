@@ -21,6 +21,8 @@ export const SITE = {
   monogram: 'ER',
   email: 'edwinramos.93@gmail.com',
   linkedin: 'https://www.linkedin.com/in/edwin-ramos-madera-29b185123',
+  // PLACEHOLDER: your Instagram profile URL, e.g. 'https://www.instagram.com/tu_usuario' (hidden until set)
+  instagram: '',
   // PLACEHOLDER: your GitHub profile URL (hidden until set)
   github: 'https://github.com/edwinramos',
   // Optional: path to a CV PDF placed in /public, e.g. '/cv-edwin-ramos.pdf'. Empty = button hidden.
@@ -31,32 +33,14 @@ export const SITE = {
 };
 
 /**
- * Giscus (comments + roadmap votes, backed by GitHub Discussions). FREE.
- * Fill in after the repo exists, using https://giscus.app (it generates these values).
- * Until repoId/categoryId are set, a friendly "coming soon" box is shown instead.
- */
-export const GISCUS = {
-  repo: 'edwinramos/edwinramos.github.io', // PLACEHOLDER 'owner/repo'
-  repoId: '', // PLACEHOLDER e.g. 'R_kgDO...'
-  // Blog comments category (create it in GitHub › Discussions, type "Announcement" recommended)
-  category: 'Comments',
-  categoryId: '', // PLACEHOLDER e.g. 'DIC_kwDO...'
-  // Roadmap votes category (👍 reactions on each item's discussion = votes)
-  roadmapCategory: 'Roadmap',
-  roadmapCategoryId: '', // PLACEHOLDER e.g. 'DIC_kwDO...'
-};
-
-/**
  * Forms via Formspree free tier (https://formspree.io). FREE: 50 submissions/month.
  * Paste the form ID (the part after /f/ in https://formspree.io/f/xxxxxxx).
  * You can use ONE form for everything: fill only `default` — a hidden field tells you which form was used.
  */
 export const FORMS = {
   default: '', // PLACEHOLDER e.g. 'xyzabcd'
-  hire: '', // optional: separate form for "Hire me"
-  feedback: '', // optional
-  beta: '', // optional
-  newsletter: '', // optional
+  contact: '', // optional: separate form for the contact section
+  beta: '', // optional: separate form for beta sign-ups on app pages
 };
 export const formAction = (kind: keyof typeof FORMS): string | null => {
   const id = FORMS[kind] || FORMS.default;

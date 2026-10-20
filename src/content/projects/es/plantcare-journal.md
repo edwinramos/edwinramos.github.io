@@ -4,6 +4,8 @@ summary: "Un diario para cuidar tus plantas: perfil por planta, tareas de riego,
 status: in-development
 statusLabel: Próximamente en Google Play
 platforms: [android]
+logo: /images/plantcare-icon.svg
+ogImage: /images/plantcare-icon-512.png
 icon: potted_plant
 tags: [Expo, React Native, Google Gemini]
 privacyUrl: /plantcare/privacy/#es

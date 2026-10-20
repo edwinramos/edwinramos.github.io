@@ -4,6 +4,8 @@ summary: "A journal for caring for your plants: a profile per plant, watering, p
 status: in-development
 statusLabel: Coming soon to Google Play
 platforms: [android]
+logo: /images/plantcare-icon.svg
+ogImage: /images/plantcare-icon-512.png
 icon: potted_plant
 tags: [Expo, React Native, Google Gemini]
 privacyUrl: /plantcare/privacy/#en

@@ -25,7 +25,7 @@ const showBeta = !!data.betaUrl || data.status !== 'live';
 const inStores = !!(data.playStoreUrl || data.appStoreUrl);
 const hero = data.screenshots[0];
 ---
-<Base lang={lang} path={`apps/${slug}`} active="apps" title={data.title} description={data.summary} image={data.logo} alternates={alternates}>
+<Base lang={lang} path={`apps/${slug}`} active="apps" title={data.title} description={data.summary} image={data.ogImage ?? (data.logo && !data.logo.endsWith('.svg') ? data.logo : undefined)} alternates={alternates}>
   <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-xl lg:py-space-xl">
     <a href={href(lang, 'apps')} class="inline-flex w-fit items-center gap-1 font-mono text-label-sm text-on-surface-variant hover:text-secondary"><Icon name="arrow_back" size="1rem" />{t('nav.apps')}</a>
 

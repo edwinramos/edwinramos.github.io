@@ -21,7 +21,8 @@ const projects = defineCollection({
     status: z.enum(['live', 'in-development', 'idea']).default('in-development'),
     statusLabel: opt(z.string()), // optional custom status text, e.g. "Próximamente en Google Play"
     platforms: z.preprocess(blank, z.array(z.enum(['android', 'ios', 'web', 'windows', 'macos'])).default([])),
-    logo: opt(z.string()), // app icon image (square)
+    logo: opt(z.string()), // app icon image (square; SVG or PNG)
+    ogImage: opt(z.string()), // social preview image (PNG/JPG; falls back to the site default)
     icon: opt(z.string()), // Material Symbols name used when there is no logo
     screenshots: strList,
     whatsNew: opt(z.string()), // manual "Novedades" text (optional)

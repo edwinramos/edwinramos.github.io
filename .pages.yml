@@ -84,7 +84,10 @@ content:
                 - { name: macos, label: "macOS" }
           - name: logo
             type: image
-            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
+            label: "Ícono de la app (imagen cuadrada, SVG o PNG 512×512)"
+          - name: ogImage
+            type: image
+            label: "Imagen al compartir el enlace (PNG, opcional; ej. el ícono 512×512)"
           - name: icon
             type: string
             label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"
@@ -290,7 +293,10 @@ content:
                 - { name: macos, label: "macOS" }
           - name: logo
             type: image
-            label: "Ícono de la app (imagen cuadrada, ej. 512×512)"
+            label: "Ícono de la app (imagen cuadrada, SVG o PNG 512×512)"
+          - name: ogImage
+            type: image
+            label: "Imagen al compartir el enlace (PNG, opcional; ej. el ícono 512×512)"
           - name: icon
             type: string
             label: "Ícono si no subes imagen (nombre de Material Symbols, ej. phone_android)"

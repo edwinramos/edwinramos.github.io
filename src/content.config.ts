@@ -19,6 +19,7 @@ const projects = defineCollection({
     title: z.string(),
     summary: z.string(),
     status: z.enum(['live', 'in-development', 'idea']).default('in-development'),
+    statusLabel: opt(z.string()), // optional custom status text, e.g. "Próximamente en Google Play"
     platforms: z.preprocess(blank, z.array(z.enum(['android', 'ios', 'web', 'windows', 'macos'])).default([])),
     logo: opt(z.string()), // app icon image (square)
     icon: opt(z.string()), // Material Symbols name used when there is no logo
@@ -29,6 +30,7 @@ const projects = defineCollection({
     appStoreUrl: url,
     betaUrl: url, // Play testing / TestFlight link
     websiteUrl: url,
+    privacyUrl: opt(z.string()), // external/static privacy policy (URL or site path like /plantcare/privacy/#es); overrides the privacy collection
     featured: bool(false), // shown first on the home page
     order: z.coerce.number().default(100),
     date: z.coerce.date(),

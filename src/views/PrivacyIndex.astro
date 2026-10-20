@@ -3,12 +3,15 @@ import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
 import AppIcon from '../components/AppIcon.astro';
 import { useT, type Lang } from '../i18n/ui';
-import { href } from '../lib/paths';
+import { href, asset } from '../lib/paths';
 import { getApps, policyFor, slugOf } from '../lib/apps';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = useT(lang);
-const rows = (await Promise.all((await getApps(lang)).map(async (app) => ({ app, policy: await policyFor(lang, slugOf(app.id)) })))).filter((r) => r.policy);
+const rows = (await Promise.all((await getApps(lang)).map(async (app) => ({
+  app,
+  url: app.data.privacyUrl ? asset(app.data.privacyUrl) : (await policyFor(lang, slugOf(app.id))) ? href(lang, `apps/${slugOf(app.id)}/privacy`) : undefined,
+})))).filter((r) => r.url);
 ---
 <Base lang={lang} path="privacy" active="" title={t('privacy.title')} description={t('privacy.index.lead')}>
   <div class="container-site flex max-w-3xl flex-col gap-space-md py-space-md lg:py-space-xl">
@@ -19,8 +22,8 @@ const rows = (await Promise.all((await getApps(lang)).map(async (app) => ({ app,
     </header>
     {rows.length > 0 ? (
       <ul class="flex flex-col gap-space-sm">
-        {rows.map(({ app }) => (
-          <li><a href={href(lang, `apps/${slugOf(app.id)}/privacy`)} class="card card-hover flex items-center gap-3 border border-transparent">
+        {rows.map(({ app, url }) => (
+          <li><a href={url} class="card card-hover flex items-center gap-3 border border-transparent">
             <AppIcon logo={app.data.logo} icon={app.data.icon} title={app.data.title} size="sm" />
             <span class="text-body-lg font-semibold text-on-surface">{app.data.title}</span>
             <Icon name="arrow_forward" class="ml-auto text-on-surface-variant" size="1.1rem" />

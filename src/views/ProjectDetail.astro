@@ -20,7 +20,7 @@ const slug = slugOf(entry.id);
 const other: Lang = lang === 'es' ? 'en' : 'es';
 const alternates = { [other]: (await hasTranslation('projects', other, slug)) ? href(other, `apps/${slug}`) : href(other, 'apps') };
 const { Content } = await render(entry);
-const privacy = (await hasPolicy(lang, slug)) ? href(lang, `apps/${slug}/privacy`) : undefined;
+const privacy = data.privacyUrl ? asset(data.privacyUrl) : (await hasPolicy(lang, slug)) ? href(lang, `apps/${slug}/privacy`) : undefined;
 const showBeta = !!data.betaUrl || data.status !== 'live';
 const inStores = !!(data.playStoreUrl || data.appStoreUrl);
 const hero = data.screenshots[0];
@@ -34,7 +34,7 @@ const hero = data.screenshots[0];
         <div class="flex items-center gap-space-sm">
           <AppIcon logo={data.logo} icon={data.icon} title={data.title} size="lg" />
           <div class="flex flex-wrap items-center gap-1.5">
-            <StatusPill status={data.status} lang={lang} />
+            <StatusPill status={data.status} label={data.statusLabel} lang={lang} />
             <ExampleBadge lang={lang} show={data.example} />
           </div>
         </div>
@@ -50,7 +50,7 @@ const hero = data.screenshots[0];
           {showBeta && <a href="#beta" class:list={[inStores ? 'btn-ghost' : 'btn-primary', 'py-2.5']}><Icon name="install_mobile" size="1.1rem" />{t('apps.beta')}</a>}
           {data.websiteUrl && <a href={data.websiteUrl} target="_blank" rel="noopener noreferrer" class="btn-ghost py-2.5"><Icon name="open_in_new" size="1.1rem" />{t('apps.website')}</a>}
         </div>
-        {!inStores && data.platforms.some((p) => p === 'android' || p === 'ios') && <p class="font-mono text-[11px] text-outline">{t('apps.soonStores')}</p>}
+        {!inStores && !data.statusLabel && data.platforms.some((p) => p === 'android' || p === 'ios') && <p class="font-mono text-[11px] text-outline">{t('apps.soonStores')}</p>}
       </div>
       <div class="lg:col-span-5">
         {hero ? (

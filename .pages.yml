@@ -68,6 +68,9 @@ content:
                 - { name: live, label: "Disponible (publicada en tiendas)" }
                 - { name: in-development, label: "En desarrollo / beta" }
                 - { name: idea, label: "Idea" }
+          - name: statusLabel
+            type: string
+            label: "Texto del estado (opcional, ej. «Próximamente en Google Play»)"
           - name: platforms
             type: select
             label: Plataformas
@@ -105,6 +108,9 @@ content:
           - name: websiteUrl
             component: url
             label: "Sitio web de la app (opcional)"
+          - name: privacyUrl
+            type: string
+            label: "Política de privacidad externa (opcional, ej. /plantcare/privacy/#es). Si la llenas, se usa en vez de la sección 🔒 Privacidad"
           - name: tags
             type: string
             label: "Tecnologías (opcional)"
@@ -268,6 +274,9 @@ content:
                 - { name: live, label: "Disponible (publicada en tiendas)" }
                 - { name: in-development, label: "En desarrollo / beta" }
                 - { name: idea, label: "Idea" }
+          - name: statusLabel
+            type: string
+            label: "Texto del estado (opcional, ej. «Próximamente en Google Play»)"
           - name: platforms
             type: select
             label: Plataformas
@@ -305,6 +314,9 @@ content:
           - name: websiteUrl
             component: url
             label: "Sitio web de la app (opcional)"
+          - name: privacyUrl
+            type: string
+            label: "Política de privacidad externa (opcional, ej. /plantcare/privacy/#es). Si la llenas, se usa en vez de la sección 🔒 Privacidad"
           - name: tags
             type: string
             label: "Tecnologías (opcional)"

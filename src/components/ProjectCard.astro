@@ -19,7 +19,7 @@ const url = href(lang, `apps/${slugOf(entry.id)}`);
     <AppIcon logo={data.logo} icon={data.icon} title={data.title} />
     <div class="flex min-w-0 flex-1 flex-col gap-1">
       <div class="flex flex-wrap items-center gap-1.5">
-        <StatusPill status={data.status} lang={lang} />
+        <StatusPill status={data.status} label={data.statusLabel} lang={lang} />
         {data.featured && <span class="badge">{t('home.featured')}</span>}
         <ExampleBadge lang={lang} show={data.example} />
       </div>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlantCare — Privacy Policy / Política de Privacidad / Politique de confidentialité</title>
+<meta name="description" content="Privacy policy for the PlantCare Android app by Edwin Ramos Madera.">
+<style>
+:root{--g:#2f6b3a;--bg:#f7faf6;--fg:#1f2a21;--mut:#5b6b5e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:780px;margin:0 auto;padding:24px 20px 64px}
+header{text-align:center;padding:12px 0 4px}header h1{color:var(--g);margin:.2em 0;font-size:1.6em}
+nav{position:sticky;top:0;background:var(--bg);padding:10px 0;text-align:center;border-bottom:1px solid #dfe8dd;z-index:1}
+nav a{color:var(--g);font-weight:600;text-decoration:none;margin:0 6px}
+h1{color:var(--g);font-size:1.5em}h2{font-size:1.15em;margin-top:1.6em;color:var(--g)}
+a{color:var(--g)}code{background:#e8efe6;padding:1px 5px;border-radius:4px;font-size:.9em}
+hr{border:0;border-top:1px solid #dfe8dd;margin:40px 0}.top{text-align:right;font-size:.9em}
+section{scroll-margin-top:56px}
+</style>
+</head>
+<body id="top">
+<main>
+<header><h1>🌿 PlantCare</h1></header>
+<nav><a href="#en">English</a> · <a href="#es">Español</a> · <a href="#fr">Français</a></nav>
+<section id="en" lang="en">
+<h1>PlantCare Privacy Policy</h1>
+<p><strong>Effective date:</strong> October 20, 2026</p>
+<p>PlantCare (&quot;the app&quot;) is a plant care app developed by <strong>Edwin Ramos Madera</strong>, an independent developer based in the Dominican Republic (&quot;I&quot;, &quot;the developer&quot;). This policy explains what information the app handles, how it is used, and what control you have over it.</p>
+<h2>1. Summary</h2>
+<ul>
+<li>PlantCare <strong>does not require an account</strong> or sign-in.</li>
+<li>The developer <strong>does not operate any servers</strong> and <strong>does not receive or store</strong> your data.</li>
+<li>The app contains <strong>no ads, no analytics, no tracking, and no Firebase</strong>.</li>
+<li>Your data is stored <strong>only on your device</strong>.</li>
+<li>Only when you request an <strong>AI diagnosis</strong> is the necessary information sent directly to the <strong>Google Gemini API</strong>, using an API key that you provide yourself.</li>
+</ul>
+<h2>2. Information stored on your device</h2>
+<p>The app stores locally, in the app&#39;s private storage (AsyncStorage), the information you enter:</p>
+<ul>
+<li>Registered plants (name, species, soil, lighting, location, health status, watering frequency) and their photos.</li>
+<li>Care tasks (watering, pruning, fertilizing, etc.) and their history.</li>
+<li>Plant journal entries, notes, tags, humidity estimates, and photos.</li>
+<li>Saved AI diagnoses.</li>
+<li>Your Google Gemini API key (if you set one) and app preferences (such as language).</li>
+</ul>
+<p>This information never leaves your device except as described in section 4. The developer has no access to it.</p>
+<h2>3. Permissions</h2>
+<ul>
+<li><strong>Camera:</strong> to take photos of your plants when you choose to (when adding a plant or a journal entry). Photos are stored locally.</li>
+<li><strong>Photo selection:</strong> you can pick images from your gallery through the system photo picker; the app only accesses the images you select.</li>
+<li><strong>Internet:</strong> to send diagnosis requests to Google Gemini and to load the sample images used in demo mode.</li>
+</ul>
+<p>The app does not request access to your location, microphone, contacts, or other personal data.</p>
+<h2>4. AI diagnosis (Google Gemini)</h2>
+<p>The diagnosis feature is optional and requires you to enter your own Google Gemini API key, obtained from Google AI Studio. When you request a diagnosis or ask a question, the app sends <strong>directly from your device to Google</strong> (<code>generativelanguage.googleapis.com</code>, over encrypted HTTPS):</p>
+<ul>
+<li>The plant photo you choose.</li>
+<li>Plant data (name, species, location, watering frequency, relevant history).</li>
+<li>The text you write (symptoms, observations, or questions).</li>
+<li>Your API key, which is required to authenticate the request.</li>
+</ul>
+<p>This data does not pass through any server operated by the developer. Google&#39;s handling of it is governed by the <a rel="noopener" target="_blank" href="https://ai.google.dev/gemini-api/terms">Gemini API Additional Terms of Service</a> and the <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Google Privacy Policy</a>, under the agreement between you and Google associated with your key. Note that under those terms, for unpaid tiers Google may use submitted content to improve its products. Do not send photos or text containing personal information you do not want to share with Google.</p>
+<p>You can delete your saved key at any time from the Settings screen.</p>
+<h2>5. Demo images</h2>
+<p>If you load the demo data, the app downloads sample images from Google servers (<code>lh3.googleusercontent.com</code>). As with any web request, those servers may receive technical data such as your IP address. The app does not send any of your data in these requests.</p>
+<h2>6. Data sharing</h2>
+<p>The developer does not sell, rent, or share your data with third parties. The only transfer of data to a third party is the one described in section 4, initiated by you.</p>
+<h2>7. Retention and deletion</h2>
+<p>Your data stays on your device until you delete it. You can:</p>
+<ul>
+<li>Reset the app to a clean install from Settings.</li>
+<li>Delete your API key from Settings.</li>
+<li>Clear the app&#39;s data in Android settings, or <strong>uninstall the app</strong>, which deletes all of its local data.</li>
+</ul>
+<p>Because the developer does not store your data, there is no server-side data to delete. For data already sent to Google, see Google&#39;s policies.</p>
+<h2>8. Security</h2>
+<p>Communication with Google Gemini uses HTTPS. Local data is protected by Android&#39;s app storage sandbox. We recommend protecting your device with a screen lock.</p>
+<h2>9. Children</h2>
+<p>PlantCare is not directed to children under 13 and does not knowingly collect information from children.</p>
+<h2>10. Changes to this policy</h2>
+<p>If this policy changes, the updated version will be posted on this page with a new effective date.</p>
+<h2>11. Contact</h2>
+<p>Edwin Ramos Madera — Dominican Republic<br>Email: <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a></p>
+<p class="top"><a href="#top">↑</a></p>
+</section>
+<hr>
+<section id="es" lang="es">
+<h1>Política de Privacidad de PlantCare</h1>
+<p><strong>Fecha de entrada en vigor:</strong> 20 de octubre de 2026</p>
+<p>PlantCare (&quot;la app&quot;) es una aplicación de cuidado de plantas desarrollada por <strong>Edwin Ramos Madera</strong>, desarrollador independiente con sede en la República Dominicana (&quot;yo&quot;, &quot;el desarrollador&quot;). Esta política explica qué información maneja la app, cómo se usa y qué control tienes sobre ella.</p>
+<h2>1. Resumen</h2>
+<ul>
+<li>PlantCare <strong>no requiere crear una cuenta</strong> ni iniciar sesión.</li>
+<li>El desarrollador <strong>no opera servidores propios</strong> y <strong>no recibe ni almacena</strong> tus datos.</li>
+<li>La app <strong>no incluye publicidad, analítica, rastreo ni Firebase</strong>.</li>
+<li>Tus datos se guardan <strong>solo en tu dispositivo</strong>.</li>
+<li>Solo si tú pides un <strong>diagnóstico con IA</strong>, la información necesaria se envía directamente a <strong>Google Gemini API</strong> usando una clave de API que tú mismo proporcionas.</li>
+</ul>
+<h2>2. Información que se guarda en tu dispositivo</h2>
+<p>La app guarda localmente, en el almacenamiento interno de la app (AsyncStorage), la información que tú introduces:</p>
+<ul>
+<li>Plantas registradas (nombre, especie, sustrato, iluminación, ubicación, estado de salud, frecuencia de riego) y sus fotografías.</li>
+<li>Tareas de cuidado (riego, poda, abono, etc.) y su historial.</li>
+<li>Entradas del diario botánico, notas, etiquetas, estimaciones de humedad y fotografías.</li>
+<li>Diagnósticos de IA guardados.</li>
+<li>Tu clave de API de Google Gemini (si la configuras) y preferencias de la app (por ejemplo, el idioma).</li>
+</ul>
+<p>Esta información no sale de tu dispositivo salvo en el caso descrito en la sección 4. El desarrollador no tiene acceso a ella.</p>
+<h2>3. Permisos</h2>
+<ul>
+<li><strong>Cámara:</strong> para tomar fotos de tus plantas cuando tú lo decides (al añadir una planta o una entrada del diario). Las fotos se guardan localmente.</li>
+<li><strong>Selección de fotos:</strong> puedes elegir imágenes de tu galería mediante el selector de fotos del sistema; la app solo accede a las imágenes que tú selecciones.</li>
+<li><strong>Internet:</strong> para enviar las consultas de diagnóstico a Google Gemini y para cargar las imágenes de ejemplo del modo demostración.</li>
+</ul>
+<p>La app no solicita acceso a tu ubicación, micrófono, contactos ni otros datos personales.</p>
+<h2>4. Diagnóstico con IA (Google Gemini)</h2>
+<p>La función de diagnóstico es opcional y requiere que introduzcas tu propia clave de API de Google Gemini, obtenida en Google AI Studio. Cuando solicitas un diagnóstico o haces una consulta, la app envía <strong>directamente desde tu dispositivo a Google</strong> (<code>generativelanguage.googleapis.com</code>, mediante conexión cifrada HTTPS):</p>
+<ul>
+<li>La fotografía de la planta que elijas.</li>
+<li>Datos de la planta (nombre, especie, ubicación, frecuencia de riego, historial relevante).</li>
+<li>El texto que escribas (síntomas, observaciones o preguntas).</li>
+<li>Tu clave de API, necesaria para autenticar la solicitud.</li>
+</ul>
+<p>Estos datos no pasan por ningún servidor del desarrollador. Su tratamiento por parte de Google se rige por los <a rel="noopener" target="_blank" href="https://ai.google.dev/gemini-api/terms">Términos adicionales de la API de Gemini</a> y la <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Política de Privacidad de Google</a>, según el acuerdo entre tú y Google asociado a tu clave. Ten en cuenta que, según esos términos, en los niveles gratuitos Google puede usar el contenido enviado para mejorar sus productos. No envíes fotos ni textos con información personal que no quieras compartir con Google.</p>
+<p>Puedes eliminar tu clave guardada en cualquier momento desde la pantalla de Configuración.</p>
+<h2>5. Imágenes de demostración</h2>
+<p>Si cargas los datos de demostración, la app descarga imágenes de ejemplo desde servidores de Google (<code>lh3.googleusercontent.com</code>). Como en cualquier descarga web, estos servidores pueden recibir datos técnicos como tu dirección IP. La app no envía ningún dato tuyo en estas solicitudes.</p>
+<h2>6. Compartición de datos</h2>
+<p>El desarrollador no vende, alquila ni comparte tus datos con terceros. El único envío de datos a un tercero es el descrito en la sección 4, iniciado por ti.</p>
+<h2>7. Conservación y eliminación</h2>
+<p>Tus datos permanecen en tu dispositivo hasta que tú los borres. Puedes:</p>
+<ul>
+<li>Restablecer la app a una instalación limpia desde Configuración.</li>
+<li>Eliminar tu clave de API desde Configuración.</li>
+<li>Borrar los datos de la app desde los ajustes de Android, o <strong>desinstalar la app</strong>, lo que elimina todos sus datos locales.</li>
+</ul>
+<p>Como el desarrollador no almacena tus datos, no hay datos en servidores propios que borrar. Para datos ya enviados a Google, consulta las políticas de Google.</p>
+<h2>8. Seguridad</h2>
+<p>Las comunicaciones con Google Gemini usan HTTPS. Los datos locales están protegidos por el aislamiento de almacenamiento de Android. Te recomendamos proteger tu dispositivo con bloqueo de pantalla.</p>
+<h2>9. Menores</h2>
+<p>PlantCare no está dirigida a niños menores de 13 años y no recopila conscientemente información de menores.</p>
+<h2>10. Cambios en esta política</h2>
+<p>Si esta política cambia, se publicará la versión actualizada en esta misma página con una nueva fecha de entrada en vigor.</p>
+<h2>11. Contacto</h2>
+<p>Edwin Ramos Madera — República Dominicana<br>Correo: <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a></p>
+<p class="top"><a href="#top">↑</a></p>
+</section>
+<hr>
+<section id="fr" lang="fr">
+<h1>Politique de confidentialité de PlantCare</h1>
+<p><strong>Date d&#39;entrée en vigueur :</strong> 20 octobre 2026</p>
+<p>PlantCare (« l&#39;application ») est une application d&#39;entretien des plantes développée par <strong>Edwin Ramos Madera</strong>, développeur indépendant établi en République dominicaine (« je », « le développeur »). Cette politique explique quelles informations l&#39;application traite, comment elles sont utilisées et quel contrôle vous avez sur elles.</p>
+<h2>1. En bref</h2>
+<ul>
+<li>PlantCare <strong>ne nécessite aucun compte</strong> ni connexion.</li>
+<li>Le développeur <strong>n&#39;exploite aucun serveur</strong> et <strong>ne reçoit ni ne stocke</strong> vos données.</li>
+<li>L&#39;application ne contient <strong>ni publicité, ni outils d&#39;analyse, ni suivi, ni Firebase</strong>.</li>
+<li>Vos données sont stockées <strong>uniquement sur votre appareil</strong>.</li>
+<li>Ce n&#39;est que lorsque vous demandez un <strong>diagnostic par IA</strong> que les informations nécessaires sont envoyées directement à l&#39;<strong>API Google Gemini</strong>, avec une clé d&#39;API que vous fournissez vous-même.</li>
+</ul>
+<h2>2. Informations stockées sur votre appareil</h2>
+<p>L&#39;application stocke localement, dans son espace de stockage privé (AsyncStorage), les informations que vous saisissez :</p>
+<ul>
+<li>Les plantes enregistrées (nom, espèce, substrat, luminosité, emplacement, état de santé, fréquence d&#39;arrosage) et leurs photos.</li>
+<li>Les tâches d&#39;entretien (arrosage, taille, engrais, etc.) et leur historique.</li>
+<li>Les entrées du journal botanique, notes, étiquettes, estimations d&#39;humidité et photos.</li>
+<li>Les diagnostics IA enregistrés.</li>
+<li>Votre clé d&#39;API Google Gemini (si vous en configurez une) et les préférences de l&#39;application (par exemple la langue).</li>
+</ul>
+<p>Ces informations ne quittent jamais votre appareil, sauf dans le cas décrit à la section 4. Le développeur n&#39;y a pas accès.</p>
+<h2>3. Autorisations</h2>
+<ul>
+<li><strong>Appareil photo :</strong> pour photographier vos plantes lorsque vous le décidez (ajout d&#39;une plante ou d&#39;une entrée de journal). Les photos sont stockées localement.</li>
+<li><strong>Sélection de photos :</strong> vous pouvez choisir des images de votre galerie via le sélecteur de photos du système ; l&#39;application n&#39;accède qu&#39;aux images que vous sélectionnez.</li>
+<li><strong>Internet :</strong> pour envoyer les demandes de diagnostic à Google Gemini et charger les images d&#39;exemple du mode démo.</li>
+</ul>
+<p>L&#39;application ne demande pas l&#39;accès à votre position, à votre micro, à vos contacts ni à d&#39;autres données personnelles.</p>
+<h2>4. Diagnostic par IA (Google Gemini)</h2>
+<p>La fonction de diagnostic est facultative et nécessite que vous saisissiez votre propre clé d&#39;API Google Gemini, obtenue sur Google AI Studio. Lorsque vous demandez un diagnostic ou posez une question, l&#39;application envoie <strong>directement depuis votre appareil à Google</strong> (<code>generativelanguage.googleapis.com</code>, via une connexion HTTPS chiffrée) :</p>
+<ul>
+<li>La photo de la plante que vous choisissez.</li>
+<li>Les données de la plante (nom, espèce, emplacement, fréquence d&#39;arrosage, historique pertinent).</li>
+<li>Le texte que vous écrivez (symptômes, observations ou questions).</li>
+<li>Votre clé d&#39;API, nécessaire pour authentifier la requête.</li>
+</ul>
+<p>Ces données ne transitent par aucun serveur du développeur. Leur traitement par Google est régi par les <a rel="noopener" target="_blank" href="https://ai.google.dev/gemini-api/terms">Conditions d&#39;utilisation supplémentaires de l&#39;API Gemini</a> et les <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Règles de confidentialité de Google</a>, selon l&#39;accord entre vous et Google associé à votre clé. Notez que, selon ces conditions, pour les niveaux gratuits Google peut utiliser le contenu envoyé pour améliorer ses produits. N&#39;envoyez pas de photos ou de textes contenant des informations personnelles que vous ne souhaitez pas partager avec Google.</p>
+<p>Vous pouvez supprimer votre clé enregistrée à tout moment depuis l&#39;écran Paramètres.</p>
+<h2>5. Images de démonstration</h2>
+<p>Si vous chargez les données de démonstration, l&#39;application télécharge des images d&#39;exemple depuis des serveurs de Google (<code>lh3.googleusercontent.com</code>). Comme pour toute requête web, ces serveurs peuvent recevoir des données techniques telles que votre adresse IP. L&#39;application n&#39;envoie aucune de vos données dans ces requêtes.</p>
+<h2>6. Partage des données</h2>
+<p>Le développeur ne vend, ne loue ni ne partage vos données avec des tiers. Le seul transfert de données vers un tiers est celui décrit à la section 4, que vous déclenchez vous-même.</p>
+<h2>7. Conservation et suppression</h2>
+<p>Vos données restent sur votre appareil jusqu&#39;à ce que vous les supprimiez. Vous pouvez :</p>
+<ul>
+<li>Réinitialiser l&#39;application (installation vierge) depuis les Paramètres.</li>
+<li>Supprimer votre clé d&#39;API depuis les Paramètres.</li>
+<li>Effacer les données de l&#39;application dans les paramètres Android, ou <strong>désinstaller l&#39;application</strong>, ce qui supprime toutes ses données locales.</li>
+</ul>
+<p>Le développeur ne stockant pas vos données, il n&#39;y a aucune donnée côté serveur à supprimer. Pour les données déjà envoyées à Google, consultez les règles de Google.</p>
+<h2>8. Sécurité</h2>
+<p>Les communications avec Google Gemini utilisent HTTPS. Les données locales sont protégées par le cloisonnement du stockage des applications Android. Nous vous recommandons de protéger votre appareil par un verrouillage d&#39;écran.</p>
+<h2>9. Enfants</h2>
+<p>PlantCare ne s&#39;adresse pas aux enfants de moins de 13 ans et ne collecte pas sciemment d&#39;informations les concernant.</p>
+<h2>10. Modifications de cette politique</h2>
+<p>Si cette politique change, la version mise à jour sera publiée sur cette page avec une nouvelle date d&#39;entrée en vigueur.</p>
+<h2>11. Contact</h2>
+<p>Edwin Ramos Madera — République dominicaine<br>E-mail : <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a></p>
+<p class="top"><a href="#top">↑</a></p>
+</section>
+</main>
+</body>
+</html>

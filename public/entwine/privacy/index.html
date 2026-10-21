@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entwine — Política de Privacidad / Privacy Policy</title>
+<meta name="description" content="Política de privacidad de la app Entwine para Android, de Edwin Ramos Madera. Privacy policy for the Entwine Android app.">
+<style>
+:root{--g:#9b2242;--bg:#fbf8f8;--fg:#24191c;--mut:#6b5a5f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:780px;margin:0 auto;padding:24px 20px 64px}
+header{text-align:center;padding:12px 0 4px}header h1{color:var(--g);margin:.2em 0;font-size:1.6em}
+nav{position:sticky;top:0;background:var(--bg);padding:10px 0;text-align:center;border-bottom:1px solid #eadfe1;z-index:1}
+nav a{color:var(--g);font-weight:600;text-decoration:none;margin:0 6px}
+h1{color:var(--g);font-size:1.5em}h2{font-size:1.15em;margin-top:1.6em;color:var(--g)}
+a{color:var(--g)}code{background:#f1e6e8;padding:1px 5px;border-radius:4px;font-size:.9em}
+hr{border:0;border-top:1px solid #eadfe1;margin:40px 0}.top{text-align:right;font-size:.9em}
+section{scroll-margin-top:56px}
+.app-logo{display:block;margin:0 auto 6px;width:72px;height:72px;border-radius:18px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+</style>
+</head>
+<body id="top">
+<main>
+<header><img class="app-logo" src="/images/entwine-icon.svg" alt="Entwine" width="72" height="72"><h1>Entwine</h1></header>
+<nav><a href="#es">Español</a> · <a href="#en">English</a></nav>
+
+<section id="es" lang="es">
+<h1>Política de Privacidad de Entwine</h1>
+<p><strong>Fecha de entrada en vigor:</strong> 20 de octubre de 2026</p>
+<p>Entwine (&quot;la app&quot;) es una aplicación para parejas adultas desarrollada por <strong>Edwin Ramos Madera</strong>, desarrollador independiente con sede en la República Dominicana (&quot;yo&quot;, &quot;el desarrollador&quot;). Se usa en dos teléfonos: un miembro de la pareja (el Iniciador) prepara un reto y el otro (el Cómplice) lo va descubriendo. Esta política explica qué información maneja la app, cómo se usa y qué control tienes sobre ella.</p>
+
+<h2>1. Resumen</h2>
+<ul>
+<li>Entwine <strong>no te pide correo, teléfono ni contraseña</strong>. La app crea un identificador anónimo para vincular los dos teléfonos.</li>
+<li>La app <strong>no incluye publicidad, analítica ni rastreo</strong>, y no vende tus datos.</li>
+<li>Para que los dos teléfonos se vean en tiempo real, la información de la sala de la pareja se guarda en <strong>Firebase Realtime Database</strong> (Google). Solo los dos miembros de la sala pueden leerla.</li>
+<li>Las notificaciones a tu pareja se envían mediante el <strong>servicio de notificaciones de Expo</strong>.</li>
+<li>La app es <strong>solo para mayores de 18 años</strong>.</li>
+</ul>
+
+<h2>2. Información que se guarda en tu dispositivo</h2>
+<p>La app guarda localmente, en el almacenamiento privado de la app (AsyncStorage y, para una nota de la Bóveda, el almacenamiento seguro del sistema):</p>
+<ul>
+<li>Tu nombre o apodo, tu identificador anónimo y tu papel (Iniciador o Cómplice).</li>
+<li>Los datos de la sala: código de vinculación, nombre o apodo de tu pareja, el reto activo, su progreso y el ambiente elegido.</li>
+<li>Las entradas de la Bóveda (pactos, confesiones y cartas).</li>
+<li>Tus preferencias: idioma, modo discreto y pausa.</li>
+</ul>
+
+<h2>3. Información que se sincroniza en la nube (Firebase)</h2>
+<p>Cuando creas una sala o te unes con un código, la app inicia una sesión anónima con <strong>Firebase Authentication</strong> y guarda en <strong>Firebase Realtime Database</strong> lo siguiente:</p>
+<ul>
+<li>El identificador anónimo de cada miembro y el nombre o apodo que cada uno escribió (máximo 40 caracteres).</li>
+<li>El código de vinculación de la sala.</li>
+<li>El reto activo, incluidos los textos de los retos personalizados que escribas, el ambiente elegido (por ejemplo, romántico, pícaro, picante o sin filtro), el progreso de las fases y las confirmaciones.</li>
+<li>Las entradas de la Bóveda que añadas (textos de hasta 2000 caracteres).</li>
+<li>Los ajustes compartidos de la sala (modo discreto y pausa) y las fechas de los cambios.</li>
+<li>El token de notificaciones de cada teléfono y su plataforma (Android o iOS), si permites las notificaciones.</li>
+</ul>
+<p>Esta información se usa <strong>solo</strong> para que la app funcione: vincular los dos teléfonos, mostrar a cada uno el estado del reto y enviar avisos a tu pareja. Las reglas de seguridad de la base de datos permiten leer y escribir los datos de una sala solo a sus dos miembros, y no se admite un tercer teléfono.</p>
+<p>Ten en cuenta que estos datos <strong>no tienen cifrado de extremo a extremo</strong>. Viajan cifrados por HTTPS y Google los guarda cifrados en sus servidores, pero como responsable del proyecto de Firebase, el desarrollador podría acceder técnicamente a ellos. Solo lo hará para atender una solicitud tuya (por ejemplo, borrar tus datos) o si la ley lo exige. No escribas en la app información que no quieras guardar en la nube.</p>
+<p>El tratamiento por parte de Google se rige por la <a rel="noopener" target="_blank" href="https://firebase.google.com/support/privacy">información de privacidad de Firebase</a> y la <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Política de Privacidad de Google</a>. Los servidores pueden estar fuera de tu país, por ejemplo en los Estados Unidos.</p>
+
+<h2>4. Notificaciones</h2>
+<ul>
+<li><strong>Recordatorios locales:</strong> la app programa en tu teléfono cuatro recordatorios diarios (09:00, 14:30, 19:00 y 21:30). Con el <strong>modo discreto</strong>, usan textos neutros como &quot;Nota de audio guardada&quot;.</li>
+<li><strong>Avisos a tu pareja:</strong> cuando avanzas una fase o confirmas una acción, la app envía un aviso al teléfono de tu pareja mediante el servicio de notificaciones de Expo (<code>exp.host</code>), que lo entrega a través de Firebase Cloud Messaging de Google. El aviso contiene el token del teléfono de destino, un título y un texto breve. Si el modo discreto está apagado, ese texto puede incluir tu nombre o apodo. No contiene el contenido de los retos ni de la Bóveda. Consulta la <a rel="noopener" target="_blank" href="https://expo.dev/privacy">Política de Privacidad de Expo</a>.</li>
+</ul>
+<p>Puedes desactivar las notificaciones en cualquier momento desde los ajustes de Android.</p>
+
+<h2>5. Desbloqueo con huella o rostro</h2>
+<p>La Bóveda puede desbloquearse con la biometría de tu teléfono (huella o rostro). La verificación la hace el sistema Android: la app solo recibe un resultado de &quot;éxito&quot; o &quot;fallo&quot;. La app <strong>no accede a tus datos biométricos</strong>, no los guarda y no los envía a ningún lugar.</p>
+
+<h2>6. Imágenes de ambiente</h2>
+<p>Algunas pantallas muestran fotografías decorativas que se descargan de <strong>Unsplash</strong> (<code>images.unsplash.com</code>). Como en cualquier descarga web, esos servidores pueden recibir datos técnicos como tu dirección IP. La app no envía datos tuyos en esas solicitudes. Consulta la <a rel="noopener" target="_blank" href="https://unsplash.com/privacy">Política de Privacidad de Unsplash</a>.</p>
+
+<h2>7. Permisos</h2>
+<ul>
+<li><strong>Internet:</strong> para sincronizar la sala con Firebase, enviar avisos a tu pareja y cargar las imágenes de ambiente.</li>
+<li><strong>Notificaciones:</strong> para mostrar los recordatorios diarios y los avisos de tu pareja (Android te pide permiso).</li>
+<li><strong>Ejecutar al iniciar el teléfono:</strong> para volver a programar los recordatorios después de reiniciar el teléfono.</li>
+<li><strong>Vibración:</strong> para la respuesta háptica de los botones.</li>
+<li><strong>Biometría (huella o rostro):</strong> para desbloquear la Bóveda, como se explica en la sección 5.</li>
+</ul>
+<p>La app no usa la cámara, el micrófono, tu ubicación, tus contactos, tus fotos ni tus archivos.</p>
+
+<h2>8. Compartición de datos</h2>
+<p>El desarrollador no vende, alquila ni comparte tus datos con terceros para publicidad ni para otros fines. Lo que escribes en una sala lo ve tu pareja, que es el otro miembro de la sala. Además, la app usa estos proveedores, solo para funcionar:</p>
+<ul>
+<li><strong>Google Firebase</strong> (Authentication y Realtime Database): sesión anónima y sincronización de la sala.</li>
+<li><strong>Expo</strong> (servicio de notificaciones) y <strong>Google Firebase Cloud Messaging</strong>: entrega de avisos a tu pareja.</li>
+<li><strong>Unsplash</strong>: imágenes decorativas.</li>
+</ul>
+
+<h2>9. Conservación y eliminación</h2>
+<ul>
+<li><strong>En tu dispositivo:</strong> usa <strong>Ajustes → Restablecer datos</strong> para borrar todos los datos locales de la app. También puedes borrar los datos de la app desde los ajustes de Android o <strong>desinstalarla</strong>.</li>
+<li><strong>En la nube:</strong> los datos de la sala se conservan mientras la sala exista, para que la pareja pueda seguir usándola. Hoy, restablecer o desinstalar la app <strong>no borra</strong> la sala de Firebase. Para borrarla, escríbeme a <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> con el asunto &quot;Eliminar datos de Entwine&quot; e indica el código de tu sala. Borraré la sala completa (sesión, retos, Bóveda y tokens de notificaciones) en un plazo máximo de 30 días y te confirmaré cuando esté hecho. Como la sala es compartida, al borrarla también se borra para tu pareja.</li>
+</ul>
+
+<h2>10. Seguridad</h2>
+<p>Las comunicaciones con Firebase y Expo usan HTTPS. Las reglas de la base de datos limitan cada sala a sus dos miembros. Los datos locales están protegidos por el aislamiento de almacenamiento de Android. Ningún sistema es totalmente seguro, así que te recomendamos proteger tu teléfono con bloqueo de pantalla y no compartir el código de tu sala.</p>
+
+<h2>11. Solo para mayores de 18 años</h2>
+<p>Entwine contiene temas románticos y de intimidad para parejas adultas. <strong>No está dirigida a menores de 18 años</strong>, y los menores no deben usarla. No recopilo conscientemente información de menores. Si crees que un menor ha usado la app, escríbeme y borraré esos datos.</p>
+
+<h2>12. Cambios en esta política</h2>
+<p>Si esta política cambia, se publicará la versión actualizada en esta misma página con una nueva fecha de entrada en vigor.</p>
+
+<h2>13. Contacto</h2>
+<p>Edwin Ramos Madera — República Dominicana<br>Correo: <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a></p>
+<p class="top"><a href="#top">↑</a></p>
+</section>
+<hr>
+
+<section id="en" lang="en">
+<h1>Entwine Privacy Policy</h1>
+<p><strong>Effective date:</strong> October 20, 2026</p>
+<p>Entwine (&quot;the app&quot;) is an app for adult couples developed by <strong>Edwin Ramos Madera</strong>, an independent developer based in the Dominican Republic (&quot;I&quot;, &quot;the developer&quot;). It is played on two phones: one partner (the Initiator) sets up a challenge and the other (the Accomplice) gradually uncovers it. This policy explains what information the app handles, how it is used, and what control you have over it.</p>
+
+<h2>1. Summary</h2>
+<ul>
+<li>Entwine <strong>does not ask for your email, phone number, or a password</strong>. The app creates an anonymous identifier to link the two phones.</li>
+<li>The app contains <strong>no ads, no analytics, and no tracking</strong>, and it does not sell your data.</li>
+<li>So that both phones can see each other in real time, the couple&#39;s room information is stored in <strong>Firebase Realtime Database</strong> (Google). Only the two members of the room can read it.</li>
+<li>Notifications to your partner are sent through the <strong>Expo push notification service</strong>.</li>
+<li>The app is <strong>for adults 18+ only</strong>.</li>
+</ul>
+
+<h2>2. Information stored on your device</h2>
+<p>The app stores the following locally, in the app&#39;s private storage (AsyncStorage and, for one Vault note, the system&#39;s secure storage):</p>
+<ul>
+<li>Your name or nickname, your anonymous identifier, and your role (Initiator or Accomplice).</li>
+<li>Room data: the pairing code, your partner&#39;s name or nickname, the active challenge, its progress, and the selected mood.</li>
+<li>Vault entries (pacts, confessions, and letters).</li>
+<li>Your preferences: language, discreet mode, and pause.</li>
+</ul>
+
+<h2>3. Information synced to the cloud (Firebase)</h2>
+<p>When you create a room or join one with a code, the app signs in anonymously with <strong>Firebase Authentication</strong> and stores the following in <strong>Firebase Realtime Database</strong>:</p>
+<ul>
+<li>Each member&#39;s anonymous identifier and the name or nickname each of you entered (40 characters max).</li>
+<li>The room&#39;s pairing code.</li>
+<li>The active challenge, including the text of any custom challenge you write, the selected mood (for example romantic, playful, spicy, or uncensored), phase progress, and check-ins.</li>
+<li>Any Vault entries you add (text up to 2,000 characters).</li>
+<li>The room&#39;s shared settings (discreet mode and pause) and the times of changes.</li>
+<li>Each phone&#39;s push notification token and platform (Android or iOS), if you allow notifications.</li>
+</ul>
+<p>This information is used <strong>only</strong> to make the app work: linking the two phones, showing each of you the state of the challenge, and sending alerts to your partner. The database security rules let only a room&#39;s two members read and write its data, and a third phone cannot join.</p>
+<p>Please note that this data is <strong>not end-to-end encrypted</strong>. It travels over HTTPS and Google stores it encrypted on its servers, but as the owner of the Firebase project the developer could technically access it. I will only do so to handle a request from you (for example, deleting your data) or when required by law. Do not enter information in the app that you do not want stored in the cloud.</p>
+<p>Google&#39;s handling of this data is governed by <a rel="noopener" target="_blank" href="https://firebase.google.com/support/privacy">Firebase&#39;s privacy information</a> and the <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Google Privacy Policy</a>. The servers may be located outside your country, for example in the United States.</p>
+
+<h2>4. Notifications</h2>
+<ul>
+<li><strong>Local reminders:</strong> the app schedules four daily reminders on your phone (09:00, 14:30, 19:00, and 21:30). In <strong>discreet mode</strong> they use neutral text such as &quot;Audio note saved&quot;.</li>
+<li><strong>Alerts to your partner:</strong> when you advance a phase or confirm an action, the app sends an alert to your partner&#39;s phone through the Expo push notification service (<code>exp.host</code>), which delivers it through Google&#39;s Firebase Cloud Messaging. The alert contains the target phone&#39;s token, a title, and a short text. If discreet mode is off, that text may include your name or nickname. It does not contain the content of challenges or the Vault. See the <a rel="noopener" target="_blank" href="https://expo.dev/privacy">Expo Privacy Policy</a>.</li>
+</ul>
+<p>You can turn off notifications at any time in Android settings.</p>
+
+<h2>5. Fingerprint or face unlock</h2>
+<p>The Vault can be unlocked with your phone&#39;s biometrics (fingerprint or face). The check is performed by Android: the app only receives a &quot;success&quot; or &quot;failure&quot; result. The app <strong>does not access your biometric data</strong>, and it does not store or send it anywhere.</p>
+
+<h2>6. Mood images</h2>
+<p>Some screens show decorative photos downloaded from <strong>Unsplash</strong> (<code>images.unsplash.com</code>). As with any web request, those servers may receive technical data such as your IP address. The app does not send any of your data in these requests. See the <a rel="noopener" target="_blank" href="https://unsplash.com/privacy">Unsplash Privacy Policy</a>.</p>
+
+<h2>7. Permissions</h2>
+<ul>
+<li><strong>Internet:</strong> to sync the room with Firebase, send alerts to your partner, and load the mood images.</li>
+<li><strong>Notifications:</strong> to show daily reminders and alerts from your partner (Android asks for your permission).</li>
+<li><strong>Run at startup:</strong> to reschedule reminders after the phone restarts.</li>
+<li><strong>Vibration:</strong> for haptic feedback on buttons.</li>
+<li><strong>Biometrics (fingerprint or face):</strong> to unlock the Vault, as described in section 5.</li>
+</ul>
+<p>The app does not use your camera, microphone, location, contacts, photos, or files.</p>
+
+<h2>8. Data sharing</h2>
+<p>The developer does not sell, rent, or share your data with third parties for advertising or any other purpose. What you write in a room is seen by your partner, the other member of the room. In addition, the app uses these providers, only to function:</p>
+<ul>
+<li><strong>Google Firebase</strong> (Authentication and Realtime Database): anonymous sign-in and room sync.</li>
+<li><strong>Expo</strong> (push notification service) and <strong>Google Firebase Cloud Messaging</strong>: delivering alerts to your partner.</li>
+<li><strong>Unsplash</strong>: decorative images.</li>
+</ul>
+
+<h2>9. Retention and deletion</h2>
+<ul>
+<li><strong>On your device:</strong> use <strong>Settings → Reset data</strong> to delete all of the app&#39;s local data. You can also clear the app&#39;s data in Android settings or <strong>uninstall the app</strong>.</li>
+<li><strong>In the cloud:</strong> room data is kept for as long as the room exists, so the couple can keep using it. Currently, resetting or uninstalling the app <strong>does not delete</strong> the room from Firebase. To delete it, email me at <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> with the subject &quot;Delete Entwine data&quot; and include your room code. I will delete the entire room (session, challenges, Vault, and notification tokens) within 30 days at most and confirm once it is done. Because the room is shared, deleting it also deletes it for your partner.</li>
+</ul>
+
+<h2>10. Security</h2>
+<p>Communication with Firebase and Expo uses HTTPS. The database rules limit each room to its two members. Local data is protected by Android&#39;s app storage sandbox. No system is completely secure, so I recommend protecting your phone with a screen lock and not sharing your room code.</p>
+
+<h2>11. Adults 18+ only</h2>
+<p>Entwine contains romantic and intimate themes for adult couples. It is <strong>not directed to anyone under 18</strong>, and minors must not use it. I do not knowingly collect information from minors. If you believe a minor has used the app, contact me and I will delete that data.</p>
+
+<h2>12. Changes to this policy</h2>
+<p>If this policy changes, the updated version will be posted on this page with a new effective date.</p>
+
+<h2>13. Contact</h2>
+<p>Edwin Ramos Madera — Dominican Republic<br>Email: <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a></p>
+<p class="top"><a href="#top">↑</a></p>
+</section>
+</main>
+</body>
+</html>

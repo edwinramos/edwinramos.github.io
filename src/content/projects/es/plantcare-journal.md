@@ -21,7 +21,7 @@ example: false
 - 📷 **Diario de fotos** con comparación **antes / después**.
 - 🤖 **Diagnóstico con IA** usando Google Gemini con **tu propia API key**.
 
-**Privacidad:** todo se guarda en tu dispositivo y no necesitas crear una cuenta.
+**Privacidad:** tus plantas, fotos y notas se guardan en tu dispositivo y no necesitas crear una cuenta. Los detalles están en la política de privacidad.
 
 **Idiomas:** inglés, español y francés.
 

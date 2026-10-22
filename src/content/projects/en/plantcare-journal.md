@@ -21,7 +21,7 @@ example: false
 - 📷 **Photo journal** with **before / after** comparison.
 - 🤖 **AI diagnosis** with Google Gemini using **your own API key**.
 
-**Privacy:** everything is stored on your device and no account is needed.
+**Privacy:** your plants, photos and notes are stored on your device and no account is needed. The details are in the privacy policy.
 
 **Languages:** English, Spanish and French.
 

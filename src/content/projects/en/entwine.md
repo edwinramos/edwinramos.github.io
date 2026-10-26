@@ -2,7 +2,7 @@
 title: Entwine
 summary: "A two-phone app for couples: one partner secretly sets up the day's challenge and the other uncovers it through clues throughout the day, synced in real time."
 status: in-development
-statusLabel: Coming soon to Google Play
+statusLabel: In development
 platforms: [android]
 logo: /images/entwine-icon.svg
 ogImage: /images/entwine-icon-512.png

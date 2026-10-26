@@ -12,7 +12,7 @@ Para los nombres de archivo usa minúsculas, guiones y el nombre de la app delan
 | Imagen al compartir el enlace de la app | `ogImage` | **PNG o JPG** (las redes sociales no aceptan SVG). El ícono a 512×512 funciona bien | `/images/entwine-icon-512.png`, `/images/plantcare-icon-512.png` |
 | Capturas de pantalla | `screenshots` | **Verticales** de teléfono, PNG o JPG, unos 1080×2340 (proporción ~9:19,5). Se recortan a esa proporción. Mejor por debajo de ~500 KB cada una | — |
 | Imagen por defecto al compartir el sitio | `SITE.defaultOgImage` | PNG de **1200×630** | `public/og-default.png` |
-| Foto de perfil | (sin campo; ver [textos-y-perfil.md](./textos-y-perfil.md#foto-de-perfil)) | Cuadrada, mín. 256×256 | `public/images/avatar.svg` (monograma «ER») |
+| Foto de perfil (portada) | (sin campo; nombres fijos, ver [textos-y-perfil.md](./textos-y-perfil.md#foto-de-perfil)) | Cuadrada: WebP 396×396 + WebP 192×192 + JPG 396×396 | `public/images/profile.webp`, `profile-192.webp`, `profile.jpg` |
 | Favicon (ícono de la pestaña) | — | SVG | `public/favicon.svg` |
 
 - El logo «ER» de la cabecera es un SVG dentro de `src/components/Logo.astro`. Si lo cambias, cambia también `public/favicon.svg`.

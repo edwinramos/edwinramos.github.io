@@ -6,7 +6,7 @@ De arriba abajo, la portada (`src/views/HomePage.astro`) muestra:
 
 | Qué ves | Dónde se cambia |
 | --- | --- |
-| Círculo con «ER» y la palabrita «APPS» al lado | Imagen: `public/images/avatar.svg` (ver [Foto de perfil](#foto-de-perfil)). Texto: `home.eyebrow` en `src/i18n/ui.ts` |
+| Tu foto en un círculo y la palabrita «APPS» al lado | Foto: `public/images/profile.*` (ver [Foto de perfil](#foto-de-perfil)). Texto: `home.eyebrow` en `src/i18n/ui.ts` |
 | **«Hola, soy Edwin Ramos»** / «Hi, I'm Edwin Ramos» | `home.hello` en `src/i18n/ui.ts` (ES y EN) |
 | Párrafo bajo tu nombre («Senior Software Engineer con más de 10 años…») | **Cuerpo** (texto después del `---`) de `src/content/profile/es.md` y `en.md`. En el CMS: **👤 Inicio / Sobre mí** › campo «Sobre mí» |
 | Línea siguiente («Desde República Dominicana construyo apps móviles…») | Campo **`intro`** de `src/content/profile/es.md` y `en.md` (CMS: «Presentación en la portada») |
@@ -71,15 +71,23 @@ En los datos para buscadores (JSON-LD de `src/layouts/Base.astro`, `personLd`) e
 
 ## Foto de perfil
 
-**Todavía no está implementada como opción del CMS ni de `config.ts`.** Hoy la portada muestra un monograma «ER» desde `public/images/avatar.svg`, puesto a mano en `src/views/HomePage.astro`:
+La portada (ES y EN) muestra tu foto en un círculo, a la izquierda de la palabrita «APPS». Se ve a 56 px en el teléfono y a 64 px en la computadora. No es un campo del CMS: son **tres archivos con nombre fijo** en `public/images/`:
 
-```astro
-<img src={asset('images/avatar.svg')} … class="h-14 w-14 rounded-full …" />
-```
+| Archivo | Tamaño | Para qué |
+| --- | --- | --- |
+| `profile.webp` | 396×396 | Versión principal (pantallas de alta densidad) |
+| `profile-192.webp` | 192×192 | Versión ligera para la mayoría de los teléfonos |
+| `profile.jpg` | 396×396 | Respaldo para navegadores sin WebP |
 
-Para usar una foto:
-- **Opción simple:** sube una foto cuadrada (mín. 256×256, JPG o PNG), por ejemplo `public/images/avatar.jpg`, y cambia `'images/avatar.svg'` por `'images/avatar.jpg'` en esa línea de `src/views/HomePage.astro`. Se muestra recortada en círculo.
-- **Sin tocar código:** reemplaza `public/images/avatar.svg` por otro **SVG** con el mismo nombre.
+El código está en `src/views/HomePage.astro`: un `<picture>` con `alt="Edwin Ramos"`, `width="64" height="64"` y la clase `rounded-full object-cover`, que recorta la imagen en círculo.
+
+**Para cambiar la foto:**
+1. Prepara una imagen **cuadrada**, idealmente de 400×400 o más, con la cara centrada. Lo que quede fuera del círculo no se ve.
+2. Crea las tres versiones con **los mismos nombres**. Por ejemplo, en https://squoosh.app: redimensiona a 396 px y exporta como WebP (`profile.webp`) y como JPG (`profile.jpg`); luego redimensiona a 192 px y exporta como WebP (`profile-192.webp`). No agrandes una imagen más pequeña que esos tamaños.
+3. Sube los tres a `public/images/`, reemplazando los anteriores. En GitHub web: *Add file › Upload files*. No hay que tocar código.
+4. Tras el deploy, recarga con Ctrl/Cmd + Shift + R. El navegador puede tener la foto vieja en caché.
+
+Si usas otros nombres de archivo, cambia también las rutas en `src/views/HomePage.astro`. La imagen que sale al compartir el sitio en redes es otra: `public/og-default.png` (ver [imagenes.md](./imagenes.md)).
 
 ## Formulario de beta de las apps
 

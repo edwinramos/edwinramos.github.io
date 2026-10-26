@@ -7,7 +7,6 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ComingSoonCard from '../components/ComingSoonCard.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 import ContactSection from '../components/ContactSection.astro';
-import { SITE } from '../config';
 import { useT, type Lang } from '../i18n/ui';
 import { href, asset } from '../lib/paths';
 import { getApps } from '../lib/apps';
@@ -23,7 +22,10 @@ const apps = await getApps(lang);
     <!-- Intro -->
     <section class="flex flex-col gap-space-md pt-2 lg:max-w-3xl">
       <div class="flex items-center gap-3">
-        <img src={asset('images/avatar.svg')} alt={SITE.name} width="64" height="64" class="h-14 w-14 rounded-full shadow-[0_0_0_1.5px_rgba(208,188,255,0.5)] lg:h-16 lg:w-16" />
+        <picture>
+          <source type="image/webp" srcset={`${asset('images/profile-192.webp')} 192w, ${asset('images/profile.webp')} 396w`} sizes="64px" />
+          <img src={asset('images/profile.jpg')} alt="Edwin Ramos" width="64" height="64" decoding="async" fetchpriority="high" class="h-14 w-14 shrink-0 rounded-full object-cover shadow-[0_0_0_1.5px_rgba(208,188,255,0.5)] lg:h-16 lg:w-16" />
+        </picture>
         <span class="eyebrow">{t('home.eyebrow')}</span>
       </div>
       <h1 class="text-headline-lg-mobile font-extrabold tracking-tight text-on-surface sm:text-display-mobile lg:text-display">{t('home.hello')}</h1>

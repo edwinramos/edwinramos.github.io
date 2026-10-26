@@ -18,7 +18,6 @@ export const SITE = {
   base: '/',
   name: 'Edwin Ramos Madera',
   shortName: 'Edwin Ramos',
-  monogram: 'ER',
   email: 'edwinramos.93@gmail.com',
   linkedin: 'https://www.linkedin.com/in/edwin-ramos-madera-29b185123',
   // PLACEHOLDER: your Instagram profile URL, e.g. 'https://www.instagram.com/tu_usuario' (hidden until set)
@@ -29,7 +28,9 @@ export const SITE = {
   cvUrl: '',
   // Header availability indicator (set `available: false` to hide the green dot)
   available: true,
+  // Share image (1200×630) when a page has no image of its own; EN pages use defaultOgImageEn
   defaultOgImage: '/og-default.png',
+  defaultOgImageEn: '/og-default-en.png',
 };
 
 /**

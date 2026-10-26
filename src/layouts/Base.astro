@@ -28,7 +28,8 @@ const fullTitle = title ? `${title} · ${SITE.shortName}` : t('site.title');
 const desc = description ?? t('site.description');
 const alternates: Record<Lang, string> = { es: altIn.es ?? href('es', path), en: altIn.en ?? href('en', path) };
 const canonical = new URL(href(lang, path), Astro.site);
-const ogImage = new URL(asset(image ?? SITE.defaultOgImage), Astro.site);
+const ogImage = new URL(asset(image ?? (lang === 'en' ? SITE.defaultOgImageEn : SITE.defaultOgImage)), Astro.site);
+const ogIsDefault = !image; // the default share images are 1200×630
 const personLd = {
   '@context': 'https://schema.org', '@type': 'Person', name: SITE.name, jobTitle: 'Senior Software Engineer',
   email: `mailto:${SITE.email}`, url: new URL(href(lang), Astro.site).toString(),
@@ -51,7 +52,9 @@ const personLd = {
     <link rel="alternate" hreflang="x-default" href={new URL(alternates.es, Astro.site)} />
     <slot name="head" />
     <link rel="sitemap" href={asset('sitemap-index.xml')} />
-    <link rel="icon" type="image/svg+xml" href={asset('favicon.svg')} />
+    <link rel="icon" href={asset('favicon.ico')} sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href={asset('favicon-32.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={asset('apple-touch-icon.png')} />
     <meta name="theme-color" content="#0b1326" />
     <meta name="author" content={SITE.name} />
     <meta name="generator" content={Astro.generator} />
@@ -62,6 +65,10 @@ const personLd = {
     <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    {ogIsDefault && <meta property="og:image:type" content="image/png" />}
+    {ogIsDefault && <meta property="og:image:width" content="1200" />}
+    {ogIsDefault && <meta property="og:image:height" content="630" />}
+    <meta property="og:image:alt" content={ogIsDefault ? SITE.name : fullTitle} />
     <meta property="og:locale" content={lang === 'es' ? 'es_DO' : 'en_US'} />
     <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_DO'} />
     {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}

@@ -41,7 +41,7 @@ Recuerda: **sin nombres de empleadores** (ver [reglas](./README.md#reglas-import
 | `SITE.github` | `https://github.com/edwinramos` | Solo en los datos para buscadores (no hay botón visible) |
 | `SITE.name` / `SITE.shortName` | `Edwin Ramos Madera` / `Edwin Ramos` | Pie de página (© año + nombre), título de las pestañas y cabecera |
 | `SITE.available` | `true` | Indicador de la cabecera: `true` = punto verde «Disponible para proyectos»; `false` = punto ámbar «Agenda llena» |
-| `SITE.defaultOgImage` | `/og-default.png` | Imagen por defecto al compartir enlaces (1200×630) |
+| `SITE.defaultOgImage` / `SITE.defaultOgImageEn` | `/og-default.png` / `/og-default-en.png` | Imagen por defecto al compartir enlaces (1200×630), en ES y en EN |
 | `SITE.url` / `SITE.base` | `https://edwinramos.github.io` / `/` | **No los cambies** salvo que muevas el sitio a otro repo o dominio |
 | `SITE.cvUrl` | `''` | Hoy no se usa en ninguna página |
 
@@ -89,7 +89,7 @@ El código está en `src/views/HomePage.astro` (portada) y `src/components/Logo.
 3. Sube los cinco a `public/images/`, reemplazando los anteriores. En GitHub web: *Add file › Upload files*. No hay que tocar código.
 4. Tras el deploy, recarga con Ctrl/Cmd + Shift + R. El navegador puede tener la foto vieja en caché.
 
-Si usas otros nombres de archivo, cambia también las rutas en `src/views/HomePage.astro` y `src/components/Logo.astro`. La imagen que sale al compartir el sitio en redes es otra: `public/og-default.png` (ver [imagenes.md](./imagenes.md)).
+Si usas otros nombres de archivo, cambia también las rutas en `src/views/HomePage.astro` y `src/components/Logo.astro`. Las imágenes que salen al compartir el sitio en redes (`public/og-default.png` y `og-default-en.png`) y el favicon son archivos aparte. Si cambias la foto, actualízalos también (ver [imagenes.md](./imagenes.md#favicon)).
 
 ## Formulario de beta de las apps
 

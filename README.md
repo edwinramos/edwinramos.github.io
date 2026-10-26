@@ -37,7 +37,7 @@ Redirecciones: las secciones eliminadas (`/blog/…`, `/roadmap/…`, `/services
 ```
 .pages.yml                      # Pages CMS (Apps, Privacidad, Inicio/Sobre mí — por idioma)
 .github/workflows/deploy.yml    # Deploy a GitHub Pages en cada push a main (withastro/action)
-public/                         # favicon, og-default.png, images/ (subidas del CMS)
+public/                         # favicon.ico/-32.png, apple-touch-icon.png, og-default(-en).png, images/ (subidas del CMS)
 src/config.ts                   # ← URL, LinkedIn, Instagram, Formspree, Cloudflare (PLACEHOLDERS)
 src/content.config.ts           # Esquemas (zod)
 src/content/projects/<es|en>/<app>.md     # apps (la carpeta conserva el nombre "projects")

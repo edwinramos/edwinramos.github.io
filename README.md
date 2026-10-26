@@ -2,7 +2,7 @@
 
 Hub sencillo y de bajo mantenimiento para las apps de Edwin (el enlace de la bio de Instagram / LinkedIn). Sitio estático bilingüe (ES/EN) construido con **Astro 5** + **Tailwind CSS 4**, siguiendo el diseño de Google Stitch *Obsidian Violet Matrix*. Costo: **$0** (GitHub Pages + servicios con plan gratuito, sin servidores ni base de datos).
 
-- Guía para editar contenido (sin código): **[GUIA-CONTENIDO.md](./GUIA-CONTENIDO.md)**
+- **Manual de usuario (cómo cambiar el contenido): [docs/README.md](./docs/README.md)**
 - Configuración del CMS: [`.pages.yml`](./.pages.yml) (Pages CMS)
 - **Todos los placeholders** están en [`src/config.ts`](./src/config.ts)
 
@@ -22,10 +22,11 @@ Requiere Node 20.3+ (CI usa Node 24).
 
 | Ruta (ES = `/`, EN = `/en/…`) | Contenido |
 | --- | --- |
-| `/` | Presentación corta, enlaces a LinkedIn / Instagram, grilla de apps (la destacada primero; si no hay apps: «Pronto publicaré mis apps aquí»), «Sobre mí» corto y **Contacto** (`#contact`, Formspree con `mailto:` de respaldo) |
+| `/` | Nombre con el texto de presentación debajo, enlaces a LinkedIn / Instagram, grilla de apps (la destacada primero; si no hay apps: «Pronto publicaré mis apps aquí») y **Contacto** (`#contact`, enlace `mailto:` + redes; sin formulario) |
 | `/apps/` | Lista de apps |
 | `/apps/<app>/` | Ícono, descripción, plataformas, estado, botones Google Play / App Store, capturas, «Novedades» (texto manual), beta (`#beta`, si no está publicada o hay `betaUrl`) y enlace a su política de privacidad |
 | `/apps/<app>/privacy/` | Política de privacidad de la app (colección `privacy`, enlazada con `app: <archivo-de-la-app>`). Es la URL que pide Google Play |
+| `/<app>/privacy/` | Política oficial estática (`public/<app>/privacy/index.html`, enlazada con `privacyUrl`). Es la que usan las apps actuales |
 | `/privacy/` | Índice de políticas (enlazado en el pie de página) |
 | `/sitemap-index.xml`, `/robots.txt` | SEO (hreflang ES/EN) |
 
@@ -41,9 +42,10 @@ src/config.ts                   # ← URL, LinkedIn, Instagram, Formspree, Cloud
 src/content.config.ts           # Esquemas (zod)
 src/content/projects/<es|en>/<app>.md     # apps (la carpeta conserva el nombre "projects")
 src/content/privacy/<es|en>/<x>.md        # políticas (plantilla.md = PLANTILLA, no se publica)
-src/content/profile/<es|en>.md            # presentación + «Sobre mí»
+src/content/profile/<es|en>.md            # texto de la portada (bajo el nombre)
 src/i18n/ui.ts                  # Textos de la interfaz ES/EN
 src/views/ · src/pages/ · src/pages/en/ · src/components/
+docs/                           # Manual de usuario (no se publica)
 src/styles/global.css           # Tokens del design system (@theme de Tailwind 4)
 ```
 

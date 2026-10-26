@@ -63,7 +63,7 @@ Contenido de ejemplo: `example: true` muestra la etiqueta **EJEMPLO**; en las po
 | `SITE.instagram` | `https://www.instagram.com/<usuario>` | Tu perfil de Instagram | Opcional (el botón se oculta hasta que se llene) |
 | `FORMS.default` (o `beta`) | ID de Formspree (lo que va después de `/f/`) | https://formspree.io | Opcional (sin ID, los formularios abren el correo del visitante con `mailto:`) |
 | `ANALYTICS.cloudflareToken` | Token del snippet JS | Cloudflare › Web Analytics | Opcional (el script solo se incluye si hay token) |
-| `public/images/profile.webp`, `profile-192.webp`, `profile.jpg` | Tu foto de perfil (portada) | — | Ya puesta; para cambiarla ver [docs/textos-y-perfil.md](./docs/textos-y-perfil.md#foto-de-perfil) |
+| `public/images/profile.webp`, `profile-192.webp`, `profile.jpg`, `profile-64.webp`, `profile-64.jpg` | Tu foto de perfil (portada y cabecera) | — | Ya puesta; para cambiarla ver [docs/textos-y-perfil.md](./docs/textos-y-perfil.md#foto-de-perfil) |
 
 ### Si el repo NO se llama `<usuario>.github.io`
 

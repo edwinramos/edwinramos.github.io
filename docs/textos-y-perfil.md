@@ -71,23 +71,25 @@ En los datos para buscadores (JSON-LD de `src/layouts/Base.astro`, `personLd`) e
 
 ## Foto de perfil
 
-La portada (ES y EN) muestra tu foto en un círculo, a la izquierda de la palabrita «APPS». Se ve a 56 px en el teléfono y a 64 px en la computadora. No es un campo del CMS: son **tres archivos con nombre fijo** en `public/images/`:
+Tu foto sale en dos sitios (ES y EN): en la **portada**, en un círculo a la izquierda de la palabrita «APPS» (56 px en el teléfono, 64 px en la computadora), y en la **cabecera** de todas las páginas, arriba a la izquierda (32 px). No es un campo del CMS: son **cinco archivos con nombre fijo** en `public/images/`:
 
 | Archivo | Tamaño | Para qué |
 | --- | --- | --- |
 | `profile.webp` | 396×396 | Versión principal (pantallas de alta densidad) |
 | `profile-192.webp` | 192×192 | Versión ligera para la mayoría de los teléfonos |
 | `profile.jpg` | 396×396 | Respaldo para navegadores sin WebP |
+| `profile-64.webp` | 64×64 | Cabecera |
+| `profile-64.jpg` | 64×64 | Cabecera, respaldo sin WebP |
 
-El código está en `src/views/HomePage.astro`: un `<picture>` con `alt="Edwin Ramos"`, `width="64" height="64"` y la clase `rounded-full object-cover`, que recorta la imagen en círculo.
+El código está en `src/views/HomePage.astro` (portada) y `src/components/Logo.astro` (cabecera). En la portada es un `<picture>` con `alt="Edwin Ramos"`, `width="64" height="64"` y la clase `rounded-full object-cover`, que recorta la imagen en círculo.
 
 **Para cambiar la foto:**
 1. Prepara una imagen **cuadrada**, idealmente de 400×400 o más, con la cara centrada. Lo que quede fuera del círculo no se ve.
-2. Crea las tres versiones con **los mismos nombres**. Por ejemplo, en https://squoosh.app: redimensiona a 396 px y exporta como WebP (`profile.webp`) y como JPG (`profile.jpg`); luego redimensiona a 192 px y exporta como WebP (`profile-192.webp`). No agrandes una imagen más pequeña que esos tamaños.
-3. Sube los tres a `public/images/`, reemplazando los anteriores. En GitHub web: *Add file › Upload files*. No hay que tocar código.
+2. Crea las cinco versiones con **los mismos nombres**. Por ejemplo, en https://squoosh.app: redimensiona a 396 px y exporta como WebP (`profile.webp`) y como JPG (`profile.jpg`); luego redimensiona a 192 px y exporta como WebP (`profile-192.webp`), y a 64 px como WebP y JPG (`profile-64.webp`, `profile-64.jpg`). No agrandes una imagen más pequeña que esos tamaños.
+3. Sube los cinco a `public/images/`, reemplazando los anteriores. En GitHub web: *Add file › Upload files*. No hay que tocar código.
 4. Tras el deploy, recarga con Ctrl/Cmd + Shift + R. El navegador puede tener la foto vieja en caché.
 
-Si usas otros nombres de archivo, cambia también las rutas en `src/views/HomePage.astro`. La imagen que sale al compartir el sitio en redes es otra: `public/og-default.png` (ver [imagenes.md](./imagenes.md)).
+Si usas otros nombres de archivo, cambia también las rutas en `src/views/HomePage.astro` y `src/components/Logo.astro`. La imagen que sale al compartir el sitio en redes es otra: `public/og-default.png` (ver [imagenes.md](./imagenes.md)).
 
 ## Formulario de beta de las apps
 

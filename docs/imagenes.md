@@ -12,10 +12,10 @@ Para los nombres de archivo usa minúsculas, guiones y el nombre de la app delan
 | Imagen al compartir el enlace de la app | `ogImage` | **PNG o JPG** (las redes sociales no aceptan SVG). El ícono a 512×512 funciona bien | `/images/entwine-icon-512.png`, `/images/plantcare-icon-512.png` |
 | Capturas de pantalla | `screenshots` | **Verticales** de teléfono, PNG o JPG, unos 1080×2340 (proporción ~9:19,5). Se recortan a esa proporción. Mejor por debajo de ~500 KB cada una | — |
 | Imagen por defecto al compartir el sitio | `SITE.defaultOgImage` | PNG de **1200×630** | `public/og-default.png` |
-| Foto de perfil (portada) | (sin campo; nombres fijos, ver [textos-y-perfil.md](./textos-y-perfil.md#foto-de-perfil)) | Cuadrada: WebP 396×396 + WebP 192×192 + JPG 396×396 | `public/images/profile.webp`, `profile-192.webp`, `profile.jpg` |
+| Foto de perfil (portada y cabecera) | (sin campo; nombres fijos, ver [textos-y-perfil.md](./textos-y-perfil.md#foto-de-perfil)) | Cuadrada: WebP 396×396 + WebP 192×192 + JPG 396×396 (portada); WebP 64×64 + JPG 64×64 (cabecera) | `public/images/profile.webp`, `profile-192.webp`, `profile.jpg`, `profile-64.webp`, `profile-64.jpg` |
 | Favicon (ícono de la pestaña) | — | SVG | `public/favicon.svg` |
 
-- El logo «ER» de la cabecera es un SVG dentro de `src/components/Logo.astro`. Si lo cambias, cambia también `public/favicon.svg`.
+- El logo de la cabecera (arriba a la izquierda, en todas las páginas) es tu foto en un círculo de 32 px: `src/components/Logo.astro` usa `public/images/profile-64.webp` y `profile-64.jpg`. El ícono de la pestaña del navegador (`public/favicon.svg`) es aparte y todavía es el monograma «ER».
 - Si una app no tiene `logo`, se muestra un ícono Material Symbols (campo `icon`) sobre un degradado violeta.
 - Comprime las imágenes grandes antes de subirlas (por ejemplo con https://squoosh.app). El sitio no las optimiza solo.
 - Los íconos de las apps salen del propio repo de cada app (sus archivos de branding). Usa la versión oficial, no una copia redibujada.

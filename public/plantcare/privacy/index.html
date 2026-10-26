@@ -25,16 +25,16 @@ section,h2[id]{scroll-margin-top:56px}
 <nav><a href="#en">English</a> · <a href="#es">Español</a> · <a href="#fr">Français</a></nav>
 <section id="en" lang="en">
 <h1>PlantCare Journal Privacy Policy</h1>
-<p><strong>Effective date:</strong> October 22, 2026</p>
+<p><strong>Effective date:</strong> October 26, 2026</p>
 <p>PlantCare Journal (&quot;the app&quot;) is a plant care app developed by <strong>Edwin Ramos Madera</strong>, an independent developer based in the Dominican Republic (&quot;I&quot;, &quot;the developer&quot;). The app is free to download and offers an optional paid <strong>Premium</strong> subscription. This policy explains what information the app handles, how it is used, and what control you have over it.</p>
 <h2 id="en-1">1. Summary</h2>
 <ul>
 <li>PlantCare Journal <strong>does not require an account</strong> or sign-in.</li>
 <li>The developer <strong>does not operate any servers</strong> and <strong>does not receive or store</strong> your plants, photos, notes or other content.</li>
 <li>The app contains <strong>no ads, no analytics, no tracking, and no Firebase</strong>.</li>
-<li>Your plants, journal and photos are stored <strong>only on your device</strong>, unless you choose to export a backup.</li>
+<li>Your plants, journal and photos are stored <strong>only on your device</strong>. The app has no backup or export feature.</li>
 <li>Only when you use an <strong>AI feature</strong> (diagnosis, assistant or evolution report) is the necessary information sent directly to the <strong>Google Gemini API</strong>, using an API key that you provide yourself.</li>
-<li>If you subscribe to <strong>Premium</strong>, the purchase is handled by <strong>Google Play</strong>, and the subscription status is checked through <strong>RevenueCat</strong>, a service provider (see section 5).</li>
+<li>If you subscribe to <strong>Premium</strong>, the purchase is processed by <strong>Google Play</strong>. The app only checks your subscription status on your device through Google Play Billing; no other service is involved (see section 5).</li>
 </ul>
 <h2 id="en-2">2. Information stored on your device</h2>
 <p>The app stores locally, in its private storage, the information you enter:</p>
@@ -43,19 +43,18 @@ section,h2[id]{scroll-margin-top:56px}
 <li>Care tasks (watering, pruning, fertilizing, etc.), reminder settings and their history.</li>
 <li>Plant journal entries, notes, tags, humidity estimates, and photos.</li>
 <li>Saved AI diagnoses and evolution reports.</li>
-<li>App preferences (such as language), backup settings and a cached copy of your Premium status.</li>
-<li>Your Google Gemini API key, if you set one. It is kept in the device&#x27;s <strong>secure storage</strong> (Android Keystore-backed, through expo-secure-store), separate from the rest of the app data, and it is never included in backups.</li>
+<li>App preferences (such as language) and a cached copy of your Premium status.</li>
+<li>Your Google Gemini API key, if you set one. It is kept in the device&#x27;s <strong>secure storage</strong> (Android Keystore-backed, through expo-secure-store), separate from the rest of the app data.</li>
 </ul>
-<p>This information never leaves your device except as described in sections 4, 5 and 6. The developer has no access to it.</p>
+<p>This information never leaves your device except as described in section 4. The developer has no access to it.</p>
 <h2 id="en-3">3. Permissions</h2>
 <ul>
 <li><strong>Camera:</strong> to take photos of your plants when you choose to (when adding a plant or a journal entry, or for a diagnosis). Photos are stored locally.</li>
 <li><strong>Photo selection:</strong> you can pick images from your gallery through the system photo picker; the app only accesses the images you select.</li>
 <li><strong>Notifications:</strong> to remind you about care tasks such as watering. Reminders are <strong>scheduled locally on your device</strong>; the app uses no push server and requests no push token. You can turn reminders off in the app or in Android settings.</li>
-<li><strong>Internet:</strong> to send AI requests to Google Gemini and, if you use Premium, to communicate with Google Play and RevenueCat.</li>
-<li><strong>Google Play billing:</strong> added by the Google Play Billing library so you can buy and restore the Premium subscription.</li>
+<li><strong>Internet:</strong> to send AI requests to Google Gemini. Purchases go through the Google Play app on your device.</li>
+<li><strong>Google Play billing:</strong> added by the Google Play Billing library so you can buy the Premium subscription and the app can check whether it is active.</li>
 <li><strong>Clipboard:</strong> only when you tap paste or copy: the app reads the clipboard to paste your Gemini API key, and can copy an AI answer to it. Clipboard content is not stored or sent anywhere else.</li>
-<li><strong>Folder access (backups):</strong> only if you turn on automatic backups, you choose a folder through the Android system folder picker, and the app writes backup files only to that folder.</li>
 </ul>
 <p>The app does not request access to your location, microphone, contacts, or other personal data.</p>
 <h2 id="en-4">4. AI features (Google Gemini)</h2>
@@ -68,36 +67,26 @@ section,h2[id]{scroll-margin-top:56px}
 <p>This data does not pass through any server operated by the developer. Google&#x27;s handling of it is governed by the <a rel="noopener" target="_blank" href="https://ai.google.dev/gemini-api/terms">Gemini API Additional Terms of Service</a> and the <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Google Privacy Policy</a>, under the agreement between you and Google associated with your key. Note that under those terms, for unpaid tiers Google may use submitted content to improve its products. Do not send photos or text containing personal information you do not want to share with Google.</p>
 <p>The evolution report is saved on your device. If you export it as a PDF, the PDF is created on your device and you choose where to share it through the Android share sheet; the developer does not receive it.</p>
 <p>You can delete your saved key at any time from the Settings screen.</p>
-<h2 id="en-5">5. Premium subscription (Google Play and RevenueCat)</h2>
+<h2 id="en-5">5. Premium subscription (Google Play)</h2>
 <p>Premium is an optional auto-renewing subscription sold through <strong>Google Play Billing</strong>. Payment is processed entirely by Google: the app and the developer never see your card or payment details. Google&#x27;s handling of your purchase is governed by the <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
-<p>To check whether your subscription is active, the app uses <strong>RevenueCat</strong> (RevenueCat, Inc.) as a service provider. When billing is available, the app connects to RevenueCat, which receives:</p>
-<ul>
-<li>An <strong>anonymous customer ID</strong> that RevenueCat generates for the app installation. It is not linked to your name or email.</li>
-<li>Your <strong>purchase history and subscription status</strong> for this app as reported by Google Play (product, purchase token, order ID, purchase and expiry dates).</li>
-<li>Technical information that RevenueCat&#x27;s SDK sends with each request, such as app version, device platform and OS version, and the IP address of the connection.</li>
-</ul>
-<p>This information is used only to verify and restore your Premium subscription. RevenueCat processes it on the developer&#x27;s behalf under its <a rel="noopener" target="_blank" href="https://www.revenuecat.com/privacy">Privacy Policy</a>. The developer can see this subscription data in the RevenueCat dashboard but does not use it for advertising or tracking.</p>
+<p>To unlock Premium, the app asks Google Play, <strong>on your device</strong>, whether this Google account has an active subscription, and keeps a cached copy of that status on the device. The app does not send your purchase information to the developer or to any other service, and it uses no third-party subscription service.</p>
+<p>As the seller, the developer receives from Google, in Google Play Console, the order records that Google provides for every sale (for example order ID, product, price, date and country). They are used only for sales accounting, refunds and support, never for advertising or tracking.</p>
 <p>You can manage or cancel your subscription at any time in <strong>Google Play → Payments &amp; subscriptions → Subscriptions</strong>, or from the Premium screen in the app. Uninstalling the app does not cancel a subscription.</p>
-<h2 id="en-6">6. Backups</h2>
-<ul>
-<li><strong>Manual export and import:</strong> you can export all your app data (plants, tasks, journal, diagnoses, evolution reports, settings and photos) to a backup file and share or save it where you choose through the Android share sheet. You can restore it later by picking the file with the system file picker.</li>
-<li><strong>Weekly automatic backup (Premium):</strong> if you turn it on, the app writes a backup file about once a week to a folder <strong>you choose</strong> with the Android folder picker (Storage Access Framework), and keeps only the most recent copies you set.</li>
-</ul>
-<p>Backup files do not contain your Gemini API key. They go only where you send them; the developer never receives them. If you save them to a cloud folder, that provider&#x27;s terms apply. Keep them safe, as they contain your photos and notes.</p>
+<h2 id="en-6">6. No backups</h2>
+<p>The app has <strong>no backup, export or import feature</strong>, and it disables Android cloud backup of its data. Your plants, journal, photos and settings exist only on your device: if you uninstall the app, clear its data or reset it, they are <strong>permanently lost</strong> and cannot be recovered by the developer. The only file the app creates for you is the evolution report PDF, which you choose to share (section 4).</p>
 <h2 id="en-7">7. Data sharing</h2>
-<p>The developer does not sell or rent your data and does not share it for advertising. Data reaches third parties only as described above: requests you start to Google Gemini (section 4), purchase handling by Google Play and subscription verification by RevenueCat as a service provider (section 5), and backup files you choose to share (section 6).</p>
+<p>The developer does not sell or rent your data and does not share it for advertising. Data reaches third parties only as described above: requests you start to Google Gemini (section 4) and purchase processing by Google Play (section 5).</p>
 <h2 id="en-8">8. Retention and deletion</h2>
 <p>Your data stays on your device until you delete it. You can:</p>
 <ul>
 <li>Reset the app to a clean install from Settings. This deletes your plants, journal, photos, diagnoses, reports and API key, and cancels scheduled reminders.</li>
 <li>Delete your API key from Settings.</li>
 <li>Clear the app&#x27;s data in Android settings, or <strong>uninstall the app</strong>, which deletes all of its local data.</li>
-<li>Delete any backup files you exported, from the folder or service where you saved them.</li>
 </ul>
-<p><strong>Subscription data (RevenueCat):</strong> RevenueCat keeps subscription records while they are needed to provide and verify the subscription and as required by law. To request deletion, email <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> with the <strong>Google Play order ID</strong> of your purchase (it starts with <code>GPA.</code> and appears in your Google Play purchase receipt and order history), because the app does not show a customer ID. I will delete the matching customer record in RevenueCat within 30 days of your request at the latest, and confirm by email. Google keeps its own purchase records under the Google Privacy Policy.</p>
+<p><strong>Purchase data:</strong> the developer keeps no purchase data of its own. Google keeps purchase and subscription records under the Google Privacy Policy. The order records that Google shows the developer in Play Console are kept by Google and cannot be deleted by the developer. For any privacy question or request, email <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (if it is about a purchase, include the <strong>Google Play order ID</strong>, which starts with <code>GPA.</code>). I will reply within 30 days at the latest.</p>
 <p>For data already sent to Google Gemini, see Google&#x27;s policies for your API key.</p>
 <h2 id="en-9">9. Security</h2>
-<p>Communication with Google Gemini, Google Play and RevenueCat uses HTTPS. Your API key is kept in the device&#x27;s secure storage. Local data is protected by Android&#x27;s app storage sandbox, and the app disables Android cloud backup of its data. We recommend protecting your device with a screen lock.</p>
+<p>Communication with Google Gemini and Google Play uses HTTPS. Your API key is kept in the device&#x27;s secure storage. Local data is protected by Android&#x27;s app storage sandbox, and the app disables Android cloud backup of its data. We recommend protecting your device with a screen lock.</p>
 <h2 id="en-10">10. Children</h2>
 <p>PlantCare Journal is intended for adults <strong>18 and over</strong>, in line with the Google Gemini API terms. It is not directed to children and does not knowingly collect information from children.</p>
 <h2 id="en-11">11. Changes to this policy</h2>
@@ -109,16 +98,16 @@ section,h2[id]{scroll-margin-top:56px}
 <hr>
 <section id="es" lang="es">
 <h1>Política de Privacidad de PlantCare Journal</h1>
-<p><strong>Fecha de entrada en vigor:</strong> 22 de octubre de 2026</p>
+<p><strong>Fecha de entrada en vigor:</strong> 26 de octubre de 2026</p>
 <p>PlantCare Journal (&quot;la app&quot;) es una aplicación de cuidado de plantas desarrollada por <strong>Edwin Ramos Madera</strong>, desarrollador independiente con sede en la República Dominicana (&quot;yo&quot;, &quot;el desarrollador&quot;). La app se descarga gratis y ofrece una suscripción de pago opcional, <strong>Premium</strong>. Esta política explica qué información maneja la app, cómo se usa y qué control tienes sobre ella.</p>
 <h2 id="es-1">1. Resumen</h2>
 <ul>
 <li>PlantCare Journal <strong>no requiere crear una cuenta</strong> ni iniciar sesión.</li>
 <li>El desarrollador <strong>no opera servidores propios</strong> y <strong>no recibe ni almacena</strong> tus plantas, fotos, notas ni otro contenido.</li>
 <li>La app <strong>no incluye publicidad, analítica, rastreo ni Firebase</strong>.</li>
-<li>Tus plantas, tu diario y tus fotos se guardan <strong>solo en tu dispositivo</strong>, salvo que decidas exportar una copia de seguridad.</li>
+<li>Tus plantas, tu diario y tus fotos se guardan <strong>solo en tu dispositivo</strong>. La app no tiene función de copia de seguridad ni de exportación.</li>
 <li>Solo cuando usas una <strong>función de IA</strong> (diagnóstico, asistente o informe de evolución), la información necesaria se envía directamente a <strong>Google Gemini API</strong>, usando una clave de API que tú mismo proporcionas.</li>
-<li>Si te suscribes a <strong>Premium</strong>, la compra la gestiona <strong>Google Play</strong> y el estado de la suscripción se comprueba mediante <strong>RevenueCat</strong>, un proveedor de servicios (ver sección 5).</li>
+<li>Si te suscribes a <strong>Premium</strong>, la compra la procesa <strong>Google Play</strong>. La app solo comprueba el estado de tu suscripción en tu dispositivo mediante Google Play Billing; no interviene ningún otro servicio (ver sección 5).</li>
 </ul>
 <h2 id="es-2">2. Información que se guarda en tu dispositivo</h2>
 <p>La app guarda localmente, en su almacenamiento interno, la información que tú introduces:</p>
@@ -127,19 +116,18 @@ section,h2[id]{scroll-margin-top:56px}
 <li>Tareas de cuidado (riego, poda, abono, etc.), la configuración de recordatorios y su historial.</li>
 <li>Entradas del diario botánico, notas, etiquetas, estimaciones de humedad y fotografías.</li>
 <li>Diagnósticos de IA e informes de evolución guardados.</li>
-<li>Preferencias de la app (por ejemplo, el idioma), la configuración de copias de seguridad y una copia en caché de tu estado Premium.</li>
-<li>Tu clave de API de Google Gemini, si la configuras. Se guarda en el <strong>almacenamiento seguro</strong> del dispositivo (respaldado por Android Keystore, mediante expo-secure-store), separada del resto de los datos, y nunca se incluye en las copias de seguridad.</li>
+<li>Preferencias de la app (por ejemplo, el idioma) y una copia en caché de tu estado Premium.</li>
+<li>Tu clave de API de Google Gemini, si la configuras. Se guarda en el <strong>almacenamiento seguro</strong> del dispositivo (respaldado por Android Keystore, mediante expo-secure-store), separada del resto de los datos.</li>
 </ul>
-<p>Esta información no sale de tu dispositivo salvo en los casos descritos en las secciones 4, 5 y 6. El desarrollador no tiene acceso a ella.</p>
+<p>Esta información no sale de tu dispositivo salvo en los casos descritos en la sección 4. El desarrollador no tiene acceso a ella.</p>
 <h2 id="es-3">3. Permisos</h2>
 <ul>
 <li><strong>Cámara:</strong> para tomar fotos de tus plantas cuando tú lo decides (al añadir una planta o una entrada del diario, o para un diagnóstico). Las fotos se guardan localmente.</li>
 <li><strong>Selección de fotos:</strong> puedes elegir imágenes de tu galería mediante el selector de fotos del sistema; la app solo accede a las imágenes que tú selecciones.</li>
 <li><strong>Notificaciones:</strong> para recordarte tareas de cuidado como el riego. Los recordatorios se <strong>programan localmente en tu dispositivo</strong>; la app no usa un servidor de notificaciones push ni solicita un token push. Puedes desactivarlos en la app o en los ajustes de Android.</li>
-<li><strong>Internet:</strong> para enviar las solicitudes de IA a Google Gemini y, si usas Premium, para comunicarse con Google Play y RevenueCat.</li>
-<li><strong>Facturación de Google Play:</strong> lo añade la biblioteca de Google Play Billing para que puedas comprar y restaurar la suscripción Premium.</li>
+<li><strong>Internet:</strong> para enviar las solicitudes de IA a Google Gemini. Las compras pasan por la app de Google Play de tu dispositivo.</li>
+<li><strong>Facturación de Google Play:</strong> lo añade la biblioteca de Google Play Billing para que puedas comprar la suscripción Premium y la app pueda comprobar si está activa.</li>
 <li><strong>Portapapeles:</strong> solo cuando tocas pegar o copiar: la app lee el portapapeles para pegar tu clave de API de Gemini y puede copiar en él una respuesta de la IA. Ese contenido no se guarda ni se envía a ningún otro lugar.</li>
-<li><strong>Acceso a una carpeta (copias de seguridad):</strong> solo si activas las copias automáticas, eliges una carpeta con el selector de carpetas del sistema Android, y la app escribe las copias únicamente en esa carpeta.</li>
 </ul>
 <p>La app no solicita acceso a tu ubicación, micrófono, contactos ni otros datos personales.</p>
 <h2 id="es-4">4. Funciones de IA (Google Gemini)</h2>
@@ -152,36 +140,26 @@ section,h2[id]{scroll-margin-top:56px}
 <p>Estos datos no pasan por ningún servidor del desarrollador. Su tratamiento por parte de Google se rige por los <a rel="noopener" target="_blank" href="https://ai.google.dev/gemini-api/terms">Términos adicionales de la API de Gemini</a> y la <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Política de Privacidad de Google</a>, según el acuerdo entre tú y Google asociado a tu clave. Ten en cuenta que, según esos términos, en los niveles gratuitos Google puede usar el contenido enviado para mejorar sus productos. No envíes fotos ni textos con información personal que no quieras compartir con Google.</p>
 <p>El informe de evolución se guarda en tu dispositivo. Si lo exportas como PDF, el PDF se crea en tu dispositivo y tú eliges dónde compartirlo con el menú de compartir de Android; el desarrollador no lo recibe.</p>
 <p>Puedes eliminar tu clave guardada en cualquier momento desde la pantalla de Configuración.</p>
-<h2 id="es-5">5. Suscripción Premium (Google Play y RevenueCat)</h2>
+<h2 id="es-5">5. Suscripción Premium (Google Play)</h2>
 <p>Premium es una suscripción opcional de renovación automática que se vende mediante <strong>Google Play Billing</strong>. El pago lo procesa íntegramente Google: ni la app ni el desarrollador ven tu tarjeta ni tus datos de pago. El tratamiento de tu compra por parte de Google se rige por la <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Política de Privacidad de Google</a>.</p>
-<p>Para comprobar si tu suscripción está activa, la app usa <strong>RevenueCat</strong> (RevenueCat, Inc.) como proveedor de servicios. Cuando la facturación está disponible, la app se conecta a RevenueCat, que recibe:</p>
-<ul>
-<li>Un <strong>ID de cliente anónimo</strong> que RevenueCat genera para la instalación de la app. No está vinculado a tu nombre ni a tu correo.</li>
-<li>Tu <strong>historial de compras y el estado de tu suscripción</strong> en esta app, según los informa Google Play (producto, token de compra, ID de pedido, fechas de compra y de vencimiento).</li>
-<li>Información técnica que el SDK de RevenueCat envía con cada solicitud, como la versión de la app, la plataforma y versión del sistema operativo, y la dirección IP de la conexión.</li>
-</ul>
-<p>Esta información se usa solo para verificar y restaurar tu suscripción Premium. RevenueCat la trata por cuenta del desarrollador según su <a rel="noopener" target="_blank" href="https://www.revenuecat.com/privacy">Política de Privacidad</a>. El desarrollador puede ver estos datos de suscripción en el panel de RevenueCat, pero no los usa para publicidad ni rastreo.</p>
+<p>Para activar Premium, la app pregunta a Google Play, <strong>en tu dispositivo</strong>, si esta cuenta de Google tiene una suscripción activa, y guarda una copia en caché de ese estado en el dispositivo. La app no envía tu información de compra al desarrollador ni a ningún otro servicio, y no usa servicios de suscripción de terceros.</p>
+<p>Como vendedor, el desarrollador recibe de Google, en Google Play Console, los registros de pedido que Google proporciona de cada venta (por ejemplo, ID de pedido, producto, precio, fecha y país). Se usan solo para la contabilidad de ventas, reembolsos y soporte, nunca para publicidad ni rastreo.</p>
 <p>Puedes gestionar o cancelar tu suscripción en cualquier momento en <strong>Google Play → Pagos y suscripciones → Suscripciones</strong>, o desde la pantalla Premium de la app. Desinstalar la app no cancela la suscripción.</p>
-<h2 id="es-6">6. Copias de seguridad</h2>
-<ul>
-<li><strong>Exportar e importar manualmente:</strong> puedes exportar todos los datos de la app (plantas, tareas, diario, diagnósticos, informes de evolución, configuración y fotos) a un archivo de copia de seguridad y compartirlo o guardarlo donde quieras con el menú de compartir de Android. Puedes restaurarlo después eligiendo el archivo con el selector de archivos del sistema.</li>
-<li><strong>Copia automática semanal (Premium):</strong> si la activas, la app escribe un archivo de copia aproximadamente una vez por semana en una carpeta <strong>que tú eliges</strong> con el selector de carpetas de Android (Storage Access Framework), y conserva solo las copias más recientes que indiques.</li>
-</ul>
-<p>Las copias de seguridad no contienen tu clave de API de Gemini. Solo van a donde tú las envías; el desarrollador nunca las recibe. Si las guardas en una carpeta en la nube, se aplican los términos de ese proveedor. Guárdalas con cuidado, porque contienen tus fotos y notas.</p>
+<h2 id="es-6">6. Sin copias de seguridad</h2>
+<p>La app <strong>no tiene función de copia de seguridad, exportación ni importación</strong>, y desactiva la copia de seguridad en la nube de Android para sus datos. Tus plantas, diario, fotos y configuración existen solo en tu dispositivo: si desinstalas la app, borras sus datos o la restableces, se <strong>pierden para siempre</strong> y el desarrollador no puede recuperarlos. El único archivo que la app crea para ti es el PDF del informe de evolución, que tú decides compartir (sección 4).</p>
 <h2 id="es-7">7. Compartición de datos</h2>
-<p>El desarrollador no vende ni alquila tus datos y no los comparte con fines publicitarios. Los datos solo llegan a terceros en los casos descritos arriba: las solicitudes que tú inicias a Google Gemini (sección 4), la gestión de la compra por Google Play y la verificación de la suscripción por RevenueCat como proveedor de servicios (sección 5), y las copias de seguridad que tú decides compartir (sección 6).</p>
+<p>El desarrollador no vende ni alquila tus datos y no los comparte con fines publicitarios. Los datos solo llegan a terceros en los casos descritos arriba: las solicitudes que tú inicias a Google Gemini (sección 4) y el procesamiento de la compra por Google Play (sección 5).</p>
 <h2 id="es-8">8. Conservación y eliminación</h2>
 <p>Tus datos permanecen en tu dispositivo hasta que tú los borres. Puedes:</p>
 <ul>
 <li>Restablecer la app a una instalación limpia desde Configuración. Esto borra tus plantas, diario, fotos, diagnósticos, informes y clave de API, y cancela los recordatorios programados.</li>
 <li>Eliminar tu clave de API desde Configuración.</li>
 <li>Borrar los datos de la app desde los ajustes de Android, o <strong>desinstalar la app</strong>, lo que elimina todos sus datos locales.</li>
-<li>Borrar las copias de seguridad que hayas exportado, desde la carpeta o el servicio donde las guardaste.</li>
 </ul>
-<p><strong>Datos de suscripción (RevenueCat):</strong> RevenueCat conserva los registros de suscripción mientras sean necesarios para prestar y verificar la suscripción y según lo exija la ley. Para solicitar su eliminación, escribe a <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> indicando el <strong>ID de pedido de Google Play</strong> de tu compra (empieza por <code>GPA.</code> y aparece en el recibo de compra y en el historial de pedidos de Google Play), ya que la app no muestra un ID de cliente. Eliminaré el registro de cliente correspondiente en RevenueCat en un plazo máximo de 30 días desde tu solicitud y te lo confirmaré por correo. Google conserva sus propios registros de compra según la Política de Privacidad de Google.</p>
+<p><strong>Datos de compra:</strong> el desarrollador no guarda datos de compra propios. Google conserva los registros de compra y suscripción según la Política de Privacidad de Google. Los registros de pedido que Google muestra al desarrollador en Play Console los conserva Google y el desarrollador no puede eliminarlos. Para cualquier pregunta o solicitud de privacidad, escribe a <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (si se refiere a una compra, indica el <strong>ID de pedido de Google Play</strong>, que empieza por <code>GPA.</code>). Te responderé en un plazo máximo de 30 días.</p>
 <p>Para datos ya enviados a Google Gemini, consulta las políticas de Google para tu clave de API.</p>
 <h2 id="es-9">9. Seguridad</h2>
-<p>Las comunicaciones con Google Gemini, Google Play y RevenueCat usan HTTPS. Tu clave de API se guarda en el almacenamiento seguro del dispositivo. Los datos locales están protegidos por el aislamiento de almacenamiento de Android, y la app desactiva la copia de seguridad en la nube de Android para sus datos. Te recomendamos proteger tu dispositivo con bloqueo de pantalla.</p>
+<p>Las comunicaciones con Google Gemini y Google Play usan HTTPS. Tu clave de API se guarda en el almacenamiento seguro del dispositivo. Los datos locales están protegidos por el aislamiento de almacenamiento de Android, y la app desactiva la copia de seguridad en la nube de Android para sus datos. Te recomendamos proteger tu dispositivo con bloqueo de pantalla.</p>
 <h2 id="es-10">10. Menores</h2>
 <p>PlantCare Journal está pensada para personas adultas <strong>mayores de 18 años</strong>, de acuerdo con los términos de la API de Google Gemini. No está dirigida a niños y no recopila conscientemente información de menores.</p>
 <h2 id="es-11">11. Cambios en esta política</h2>
@@ -193,16 +171,16 @@ section,h2[id]{scroll-margin-top:56px}
 <hr>
 <section id="fr" lang="fr">
 <h1>Politique de confidentialité de PlantCare Journal</h1>
-<p><strong>Date d&#x27;entrée en vigueur :</strong> 22 octobre 2026</p>
+<p><strong>Date d&#x27;entrée en vigueur :</strong> 26 octobre 2026</p>
 <p>PlantCare Journal (« l&#x27;application ») est une application d&#x27;entretien des plantes développée par <strong>Edwin Ramos Madera</strong>, développeur indépendant établi en République dominicaine (« je », « le développeur »). L&#x27;application est gratuite et propose un abonnement payant facultatif, <strong>Premium</strong>. Cette politique explique quelles informations l&#x27;application traite, comment elles sont utilisées et quel contrôle vous avez sur elles.</p>
 <h2 id="fr-1">1. En bref</h2>
 <ul>
 <li>PlantCare Journal <strong>ne nécessite aucun compte</strong> ni connexion.</li>
 <li>Le développeur <strong>n&#x27;exploite aucun serveur</strong> et <strong>ne reçoit ni ne stocke</strong> vos plantes, photos, notes ou autres contenus.</li>
 <li>L&#x27;application ne contient <strong>ni publicité, ni outils d&#x27;analyse, ni suivi, ni Firebase</strong>.</li>
-<li>Vos plantes, votre journal et vos photos sont stockés <strong>uniquement sur votre appareil</strong>, sauf si vous choisissez d&#x27;exporter une sauvegarde.</li>
+<li>Vos plantes, votre journal et vos photos sont stockés <strong>uniquement sur votre appareil</strong>. L&#x27;application n&#x27;a aucune fonction de sauvegarde ni d&#x27;export.</li>
 <li>Ce n&#x27;est que lorsque vous utilisez une <strong>fonction d&#x27;IA</strong> (diagnostic, assistant ou rapport d&#x27;évolution) que les informations nécessaires sont envoyées directement à l&#x27;<strong>API Google Gemini</strong>, avec une clé d&#x27;API que vous fournissez vous-même.</li>
-<li>Si vous vous abonnez à <strong>Premium</strong>, l&#x27;achat est géré par <strong>Google Play</strong> et l&#x27;état de l&#x27;abonnement est vérifié via <strong>RevenueCat</strong>, un prestataire de services (voir la section 5).</li>
+<li>Si vous vous abonnez à <strong>Premium</strong>, l&#x27;achat est traité par <strong>Google Play</strong>. L&#x27;application vérifie seulement l&#x27;état de votre abonnement sur votre appareil via Google Play Billing ; aucun autre service n&#x27;intervient (voir la section 5).</li>
 </ul>
 <h2 id="fr-2">2. Informations stockées sur votre appareil</h2>
 <p>L&#x27;application stocke localement, dans son espace de stockage privé, les informations que vous saisissez :</p>
@@ -211,19 +189,18 @@ section,h2[id]{scroll-margin-top:56px}
 <li>Les tâches d&#x27;entretien (arrosage, taille, engrais, etc.), les réglages des rappels et leur historique.</li>
 <li>Les entrées du journal botanique, notes, étiquettes, estimations d&#x27;humidité et photos.</li>
 <li>Les diagnostics IA et rapports d&#x27;évolution enregistrés.</li>
-<li>Les préférences de l&#x27;application (par exemple la langue), les réglages de sauvegarde et une copie en cache de votre statut Premium.</li>
-<li>Votre clé d&#x27;API Google Gemini, si vous en configurez une. Elle est conservée dans le <strong>stockage sécurisé</strong> de l&#x27;appareil (adossé à Android Keystore, via expo-secure-store), séparément des autres données, et n&#x27;est jamais incluse dans les sauvegardes.</li>
+<li>Les préférences de l&#x27;application (par exemple la langue) et une copie en cache de votre statut Premium.</li>
+<li>Votre clé d&#x27;API Google Gemini, si vous en configurez une. Elle est conservée dans le <strong>stockage sécurisé</strong> de l&#x27;appareil (adossé à Android Keystore, via expo-secure-store), séparément des autres données.</li>
 </ul>
-<p>Ces informations ne quittent jamais votre appareil, sauf dans les cas décrits aux sections 4, 5 et 6. Le développeur n&#x27;y a pas accès.</p>
+<p>Ces informations ne quittent jamais votre appareil, sauf dans les cas décrits à la section 4. Le développeur n&#x27;y a pas accès.</p>
 <h2 id="fr-3">3. Autorisations</h2>
 <ul>
 <li><strong>Appareil photo :</strong> pour photographier vos plantes lorsque vous le décidez (ajout d&#x27;une plante ou d&#x27;une entrée de journal, ou pour un diagnostic). Les photos sont stockées localement.</li>
 <li><strong>Sélection de photos :</strong> vous pouvez choisir des images de votre galerie via le sélecteur de photos du système ; l&#x27;application n&#x27;accède qu&#x27;aux images que vous sélectionnez.</li>
 <li><strong>Notifications :</strong> pour vous rappeler les tâches d&#x27;entretien comme l&#x27;arrosage. Les rappels sont <strong>programmés localement sur votre appareil</strong> ; l&#x27;application n&#x27;utilise aucun serveur de notifications push et ne demande aucun jeton push. Vous pouvez les désactiver dans l&#x27;application ou dans les paramètres Android.</li>
-<li><strong>Internet :</strong> pour envoyer les requêtes d&#x27;IA à Google Gemini et, si vous utilisez Premium, pour communiquer avec Google Play et RevenueCat.</li>
-<li><strong>Facturation Google Play :</strong> ajoutée par la bibliothèque Google Play Billing pour que vous puissiez acheter et restaurer l&#x27;abonnement Premium.</li>
+<li><strong>Internet :</strong> pour envoyer les requêtes d&#x27;IA à Google Gemini. Les achats passent par l&#x27;application Google Play de votre appareil.</li>
+<li><strong>Facturation Google Play :</strong> ajoutée par la bibliothèque Google Play Billing pour que vous puissiez acheter l&#x27;abonnement Premium et que l&#x27;application puisse vérifier s&#x27;il est actif.</li>
 <li><strong>Presse-papiers :</strong> uniquement lorsque vous appuyez sur coller ou copier : l&#x27;application lit le presse-papiers pour coller votre clé API Gemini et peut y copier une réponse de l&#x27;IA. Ce contenu n&#x27;est ni stocké ni envoyé ailleurs.</li>
-<li><strong>Accès à un dossier (sauvegardes) :</strong> uniquement si vous activez les sauvegardes automatiques, vous choisissez un dossier avec le sélecteur de dossiers du système Android, et l&#x27;application n&#x27;écrit les sauvegardes que dans ce dossier.</li>
 </ul>
 <p>L&#x27;application ne demande pas l&#x27;accès à votre position, à votre micro, à vos contacts ni à d&#x27;autres données personnelles.</p>
 <h2 id="fr-4">4. Fonctions d&#x27;IA (Google Gemini)</h2>
@@ -236,36 +213,26 @@ section,h2[id]{scroll-margin-top:56px}
 <p>Ces données ne transitent par aucun serveur du développeur. Leur traitement par Google est régi par les <a rel="noopener" target="_blank" href="https://ai.google.dev/gemini-api/terms">Conditions d&#x27;utilisation supplémentaires de l&#x27;API Gemini</a> et les <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Règles de confidentialité de Google</a>, selon l&#x27;accord entre vous et Google associé à votre clé. Notez que, selon ces conditions, pour les niveaux gratuits Google peut utiliser le contenu envoyé pour améliorer ses produits. N&#x27;envoyez pas de photos ou de textes contenant des informations personnelles que vous ne souhaitez pas partager avec Google.</p>
 <p>Le rapport d&#x27;évolution est enregistré sur votre appareil. Si vous l&#x27;exportez en PDF, le PDF est créé sur votre appareil et vous choisissez où le partager via le menu de partage d&#x27;Android ; le développeur ne le reçoit pas.</p>
 <p>Vous pouvez supprimer votre clé enregistrée à tout moment depuis l&#x27;écran Paramètres.</p>
-<h2 id="fr-5">5. Abonnement Premium (Google Play et RevenueCat)</h2>
+<h2 id="fr-5">5. Abonnement Premium (Google Play)</h2>
 <p>Premium est un abonnement facultatif à renouvellement automatique vendu via <strong>Google Play Billing</strong>. Le paiement est entièrement traité par Google : ni l&#x27;application ni le développeur ne voient votre carte ou vos données de paiement. Le traitement de votre achat par Google est régi par les <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Règles de confidentialité de Google</a>.</p>
-<p>Pour vérifier si votre abonnement est actif, l&#x27;application utilise <strong>RevenueCat</strong> (RevenueCat, Inc.) comme prestataire de services. Lorsque la facturation est disponible, l&#x27;application se connecte à RevenueCat, qui reçoit :</p>
-<ul>
-<li>Un <strong>identifiant client anonyme</strong> que RevenueCat génère pour l&#x27;installation de l&#x27;application. Il n&#x27;est lié ni à votre nom ni à votre adresse e-mail.</li>
-<li>Votre <strong>historique d&#x27;achats et l&#x27;état de votre abonnement</strong> pour cette application, tels que transmis par Google Play (produit, jeton d&#x27;achat, numéro de commande, dates d&#x27;achat et d&#x27;expiration).</li>
-<li>Des informations techniques que le SDK de RevenueCat envoie avec chaque requête, comme la version de l&#x27;application, la plateforme et la version du système d&#x27;exploitation, et l&#x27;adresse IP de la connexion.</li>
-</ul>
-<p>Ces informations servent uniquement à vérifier et restaurer votre abonnement Premium. RevenueCat les traite pour le compte du développeur conformément à sa <a rel="noopener" target="_blank" href="https://www.revenuecat.com/privacy">Politique de confidentialité</a>. Le développeur peut consulter ces données d&#x27;abonnement dans le tableau de bord RevenueCat, mais ne les utilise ni pour la publicité ni pour le suivi.</p>
+<p>Pour activer Premium, l&#x27;application demande à Google Play, <strong>sur votre appareil</strong>, si ce compte Google a un abonnement actif, et conserve une copie en cache de ce statut sur l&#x27;appareil. L&#x27;application n&#x27;envoie vos informations d&#x27;achat ni au développeur ni à aucun autre service, et n&#x27;utilise aucun service d&#x27;abonnement tiers.</p>
+<p>En tant que vendeur, le développeur reçoit de Google, dans la Google Play Console, les enregistrements de commande que Google fournit pour chaque vente (par exemple numéro de commande, produit, prix, date et pays). Ils servent uniquement à la comptabilité des ventes, aux remboursements et à l&#x27;assistance, jamais à la publicité ni au suivi.</p>
 <p>Vous pouvez gérer ou résilier votre abonnement à tout moment dans <strong>Google Play → Paiements et abonnements → Abonnements</strong>, ou depuis l&#x27;écran Premium de l&#x27;application. Désinstaller l&#x27;application ne résilie pas l&#x27;abonnement.</p>
-<h2 id="fr-6">6. Sauvegardes</h2>
-<ul>
-<li><strong>Export et import manuels :</strong> vous pouvez exporter toutes les données de l&#x27;application (plantes, tâches, journal, diagnostics, rapports d&#x27;évolution, réglages et photos) dans un fichier de sauvegarde et le partager ou l&#x27;enregistrer où vous voulez via le menu de partage d&#x27;Android. Vous pouvez le restaurer plus tard en choisissant le fichier avec le sélecteur de fichiers du système.</li>
-<li><strong>Sauvegarde automatique hebdomadaire (Premium) :</strong> si vous l&#x27;activez, l&#x27;application écrit un fichier de sauvegarde environ une fois par semaine dans un dossier <strong>que vous choisissez</strong> avec le sélecteur de dossiers d&#x27;Android (Storage Access Framework), et ne conserve que le nombre de copies récentes que vous indiquez.</li>
-</ul>
-<p>Les sauvegardes ne contiennent pas votre clé d&#x27;API Gemini. Elles ne vont que là où vous les envoyez ; le développeur ne les reçoit jamais. Si vous les enregistrez dans un dossier cloud, les conditions de ce fournisseur s&#x27;appliquent. Conservez-les avec soin, car elles contiennent vos photos et vos notes.</p>
+<h2 id="fr-6">6. Pas de sauvegarde</h2>
+<p>L&#x27;application <strong>n&#x27;a aucune fonction de sauvegarde, d&#x27;export ni d&#x27;import</strong>, et elle désactive la sauvegarde cloud d&#x27;Android pour ses données. Vos plantes, votre journal, vos photos et vos réglages n&#x27;existent que sur votre appareil : si vous désinstallez l&#x27;application, effacez ses données ou la réinitialisez, ils sont <strong>définitivement perdus</strong> et le développeur ne peut pas les récupérer. Le seul fichier que l&#x27;application crée pour vous est le PDF du rapport d&#x27;évolution, que vous choisissez de partager (section 4).</p>
 <h2 id="fr-7">7. Partage des données</h2>
-<p>Le développeur ne vend ni ne loue vos données et ne les partage pas à des fins publicitaires. Les données ne parviennent à des tiers que dans les cas décrits ci-dessus : les requêtes que vous lancez vers Google Gemini (section 4), la gestion de l&#x27;achat par Google Play et la vérification de l&#x27;abonnement par RevenueCat en tant que prestataire de services (section 5), et les sauvegardes que vous choisissez de partager (section 6).</p>
+<p>Le développeur ne vend ni ne loue vos données et ne les partage pas à des fins publicitaires. Les données ne parviennent à des tiers que dans les cas décrits ci-dessus : les requêtes que vous lancez vers Google Gemini (section 4) et le traitement de l&#x27;achat par Google Play (section 5).</p>
 <h2 id="fr-8">8. Conservation et suppression</h2>
 <p>Vos données restent sur votre appareil jusqu&#x27;à ce que vous les supprimiez. Vous pouvez :</p>
 <ul>
 <li>Réinitialiser l&#x27;application (installation vierge) depuis les Paramètres. Cela supprime vos plantes, votre journal, vos photos, diagnostics, rapports et votre clé d&#x27;API, et annule les rappels programmés.</li>
 <li>Supprimer votre clé d&#x27;API depuis les Paramètres.</li>
 <li>Effacer les données de l&#x27;application dans les paramètres Android, ou <strong>désinstaller l&#x27;application</strong>, ce qui supprime toutes ses données locales.</li>
-<li>Supprimer les sauvegardes que vous avez exportées, depuis le dossier ou le service où vous les avez enregistrées.</li>
 </ul>
-<p><strong>Données d&#x27;abonnement (RevenueCat) :</strong> RevenueCat conserve les enregistrements d&#x27;abonnement tant qu&#x27;ils sont nécessaires pour fournir et vérifier l&#x27;abonnement et dans la mesure exigée par la loi. Pour en demander la suppression, écrivez à <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> en indiquant le <strong>numéro de commande Google Play</strong> de votre achat (il commence par <code>GPA.</code> et figure sur votre reçu d&#x27;achat et dans l&#x27;historique des commandes Google Play), car l&#x27;application n&#x27;affiche pas d&#x27;identifiant client. Je supprimerai l&#x27;enregistrement client correspondant dans RevenueCat dans un délai maximal de 30 jours à compter de votre demande, et vous le confirmerai par e-mail. Google conserve ses propres enregistrements d&#x27;achat selon les Règles de confidentialité de Google.</p>
+<p><strong>Données d&#x27;achat :</strong> le développeur ne conserve aucune donnée d&#x27;achat propre. Google conserve les enregistrements d&#x27;achat et d&#x27;abonnement selon les Règles de confidentialité de Google. Les enregistrements de commande que Google affiche au développeur dans la Play Console sont conservés par Google et le développeur ne peut pas les supprimer. Pour toute question ou demande relative à la confidentialité, écrivez à <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (s&#x27;il s&#x27;agit d&#x27;un achat, indiquez le <strong>numéro de commande Google Play</strong>, qui commence par <code>GPA.</code>). Je vous répondrai dans un délai maximal de 30 jours.</p>
 <p>Pour les données déjà envoyées à Google Gemini, consultez les règles de Google applicables à votre clé d&#x27;API.</p>
 <h2 id="fr-9">9. Sécurité</h2>
-<p>Les communications avec Google Gemini, Google Play et RevenueCat utilisent HTTPS. Votre clé d&#x27;API est conservée dans le stockage sécurisé de l&#x27;appareil. Les données locales sont protégées par le cloisonnement du stockage des applications Android, et l&#x27;application désactive la sauvegarde cloud d&#x27;Android pour ses données. Nous vous recommandons de protéger votre appareil par un verrouillage d&#x27;écran.</p>
+<p>Les communications avec Google Gemini et Google Play utilisent HTTPS. Votre clé d&#x27;API est conservée dans le stockage sécurisé de l&#x27;appareil. Les données locales sont protégées par le cloisonnement du stockage des applications Android, et l&#x27;application désactive la sauvegarde cloud d&#x27;Android pour ses données. Nous vous recommandons de protéger votre appareil par un verrouillage d&#x27;écran.</p>
 <h2 id="fr-10">10. Enfants</h2>
 <p>PlantCare Journal est destinée aux adultes de <strong>18 ans et plus</strong>, conformément aux conditions de l&#x27;API Google Gemini. Elle ne s&#x27;adresse pas aux enfants et ne collecte pas sciemment d&#x27;informations les concernant.</p>
 <h2 id="fr-11">11. Modifications de cette politique</h2>

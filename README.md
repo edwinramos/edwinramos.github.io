@@ -59,7 +59,7 @@ Contenido de ejemplo: `example: true` muestra la etiqueta **EJEMPLO**; en las po
 | `SITE.base` | `'/'` | — | Solo cámbialo si el repo **no** se llama `<usuario>.github.io` |
 | `SITE.github` | `https://github.com/<usuario>` | Tu perfil | Opcional |
 | `SITE.instagram` | `https://www.instagram.com/<usuario>` | Tu perfil de Instagram | Opcional (el botón se oculta hasta que se llene) |
-| `FORMS.default` (o `contact`, `beta`) | ID de Formspree (lo que va después de `/f/`) | https://formspree.io | Opcional (sin ID, los formularios abren el correo del visitante con `mailto:`) |
+| `FORMS.default` (o `beta`) | ID de Formspree (lo que va después de `/f/`) | https://formspree.io | Opcional (sin ID, los formularios abren el correo del visitante con `mailto:`) |
 | `ANALYTICS.cloudflareToken` | Token del snippet JS | Cloudflare › Web Analytics | Opcional (el script solo se incluye si hay token) |
 | `public/images/avatar.svg` | Tu foto | — | Opcional (ahora es un monograma «ER») |
 

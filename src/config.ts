@@ -39,8 +39,7 @@ export const SITE = {
  */
 export const FORMS = {
   default: '', // PLACEHOLDER e.g. 'xyzabcd'
-  contact: '', // optional: separate form for the contact section
-  beta: '', // optional: separate form for beta sign-ups on app pages
+  beta: '', // optional: separate form for beta sign-ups on app pages (the only form left on the site)
 };
 export const formAction = (kind: keyof typeof FORMS): string | null => {
   const id = FORMS[kind] || FORMS.default;

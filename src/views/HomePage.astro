@@ -27,6 +27,7 @@ const apps = await getApps(lang);
         <span class="eyebrow">{t('home.eyebrow')}</span>
       </div>
       <h1 class="text-headline-lg-mobile font-extrabold tracking-tight text-on-surface sm:text-display-mobile lg:text-display">{t('home.hello')}</h1>
+      {About && <div class="prose prose-site max-w-3xl text-body-md lg:text-body-lg"><About /></div>}
       {profile && <p class="text-body-md text-on-surface-variant lg:text-body-lg">{profile.data.intro}</p>}
       <div class="flex flex-wrap items-center gap-space-sm">
         <a class="btn-primary" href={href(lang, 'apps')}><Icon name="apps" size="1.125rem" />{t('home.cta.apps')}</a>
@@ -43,13 +44,6 @@ const apps = await getApps(lang);
       </div>
     </section>
 
-    <!-- Short about -->
-    {About && (
-      <section class="card flex flex-col gap-2 lg:p-6">
-        <h2 class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="person" class="text-secondary" size="1.25rem" />{t('home.about')}</h2>
-        <div class="prose prose-site max-w-3xl"><About /></div>
-      </section>
-    )}
 
     <ContactSection lang={lang} />
   </div>

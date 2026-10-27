@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="1024" x2="1024" y2="0">
+      <stop offset="0%" stop-color="#005c55"/>
+      <stop offset="100%" stop-color="#0f766e"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="11.0" stdDeviation="12.9"
+                    flood-color="#00201d" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g filter="url(#soft)">
+    <path d="M316.96 298.56 H707.04 Q729.12 298.56 729.12 320.64 V427.36 A33.12 33.12 0 0 0 729.12 493.60 V703.36 Q729.12 725.44 707.04 725.44 H316.96 Q294.88 725.44 294.88 703.36 V493.60 A33.12 33.12 0 0 0 294.88 427.36 V320.64 Q294.88 298.56 316.96 298.56 Z" fill="#ffffff"/>
+    
+    <g stroke="#bdc9c6" stroke-width="5.52" stroke-linecap="round" stroke-dasharray="0 20.24">
+      <line x1="344.56" y1="460.48" x2="679.44" y2="460.48"/>
+    </g>
+    
+    
+    <circle cx="427.36" cy="381.36" r="25.76" fill="#005c55"/>
+    <circle cx="596.64" cy="381.36" r="25.76" fill="#005c55"/>
+    <circle cx="436.56" cy="372.16" r="9.20" fill="#a3faef"/>
+    <circle cx="605.84" cy="372.16" r="9.20" fill="#a3faef"/>
+    <path d="M436.56 436.56 Q512.00 491.76 587.44 436.56"
+          stroke="#0f766e" stroke-width="16.56" stroke-linecap="round" fill="none"/>
+    <circle cx="381.36" cy="418.16" r="16.56" fill="#f59e0b" opacity="0.35"/>
+    <circle cx="642.64" cy="418.16" r="16.56" fill="#f59e0b" opacity="0.35"/>
+    
+    <rect x="372.16" y="537.76" width="184.00" height="14.72" rx="7.36" fill="#bdece2"/>
+<rect x="372.16" y="574.56" width="279.68" height="12.88" rx="6.44" fill="#d3e4fe"/>
+<rect x="372.16" y="607.68" width="239.20" height="12.88" rx="6.44" fill="#d3e4fe"/>
+<rect x="372.16" y="640.80" width="165.60" height="12.88" rx="6.44" fill="#d3e4fe"/>
+  </g>
+</svg>

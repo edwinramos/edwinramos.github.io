@@ -7,7 +7,7 @@ src/content/projects/es/<app>.md   → https://edwinramos.github.io/apps/<app>/
 src/content/projects/en/<app>.md   → https://edwinramos.github.io/en/apps/<app>/
 ```
 
-- El **nombre del archivo es la URL**. Hoy existen `plantcare-journal.md` (`/apps/plantcare-journal/`) y `entwine.md` (`/apps/entwine/`). Usa minúsculas y guiones, sin espacios ni acentos.
+- El **nombre del archivo es la URL**. Hoy existen `plantcare-journal.md` (`/apps/plantcare-journal/`), `entwine.md` (`/apps/entwine/`) y `ticky.md` (`/apps/ticky/`). Usa minúsculas y guiones, sin espacios ni acentos.
 - La carpeta se llama `projects` por razones históricas, pero son las apps.
 - Los campos se validan en `src/content.config.ts` (colección `projects`). Si un campo tiene un formato incorrecto, el build falla y el sitio anterior sigue en línea (ver [publicar.md](./publicar.md#si-falla-un-deploy)).
 - En el sitio, las apps se ordenan así: primero las **destacadas** (`featured: true`) y luego por `order`, de menor a mayor. Salen en la portada (sección «Mis apps»), en `/apps/` y en `/privacy/`.

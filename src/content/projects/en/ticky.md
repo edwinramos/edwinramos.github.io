@@ -8,6 +8,7 @@ logo: /images/ticky-icon.svg
 ogImage: /images/ticky-icon-512.png
 icon: photo_camera
 tags: [React Native, Expo, TypeScript, SQLite, ML Kit]
+privacyUrl: /ticky/privacy/#en
 featured: true
 order: 3
 date: 2026-10-26

@@ -7,6 +7,7 @@ platforms: [android]
 logo: /images/entwine-icon.svg
 ogImage: /images/entwine-icon-512.png
 icon: favorite
+screenshots: [/images/entwine-1-en.webp, /images/entwine-2-en.webp, /images/entwine-3-en.webp, /images/entwine-4-en.webp, /images/entwine-5-en.webp]
 tags: [Expo, React Native, Firebase]
 privacyUrl: /entwine/privacy/#en
 featured: true

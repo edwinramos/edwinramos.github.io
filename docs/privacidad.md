@@ -9,6 +9,7 @@ Las apps actuales publican su política como un **archivo HTML estático**:
 | PlantCare Journal | `public/plantcare/privacy/index.html` | https://edwinramos.github.io/plantcare/privacy/ |
 | Entwine | `public/entwine/privacy/index.html` | https://edwinramos.github.io/entwine/privacy/ |
 | Ticky | `public/ticky/privacy/index.html` | https://edwinramos.github.io/ticky/privacy/ |
+| InkTrace | `public/inktrace/privacy/index.html` | https://edwinramos.github.io/inktrace/privacy/ |
 
 - Todo lo que está en `public/` se publica **byte por byte**, sin cambios.
 - Cada archivo es **una sola página con los tres idiomas** (EN, ES y FR) y su propio estilo, logo y fecha.
@@ -62,6 +63,7 @@ En Play Console (*Política de la app › Política de privacidad*) usa la URL *
 - `https://edwinramos.github.io/plantcare/privacy/`
 - `https://edwinramos.github.io/entwine/privacy/`
 - `https://edwinramos.github.io/ticky/privacy/`
+- `https://edwinramos.github.io/inktrace/privacy/`
 
 **No borres ni muevas estos archivos** mientras la app esté (o haya estado) en Google Play.
 

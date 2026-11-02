@@ -9,6 +9,7 @@ ogImage: /images/inktrace-icon-512.png
 icon: history_edu
 screenshots: [/images/inktrace-1.webp, /images/inktrace-2.webp, /images/inktrace-3.webp, /images/inktrace-4.webp]
 tags: [React Native, Expo, TypeScript, Google Drive]
+privacyUrl: /inktrace/privacy/#es
 featured: true
 order: 4
 date: 2026-11-01

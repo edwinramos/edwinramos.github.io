@@ -7,6 +7,7 @@ platforms: [android]
 logo: /images/plantcare-icon.svg
 ogImage: /images/plantcare-icon-512.png
 icon: potted_plant
+screenshots: [/images/plantcare-1.webp, /images/plantcare-2.webp, /images/plantcare-3.webp]
 tags: [Expo, React Native, Google Gemini]
 privacyUrl: /plantcare/privacy/#es
 featured: true
@@ -26,3 +27,5 @@ example: false
 **Idiomas:** inglés, español y francés.
 
 Hecha con Expo / React Native.
+
+<small>Fotos de plantas: Raul654 ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)), Spnq ([CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)), vía Wikimedia Commons.</small>

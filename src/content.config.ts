@@ -25,6 +25,7 @@ const projects = defineCollection({
     ogImage: opt(z.string()), // social preview image (PNG/JPG; falls back to the site default)
     icon: opt(z.string()), // Material Symbols name used when there is no logo
     screenshots: strList,
+    screenshotsLandscape: bool(false), // true = horizontal screenshots (wider frames)
     whatsNew: opt(z.string()), // manual "Novedades" text (optional)
     tags: strList, // technologies (optional)
     playStoreUrl: url,

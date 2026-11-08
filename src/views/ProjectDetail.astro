@@ -24,6 +24,7 @@ const privacy = data.privacyUrl ? asset(data.privacyUrl) : (await hasPolicy(lang
 const showBeta = !!data.betaUrl || data.status !== 'live';
 const inStores = !!(data.playStoreUrl || data.appStoreUrl);
 const hero = data.screenshots[0];
+const land = data.screenshotsLandscape;
 ---
 <Base lang={lang} path={`apps/${slug}`} active="apps" title={data.title} description={data.summary} image={data.ogImage ?? (data.logo && !data.logo.endsWith('.svg') ? data.logo : undefined)} alternates={alternates}>
   <div class="container-site flex flex-col gap-space-lg py-space-md lg:gap-space-xl lg:py-space-xl">
@@ -54,9 +55,15 @@ const hero = data.screenshots[0];
       </div>
       <div class="lg:col-span-5">
         {hero ? (
+          land ? (
+          <div class="mx-auto w-full max-w-xl rounded-[1.6rem] border border-white/10 bg-surface-container-lowest p-2 shadow-[0_20px_60px_rgba(139,92,246,0.25)]">
+            <img src={asset(hero)} alt={`${data.title} — ${t('apps.screenshots')} 1`} class="w-full rounded-[1.2rem]" />
+          </div>
+          ) : (
           <div class="mx-auto w-56 rounded-[2.2rem] border border-white/10 bg-surface-container-lowest p-2 shadow-[0_20px_60px_rgba(139,92,246,0.25)] sm:w-64">
             <img src={asset(hero)} alt={`${data.title} — ${t('apps.screenshots')} 1`} class="aspect-[9/19.5] w-full rounded-[1.8rem] object-cover" />
           </div>
+          )
         ) : (
           <div class="flex h-48 w-full items-center justify-center rounded-2xl bg-surface-container-low bg-[radial-gradient(circle_at_30%_20%,rgba(208,188,255,0.25),transparent_60%),radial-gradient(circle_at_80%_80%,rgba(123,208,255,0.2),transparent_55%)] sm:h-64">
             <AppIcon logo={data.logo} icon={data.icon} title={data.title} size="lg" />
@@ -77,9 +84,15 @@ const hero = data.screenshots[0];
         <h2 id="shots" class="flex items-center gap-2 text-headline-sm font-semibold text-on-surface"><Icon name="photo_library" class="text-secondary" size="1.25rem" />{t('apps.screenshots')}</h2>
         <ul class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-space-sm overflow-x-auto px-4 pb-2 lg:mx-0 lg:px-0">
           {data.screenshots.map((s, i) => (
+            land ? (
+            <li class="w-72 shrink-0 snap-start sm:w-96">
+              <a href={asset(s)} target="_blank" rel="noopener"><img src={asset(s)} alt={`${data.title} — ${t('apps.screenshots')} ${i + 1}`} loading="lazy" decoding="async" class="w-full rounded-2xl border border-white/[0.08]" /></a>
+            </li>
+            ) : (
             <li class="w-40 shrink-0 snap-start sm:w-48">
               <a href={asset(s)} target="_blank" rel="noopener"><img src={asset(s)} alt={`${data.title} — ${t('apps.screenshots')} ${i + 1}`} loading="lazy" decoding="async" class="aspect-[9/19.5] w-full rounded-2xl border border-white/[0.08] object-cover" /></a>
             </li>
+            )
           ))}
         </ul>
       </section>

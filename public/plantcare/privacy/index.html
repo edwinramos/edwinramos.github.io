@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PlantCare Journal — Privacy Policy / Política de Privacidad / Politique de confidentialité</title>
+<title>PlantCare Journal — Privacy Policy / Política de Privacidad / Politique de confidentialité / Informativa sulla privacy</title>
 <meta name="description" content="Privacy policy for the PlantCare Journal Android app by Edwin Ramos Madera.">
 <style>
 :root{--g:#2f6b3a;--bg:#f7faf6;--fg:#1f2a21;--mut:#5b6b5e}
@@ -22,7 +22,7 @@ section,h2[id]{scroll-margin-top:56px}
 <body id="top">
 <main>
 <header><img class="app-logo" src="/images/plantcare-icon.svg" alt="PlantCare Journal" width="72" height="72"><h1>🌿 PlantCare Journal</h1></header>
-<nav><a href="#en">English</a> · <a href="#es">Español</a> · <a href="#fr">Français</a></nav>
+<nav><a href="#en">English</a> · <a href="#es">Español</a> · <a href="#fr">Français</a> · <a href="#it">Italiano</a></nav>
 <section id="en" lang="en">
 <h1>PlantCare Journal Privacy Policy</h1>
 <p><strong>Effective date:</strong> October 26, 2026</p>
@@ -241,6 +241,80 @@ section,h2[id]{scroll-margin-top:56px}
 <p>Edwin Ramos Madera — République dominicaine<br>E-mail : <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a></p>
 <p class="top"><a href="#top">↑</a></p>
 </section>
+<hr>
+<section id="it" lang="it">
+<h1>Informativa sulla privacy di PlantCare Journal</h1>
+<p><strong>Data di entrata in vigore:</strong> 26 ottobre 2026</p>
+<p>PlantCare Journal (&quot;l&#x27;app&quot;) è un&#x27;app per la cura delle piante sviluppata da <strong>Edwin Ramos Madera</strong>, sviluppatore indipendente con sede nella Repubblica Dominicana (&quot;io&quot;, &quot;lo sviluppatore&quot;). Il download dell&#x27;app è gratuito e l&#x27;app offre un abbonamento a pagamento facoltativo, <strong>Premium</strong>. Questa informativa spiega quali informazioni gestisce l&#x27;app, come vengono utilizzate e quale controllo hai su di esse.</p>
+<h2 id="it-1">1. Riepilogo</h2>
+<ul>
+<li>PlantCare Journal <strong>non richiede un account</strong> né l&#x27;accesso.</li>
+<li>Lo sviluppatore <strong>non gestisce alcun server</strong> e <strong>non riceve né conserva</strong> le tue piante, foto, note o altri contenuti.</li>
+<li>L&#x27;app non contiene <strong>pubblicità, analisi, tracciamento né Firebase</strong>.</li>
+<li>Le tue piante, il diario e le foto sono conservati <strong>solo sul tuo dispositivo</strong>. L&#x27;app non ha funzioni di backup o esportazione.</li>
+<li>Solo quando usi una <strong>funzione di IA</strong> (diagnosi, assistente o rapporto di evoluzione) le informazioni necessarie vengono inviate direttamente alla <strong>Google Gemini API</strong>, usando una chiave API che fornisci tu stesso.</li>
+<li>Se ti abboni a <strong>Premium</strong>, l&#x27;acquisto viene elaborato da <strong>Google Play</strong>. L&#x27;app verifica lo stato dell&#x27;abbonamento solo sul tuo dispositivo tramite Google Play Billing; non è coinvolto nessun altro servizio (vedi sezione 5).</li>
+</ul>
+<h2 id="it-2">2. Informazioni conservate sul tuo dispositivo</h2>
+<p>L&#x27;app conserva localmente, nella sua memoria privata, le informazioni che inserisci:</p>
+<ul>
+<li>Piante registrate (nome, specie, terreno, illuminazione, posizione, stato di salute, frequenza di irrigazione) e le relative foto.</li>
+<li>Attività di cura (irrigazione, potatura, concimazione, ecc.), impostazioni dei promemoria e relativo storico.</li>
+<li>Voci del diario delle piante, note, etichette, stime di umidità e foto.</li>
+<li>Diagnosi IA e rapporti di evoluzione salvati.</li>
+<li>Preferenze dell&#x27;app (come la lingua) e una copia in cache del tuo stato Premium.</li>
+<li>La tua chiave API di Google Gemini, se ne imposti una. È conservata nella <strong>memoria sicura</strong> del dispositivo (basata su Android Keystore, tramite expo-secure-store), separata dal resto dei dati dell&#x27;app.</li>
+</ul>
+<p>Queste informazioni non lasciano mai il tuo dispositivo, salvo quanto descritto nella sezione 4. Lo sviluppatore non vi ha accesso.</p>
+<h2 id="it-3">3. Autorizzazioni</h2>
+<ul>
+<li><strong>Fotocamera:</strong> per scattare foto alle tue piante quando lo scegli (quando aggiungi una pianta o una voce del diario, o per una diagnosi). Le foto sono conservate localmente.</li>
+<li><strong>Selezione di foto:</strong> puoi scegliere immagini dalla galleria tramite il selettore di foto di sistema; l&#x27;app accede solo alle immagini che selezioni.</li>
+<li><strong>Notifiche:</strong> per ricordarti attività di cura come l&#x27;irrigazione. I promemoria sono <strong>programmati localmente sul tuo dispositivo</strong>; l&#x27;app non usa server push e non richiede token push. Puoi disattivare i promemoria nell&#x27;app o nelle impostazioni di Android.</li>
+<li><strong>Internet:</strong> per inviare richieste di IA a Google Gemini. Gli acquisti passano attraverso l&#x27;app Google Play sul tuo dispositivo.</li>
+<li><strong>Fatturazione Google Play:</strong> aggiunta dalla libreria Google Play Billing affinché tu possa acquistare l&#x27;abbonamento Premium e l&#x27;app possa verificare se è attivo.</li>
+<li><strong>Appunti:</strong> solo quando tocchi incolla o copia: l&#x27;app legge gli appunti per incollare la tua chiave API di Gemini e può copiarvi una risposta dell&#x27;IA. Il contenuto degli appunti non viene conservato né inviato altrove.</li>
+</ul>
+<p>L&#x27;app non richiede l&#x27;accesso alla tua posizione, al microfono, ai contatti o ad altri dati personali.</p>
+<h2 id="it-4">4. Funzioni di IA (Google Gemini)</h2>
+<p>Le funzioni di IA sono facoltative e richiedono l&#x27;inserimento della tua chiave API di Google Gemini, ottenuta da Google AI Studio. Le richieste vanno <strong>direttamente dal tuo dispositivo a Google</strong> (<code>generativelanguage.googleapis.com</code>, tramite HTTPS crittografato):</p>
+<ul>
+<li><strong>Diagnosi e assistente:</strong> quando richiedi una diagnosi o fai una domanda, l&#x27;app invia la foto della pianta che scegli (se presente), i dati della pianta (nome, specie, posizione, frequenza di irrigazione, storico pertinente) e il testo che scrivi (sintomi, osservazioni o domande).</li>
+<li><strong>Rapporto di evoluzione (Premium):</strong> quando crei un rapporto di evoluzione per una pianta, l&#x27;app invia fino a <strong>6 foto</strong> di quella pianta, insieme alle diagnosi salvate, alle voci del diario e alle attività di cura completate, sotto forma di testo.</li>
+<li>In ogni caso, la tua chiave API viene inviata per autenticare la richiesta.</li>
+</ul>
+<p>Questi dati non passano attraverso alcun server gestito dallo sviluppatore. Il loro trattamento da parte di Google è regolato dai <a rel="noopener" target="_blank" href="https://ai.google.dev/gemini-api/terms">Termini di servizio aggiuntivi della Gemini API</a> e dalle <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Norme sulla privacy di Google</a>, in base all&#x27;accordo tra te e Google associato alla tua chiave. Tieni presente che, secondo tali termini, per i livelli non a pagamento Google può usare i contenuti inviati per migliorare i propri prodotti. Non inviare foto o testi contenenti informazioni personali che non vuoi condividere con Google.</p>
+<p>Il rapporto di evoluzione viene salvato sul tuo dispositivo. Se lo esporti come PDF, il PDF viene creato sul tuo dispositivo e sei tu a scegliere dove condividerlo tramite il menu di condivisione di Android; lo sviluppatore non lo riceve.</p>
+<p>Puoi eliminare la chiave salvata in qualsiasi momento dalla schermata Impostazioni.</p>
+<h2 id="it-5">5. Abbonamento Premium (Google Play)</h2>
+<p>Premium è un abbonamento facoltativo a rinnovo automatico venduto tramite <strong>Google Play Billing</strong>. Il pagamento è elaborato interamente da Google: l&#x27;app e lo sviluppatore non vedono mai i dati della tua carta o di pagamento. Il trattamento del tuo acquisto da parte di Google è regolato dalle <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Norme sulla privacy di Google</a>.</p>
+<p>Per sbloccare Premium, l&#x27;app chiede a Google Play, <strong>sul tuo dispositivo</strong>, se questo account Google ha un abbonamento attivo e conserva sul dispositivo una copia in cache di tale stato. L&#x27;app non invia le informazioni sui tuoi acquisti allo sviluppatore né ad altri servizi e non usa servizi di abbonamento di terze parti.</p>
+<p>In qualità di venditore, lo sviluppatore riceve da Google, in Google Play Console, i registri degli ordini che Google fornisce per ogni vendita (ad esempio ID ordine, prodotto, prezzo, data e paese). Sono usati solo per la contabilità delle vendite, i rimborsi e l&#x27;assistenza, mai per pubblicità o tracciamento.</p>
+<p>Puoi gestire o annullare il tuo abbonamento in qualsiasi momento in <strong>Google Play → Pagamenti e abbonamenti → Abbonamenti</strong>, oppure dalla schermata Premium dell&#x27;app. La disinstallazione dell&#x27;app non annulla l&#x27;abbonamento.</p>
+<h2 id="it-6">6. Nessun backup</h2>
+<p>L&#x27;app <strong>non ha funzioni di backup, esportazione o importazione</strong> e disattiva il backup su cloud di Android per i suoi dati. Le tue piante, il diario, le foto e le impostazioni esistono solo sul tuo dispositivo: se disinstalli l&#x27;app, ne cancelli i dati o la reimposti, vengono <strong>persi definitivamente</strong> e lo sviluppatore non può recuperarli. L&#x27;unico file che l&#x27;app crea per te è il PDF del rapporto di evoluzione, che sei tu a scegliere di condividere (sezione 4).</p>
+<h2 id="it-7">7. Condivisione dei dati</h2>
+<p>Lo sviluppatore non vende né affitta i tuoi dati e non li condivide a fini pubblicitari. I dati arrivano a terzi solo come descritto sopra: le richieste che avvii verso Google Gemini (sezione 4) e l&#x27;elaborazione degli acquisti da parte di Google Play (sezione 5).</p>
+<h2 id="it-8">8. Conservazione ed eliminazione</h2>
+<p>I tuoi dati restano sul tuo dispositivo finché non li elimini. Puoi:</p>
+<ul>
+<li>Reimpostare l&#x27;app come appena installata dalle Impostazioni. Questo elimina piante, diario, foto, diagnosi, rapporti e chiave API, e annulla i promemoria programmati.</li>
+<li>Eliminare la tua chiave API dalle Impostazioni.</li>
+<li>Cancellare i dati dell&#x27;app nelle impostazioni di Android, oppure <strong>disinstallare l&#x27;app</strong>, operazione che elimina tutti i suoi dati locali.</li>
+</ul>
+<p><strong>Dati di acquisto:</strong> lo sviluppatore non conserva dati di acquisto propri. Google conserva i registri di acquisto e abbonamento secondo le Norme sulla privacy di Google. I registri degli ordini che Google mostra allo sviluppatore in Play Console sono conservati da Google e lo sviluppatore non può eliminarli. Per qualsiasi domanda o richiesta relativa alla privacy, scrivi a <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (se riguarda un acquisto, indica l&#x27;<strong>ID ordine di Google Play</strong>, che inizia con <code>GPA.</code>). Risponderò entro un massimo di 30 giorni.</p>
+<p>Per i dati già inviati a Google Gemini, consulta le norme di Google relative alla tua chiave API.</p>
+<h2 id="it-9">9. Sicurezza</h2>
+<p>Le comunicazioni con Google Gemini e Google Play usano HTTPS. La tua chiave API è conservata nella memoria sicura del dispositivo. I dati locali sono protetti dalla sandbox di archiviazione delle app di Android e l&#x27;app disattiva il backup su cloud di Android per i suoi dati. Ti consigliamo di proteggere il dispositivo con un blocco schermo.</p>
+<h2 id="it-10">10. Minori</h2>
+<p>PlantCare Journal è destinata ad adulti di <strong>almeno 18 anni</strong>, in linea con i termini della Google Gemini API. Non è rivolta ai minori e non raccoglie consapevolmente informazioni da minori.</p>
+<h2 id="it-11">11. Modifiche a questa informativa</h2>
+<p>Se questa informativa cambia, la versione aggiornata sarà pubblicata su questa pagina con una nuova data di entrata in vigore.</p>
+<h2 id="it-12">12. Contatti</h2>
+<p>Edwin Ramos Madera — Repubblica Dominicana<br>E-mail: <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a></p>
+<p class="top"><a href="#top">↑</a></p>
+</section>
+
 </main>
 </body>
 </html>

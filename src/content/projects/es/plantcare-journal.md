@@ -7,7 +7,7 @@ platforms: [android]
 logo: /images/plantcare-icon.svg
 ogImage: /images/plantcare-icon-512.png
 icon: potted_plant
-screenshots: [/images/plantcare-1.webp, /images/plantcare-2.webp, /images/plantcare-3.webp, /images/plantcare-4.webp]
+screenshots: [/images/plantcare-1.webp, /images/plantcare-2.webp, /images/plantcare-3.webp, /images/plantcare-4.webp, /images/plantcare-5.webp]
 tags: [Expo, React Native, Google Gemini]
 privacyUrl: /plantcare/privacy/#es
 featured: true

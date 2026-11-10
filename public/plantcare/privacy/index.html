@@ -25,14 +25,14 @@ section,h2[id]{scroll-margin-top:56px}
 <nav><a href="#en">English</a> · <a href="#es">Español</a> · <a href="#fr">Français</a> · <a href="#it">Italiano</a></nav>
 <section id="en" lang="en">
 <h1>PlantCare Journal Privacy Policy</h1>
-<p><strong>Effective date:</strong> October 26, 2026</p>
-<p>PlantCare Journal (&quot;the app&quot;) is a plant care app developed by <strong>Edwin Ramos Madera</strong>, an independent developer based in the Dominican Republic (&quot;I&quot;, &quot;the developer&quot;). The app is free to download and offers an optional paid <strong>Premium</strong> subscription. This policy explains what information the app handles, how it is used, and what control you have over it.</p>
+<p><strong>Effective date:</strong> November 9, 2026</p>
+<p>PlantCare Journal (&quot;the app&quot;) is a plant care app developed by <strong>Edwin Ramos Madera</strong>, an independent developer based in the Dominican Republic (&quot;I&quot;, &quot;the developer&quot;). The app is free to download and offers an optional paid <strong>Premium</strong> subscription. You can optionally connect a Google account to back up your garden to your own Google Drive. This policy explains what information the app handles, how it is used, and what control you have over it.</p>
 <h2 id="en-1">1. Summary</h2>
 <ul>
-<li>PlantCare Journal <strong>does not require an account</strong> or sign-in.</li>
+<li>PlantCare Journal <strong>does not require an account</strong> or sign-in. Connecting a Google account is optional and is only needed if you want to use the Drive backup.</li>
 <li>The developer <strong>does not operate any servers</strong> and <strong>does not receive or store</strong> your plants, photos, notes or other content.</li>
 <li>The app contains <strong>no ads, no analytics, no tracking, and no Firebase</strong>.</li>
-<li>Your plants, journal and photos are stored <strong>only on your device</strong>. The app has no backup or export feature.</li>
+<li>Your plants, journal and photos are stored <strong>on your device</strong>. If you connect a Google account, you can also keep a private copy in your own Google Drive (see section 6).</li>
 <li>Only when you use an <strong>AI feature</strong> (diagnosis, assistant or evolution report) is the necessary information sent directly to the <strong>Google Gemini API</strong>, using an API key that you provide yourself.</li>
 <li>If you subscribe to <strong>Premium</strong>, the purchase is processed by <strong>Google Play</strong>. The app only checks your subscription status on your device through Google Play Billing; no other service is involved (see section 5).</li>
 </ul>
@@ -44,15 +44,17 @@ section,h2[id]{scroll-margin-top:56px}
 <li>Plant journal entries, notes, tags, humidity estimates, and photos.</li>
 <li>Saved AI diagnoses and evolution reports.</li>
 <li>App preferences (such as language) and a cached copy of your Premium status.</li>
+<li>If you connect a Google account, the name and email of that account, so the app can show which account is connected.</li>
 <li>Your Google Gemini API key, if you set one. It is kept in the device&#x27;s <strong>secure storage</strong> (Android Keystore-backed, through expo-secure-store), separate from the rest of the app data.</li>
 </ul>
-<p>This information never leaves your device except as described in section 4. The developer has no access to it.</p>
+<p>This information never leaves your device except as described in sections 4 and 6. The developer has no access to it.</p>
 <h2 id="en-3">3. Permissions</h2>
 <ul>
 <li><strong>Camera:</strong> to take photos of your plants when you choose to (when adding a plant or a journal entry, or for a diagnosis). Photos are stored locally.</li>
 <li><strong>Photo selection:</strong> you can pick images from your gallery through the system photo picker; the app only accesses the images you select.</li>
 <li><strong>Notifications:</strong> to remind you about care tasks such as watering. Reminders are <strong>scheduled locally on your device</strong>; the app uses no push server and requests no push token. You can turn reminders off in the app or in Android settings.</li>
-<li><strong>Internet:</strong> to send AI requests to Google Gemini. Purchases go through the Google Play app on your device.</li>
+<li><strong>Internet:</strong> to send AI requests to Google Gemini and, if you connect a Google account, to back up or restore your garden through Google Drive. Purchases go through the Google Play app on your device.</li>
+<li><strong>Google account (optional):</strong> if you choose to connect your Google account for backup, the app requests only the Drive app-data scope and basic profile (name and email). It does not request access to the rest of your Drive.</li>
 <li><strong>Google Play billing:</strong> added by the Google Play Billing library so you can buy the Premium subscription and the app can check whether it is active.</li>
 <li><strong>Clipboard:</strong> only when you tap paste or copy: the app reads the clipboard to paste your Gemini API key, and can copy an AI answer to it. Clipboard content is not stored or sent anywhere else.</li>
 </ul>
@@ -71,22 +73,45 @@ section,h2[id]{scroll-margin-top:56px}
 <p>Premium is an optional auto-renewing subscription sold through <strong>Google Play Billing</strong>. Payment is processed entirely by Google: the app and the developer never see your card or payment details. Google&#x27;s handling of your purchase is governed by the <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
 <p>To unlock Premium, the app asks Google Play, <strong>on your device</strong>, whether this Google account has an active subscription, and keeps a cached copy of that status on the device. The app does not send your purchase information to the developer or to any other service, and it uses no third-party subscription service.</p>
 <p>As the seller, the developer receives from Google, in Google Play Console, the order records that Google provides for every sale (for example order ID, product, price, date and country). They are used only for sales accounting, refunds and support, never for advertising or tracking.</p>
+<p>Premium also includes an optional daily automatic backup to Google Drive, described in section 6. Manual backup and restore remain free.</p>
 <p>You can manage or cancel your subscription at any time in <strong>Google Play → Payments &amp; subscriptions → Subscriptions</strong>, or from the Premium screen in the app. Uninstalling the app does not cancel a subscription.</p>
-<h2 id="en-6">6. No backups</h2>
-<p>The app has <strong>no backup, export or import feature</strong>, and it disables Android cloud backup of its data. Your plants, journal, photos and settings exist only on your device: if you uninstall the app, clear its data or reset it, they are <strong>permanently lost</strong> and cannot be recovered by the developer. The only file the app creates for you is the evolution report PDF, which you choose to share (section 4).</p>
-<h2 id="en-7">7. Data sharing</h2>
-<p>The developer does not sell or rent your data and does not share it for advertising. Data reaches third parties only as described above: requests you start to Google Gemini (section 4) and purchase processing by Google Play (section 5).</p>
-<h2 id="en-8">8. Retention and deletion</h2>
-<p>Your data stays on your device until you delete it. You can:</p>
+<h2 id="en-6">6. Optional backup to Google Drive</h2>
+<p>Connecting a Google account is <strong>optional</strong>. The journal works without signing in, and your plants, journal and photos remain on your device.</p>
+<p>If you choose to connect your Google account, PlantCare can send a copy of your garden to <strong>your own Google Drive</strong>, using the Google Drive API (v3), over encrypted HTTPS:</p>
 <ul>
-<li>Reset the app to a clean install from Settings. This deletes your plants, journal, photos, diagnoses, reports and API key, and cancels scheduled reminders.</li>
+<li>The copy includes your plants, care tasks, journal, diagnoses, evolution reports, photos, and reminder, language and seasonal-watering settings.</li>
+<li>It is stored in Drive&#x27;s private <strong>app data</strong> folder for this app. That folder does not appear in the normal Drive interface and is not visible to other apps.</li>
+<li>The app requests only the <code>https://www.googleapis.com/auth/drive.appdata</code> scope, plus basic profile information (<code>openid</code>, <code>email</code>, <code>profile</code>) so it can show the name and email of the connected account. It does not request the <code>drive</code>, <code>drive.readonly</code> or <code>drive.file</code> scopes, and it does not receive your Google password. The developer does not operate a backup server and does not receive your copies.</li>
+</ul>
+<p><strong>Manual backup</strong> and <strong>restore</strong> are free and run only when you tap them.</p>
+<p><strong>Automatic daily backup</strong> is a Premium feature. It runs at most once per local day, only if you have turned it on, and only while the app is open or returns to the foreground. It does not run in the background.</p>
+<p>The app keeps the last <strong>3</strong> complete copies in that folder.</p>
+<ul>
+<li><strong>Restore</strong> replaces the garden on this device (it does not merge it with what is already there), after you confirm. A free user can restore more than 5 plants; the free limit applies only when adding another plant afterwards.</li>
+<li>After a restore, care reminders are scheduled again on the device (reminder identifiers are device-specific and are not included in the copy).</li>
+<li><strong>Disconnect</strong> signs you out on the phone and leaves both the copies in Drive and the local garden in place.</li>
+<li><strong>Delete my Drive copies</strong> is a separate action that asks for confirmation. It deletes only PlantCare&#x27;s files in the app data folder, not the garden on your phone and not your other Drive files.</li>
+</ul>
+<p>The Gemini API key, OAuth tokens, and purchase or Premium data are <strong>not</strong> sent to Drive.</p>
+<p>The app still disables Android&#x27;s cloud backup of its data. A copy in Drive is what can survive an uninstall or a new phone, after you connect the same Google account and restore it. Uninstalling or resetting the app deletes the local garden but does <strong>not</strong> delete your Drive copies.</p>
+<p>The only other file the app creates for you is the evolution report PDF, which you choose to share (section 4).</p>
+<p>Google&#x27;s handling of data stored in Drive is governed by the <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Google Privacy Policy</a>, under the agreement between you and Google for your Google account.</p>
+<h2 id="en-7">7. Data sharing</h2>
+<p>The developer does not sell or rent your data and does not share it for advertising. Data reaches third parties only as described above: requests you start to Google Gemini (section 4), purchase processing by Google Play (section 5), and, if you connect a Google account, the copies you keep in your own Google Drive (section 6). Those Drive copies are stored in your private app-data folder; the developer does not receive them.</p>
+<h2 id="en-8">8. Retention and deletion</h2>
+<p>Your data stays on your device until you delete it. If you use the Drive backup, copies also stay in your Google Drive until you delete them. You can:</p>
+<ul>
+<li>Reset the app to a clean install from Settings. This deletes your plants, journal, photos, diagnoses, reports and API key, and cancels scheduled reminders. It does not delete copies in Drive.</li>
 <li>Delete your API key from Settings.</li>
-<li>Clear the app&#x27;s data in Android settings, or <strong>uninstall the app</strong>, which deletes all of its local data.</li>
+<li>Clear the app&#x27;s data in Android settings, or <strong>uninstall the app</strong>, which deletes all of its local data but does not delete copies in Drive.</li>
+<li>Disconnect your Google account from Settings. This signs you out on the phone and leaves both the local garden and the Drive copies in place.</li>
+<li>Use <strong>Delete my Drive copies</strong> from Settings, after confirmation. This deletes only PlantCare&#x27;s files in the app data folder, not the garden on your phone and not your other Drive files.</li>
 </ul>
 <p><strong>Purchase data:</strong> the developer keeps no purchase data of its own. Google keeps purchase and subscription records under the Google Privacy Policy. The order records that Google shows the developer in Play Console are kept by Google and cannot be deleted by the developer. For any privacy question or request, email <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (if it is about a purchase, include the <strong>Google Play order ID</strong>, which starts with <code>GPA.</code>). I will reply within 30 days at the latest.</p>
 <p>For data already sent to Google Gemini, see Google&#x27;s policies for your API key.</p>
+<p>For copies already stored in Google Drive, use the in-app deletion action described above, or see the Google Privacy Policy for your Google account. The developer cannot delete those copies, because the developer does not have access to them.</p>
 <h2 id="en-9">9. Security</h2>
-<p>Communication with Google Gemini and Google Play uses HTTPS. Your API key is kept in the device&#x27;s secure storage. Local data is protected by Android&#x27;s app storage sandbox, and the app disables Android cloud backup of its data. We recommend protecting your device with a screen lock.</p>
+<p>Communication with Google Gemini, Google Drive and Google Play uses HTTPS. Your API key is kept in the device&#x27;s secure storage. Local data is protected by Android&#x27;s app storage sandbox, and the app disables Android cloud backup of its data. We recommend protecting your device with a screen lock.</p>
 <h2 id="en-10">10. Children</h2>
 <p>PlantCare Journal is intended for adults <strong>18 and over</strong>, in line with the Google Gemini API terms. It is not directed to children and does not knowingly collect information from children.</p>
 <h2 id="en-11">11. Changes to this policy</h2>
@@ -98,14 +123,14 @@ section,h2[id]{scroll-margin-top:56px}
 <hr>
 <section id="es" lang="es">
 <h1>Política de Privacidad de PlantCare Journal</h1>
-<p><strong>Fecha de entrada en vigor:</strong> 26 de octubre de 2026</p>
-<p>PlantCare Journal (&quot;la app&quot;) es una aplicación de cuidado de plantas desarrollada por <strong>Edwin Ramos Madera</strong>, desarrollador independiente con sede en la República Dominicana (&quot;yo&quot;, &quot;el desarrollador&quot;). La app se descarga gratis y ofrece una suscripción de pago opcional, <strong>Premium</strong>. Esta política explica qué información maneja la app, cómo se usa y qué control tienes sobre ella.</p>
+<p><strong>Fecha de entrada en vigor:</strong> 9 de noviembre de 2026</p>
+<p>PlantCare Journal (&quot;la app&quot;) es una aplicación de cuidado de plantas desarrollada por <strong>Edwin Ramos Madera</strong>, desarrollador independiente con sede en la República Dominicana (&quot;yo&quot;, &quot;el desarrollador&quot;). La app se descarga gratis y ofrece una suscripción de pago opcional, <strong>Premium</strong>. Puedes conectar de forma opcional una cuenta de Google para hacer una copia de seguridad de tu jardín en tu propio Google Drive. Esta política explica qué información maneja la app, cómo se usa y qué control tienes sobre ella.</p>
 <h2 id="es-1">1. Resumen</h2>
 <ul>
-<li>PlantCare Journal <strong>no requiere crear una cuenta</strong> ni iniciar sesión.</li>
+<li>PlantCare Journal <strong>no requiere crear una cuenta</strong> ni iniciar sesión. Conectar una cuenta de Google es opcional y solo hace falta si quieres usar la copia de seguridad en Drive.</li>
 <li>El desarrollador <strong>no opera servidores propios</strong> y <strong>no recibe ni almacena</strong> tus plantas, fotos, notas ni otro contenido.</li>
 <li>La app <strong>no incluye publicidad, analítica, rastreo ni Firebase</strong>.</li>
-<li>Tus plantas, tu diario y tus fotos se guardan <strong>solo en tu dispositivo</strong>. La app no tiene función de copia de seguridad ni de exportación.</li>
+<li>Tus plantas, tu diario y tus fotos se guardan <strong>en tu dispositivo</strong>. Si conectas una cuenta de Google, también puedes guardar una copia privada en tu propio Google Drive (ver sección 6).</li>
 <li>Solo cuando usas una <strong>función de IA</strong> (diagnóstico, asistente o informe de evolución), la información necesaria se envía directamente a <strong>Google Gemini API</strong>, usando una clave de API que tú mismo proporcionas.</li>
 <li>Si te suscribes a <strong>Premium</strong>, la compra la procesa <strong>Google Play</strong>. La app solo comprueba el estado de tu suscripción en tu dispositivo mediante Google Play Billing; no interviene ningún otro servicio (ver sección 5).</li>
 </ul>
@@ -117,15 +142,17 @@ section,h2[id]{scroll-margin-top:56px}
 <li>Entradas del diario botánico, notas, etiquetas, estimaciones de humedad y fotografías.</li>
 <li>Diagnósticos de IA e informes de evolución guardados.</li>
 <li>Preferencias de la app (por ejemplo, el idioma) y una copia en caché de tu estado Premium.</li>
+<li>Si conectas una cuenta de Google, el nombre y el correo de esa cuenta, para que la app muestre qué cuenta está conectada.</li>
 <li>Tu clave de API de Google Gemini, si la configuras. Se guarda en el <strong>almacenamiento seguro</strong> del dispositivo (respaldado por Android Keystore, mediante expo-secure-store), separada del resto de los datos.</li>
 </ul>
-<p>Esta información no sale de tu dispositivo salvo en los casos descritos en la sección 4. El desarrollador no tiene acceso a ella.</p>
+<p>Esta información no sale de tu dispositivo salvo en los casos descritos en las secciones 4 y 6. El desarrollador no tiene acceso a ella.</p>
 <h2 id="es-3">3. Permisos</h2>
 <ul>
 <li><strong>Cámara:</strong> para tomar fotos de tus plantas cuando tú lo decides (al añadir una planta o una entrada del diario, o para un diagnóstico). Las fotos se guardan localmente.</li>
 <li><strong>Selección de fotos:</strong> puedes elegir imágenes de tu galería mediante el selector de fotos del sistema; la app solo accede a las imágenes que tú selecciones.</li>
 <li><strong>Notificaciones:</strong> para recordarte tareas de cuidado como el riego. Los recordatorios se <strong>programan localmente en tu dispositivo</strong>; la app no usa un servidor de notificaciones push ni solicita un token push. Puedes desactivarlos en la app o en los ajustes de Android.</li>
-<li><strong>Internet:</strong> para enviar las solicitudes de IA a Google Gemini. Las compras pasan por la app de Google Play de tu dispositivo.</li>
+<li><strong>Internet:</strong> para enviar las solicitudes de IA a Google Gemini y, si conectas una cuenta de Google, para hacer copias de seguridad o restaurar tu jardín mediante Google Drive. Las compras pasan por la app de Google Play de tu dispositivo.</li>
+<li><strong>Cuenta de Google (opcional):</strong> si eliges conectar tu cuenta de Google para la copia de seguridad, la app solicita solo el alcance de datos de la app en Drive y el perfil básico (nombre y correo). No solicita acceso al resto de tu Drive.</li>
 <li><strong>Facturación de Google Play:</strong> lo añade la biblioteca de Google Play Billing para que puedas comprar la suscripción Premium y la app pueda comprobar si está activa.</li>
 <li><strong>Portapapeles:</strong> solo cuando tocas pegar o copiar: la app lee el portapapeles para pegar tu clave de API de Gemini y puede copiar en él una respuesta de la IA. Ese contenido no se guarda ni se envía a ningún otro lugar.</li>
 </ul>
@@ -144,22 +171,45 @@ section,h2[id]{scroll-margin-top:56px}
 <p>Premium es una suscripción opcional de renovación automática que se vende mediante <strong>Google Play Billing</strong>. El pago lo procesa íntegramente Google: ni la app ni el desarrollador ven tu tarjeta ni tus datos de pago. El tratamiento de tu compra por parte de Google se rige por la <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Política de Privacidad de Google</a>.</p>
 <p>Para activar Premium, la app pregunta a Google Play, <strong>en tu dispositivo</strong>, si esta cuenta de Google tiene una suscripción activa, y guarda una copia en caché de ese estado en el dispositivo. La app no envía tu información de compra al desarrollador ni a ningún otro servicio, y no usa servicios de suscripción de terceros.</p>
 <p>Como vendedor, el desarrollador recibe de Google, en Google Play Console, los registros de pedido que Google proporciona de cada venta (por ejemplo, ID de pedido, producto, precio, fecha y país). Se usan solo para la contabilidad de ventas, reembolsos y soporte, nunca para publicidad ni rastreo.</p>
+<p>Premium también incluye una copia de seguridad automática diaria opcional en Google Drive, descrita en la sección 6. La copia manual y la restauración siguen siendo gratis.</p>
 <p>Puedes gestionar o cancelar tu suscripción en cualquier momento en <strong>Google Play → Pagos y suscripciones → Suscripciones</strong>, o desde la pantalla Premium de la app. Desinstalar la app no cancela la suscripción.</p>
-<h2 id="es-6">6. Sin copias de seguridad</h2>
-<p>La app <strong>no tiene función de copia de seguridad, exportación ni importación</strong>, y desactiva la copia de seguridad en la nube de Android para sus datos. Tus plantas, diario, fotos y configuración existen solo en tu dispositivo: si desinstalas la app, borras sus datos o la restableces, se <strong>pierden para siempre</strong> y el desarrollador no puede recuperarlos. El único archivo que la app crea para ti es el PDF del informe de evolución, que tú decides compartir (sección 4).</p>
-<h2 id="es-7">7. Compartición de datos</h2>
-<p>El desarrollador no vende ni alquila tus datos y no los comparte con fines publicitarios. Los datos solo llegan a terceros en los casos descritos arriba: las solicitudes que tú inicias a Google Gemini (sección 4) y el procesamiento de la compra por Google Play (sección 5).</p>
-<h2 id="es-8">8. Conservación y eliminación</h2>
-<p>Tus datos permanecen en tu dispositivo hasta que tú los borres. Puedes:</p>
+<h2 id="es-6">6. Copia de seguridad opcional en Google Drive</h2>
+<p>Conectar una cuenta de Google es <strong>opcional</strong>. El diario funciona sin iniciar sesión, y tus plantas, tu diario y tus fotos siguen en tu dispositivo.</p>
+<p>Si eliges conectar tu cuenta de Google, PlantCare puede enviar una copia de tu jardín a <strong>tu propio Google Drive</strong>, mediante la API de Google Drive (v3), por una conexión cifrada HTTPS:</p>
 <ul>
-<li>Restablecer la app a una instalación limpia desde Configuración. Esto borra tus plantas, diario, fotos, diagnósticos, informes y clave de API, y cancela los recordatorios programados.</li>
+<li>La copia incluye tus plantas, tareas de cuidado, diario, diagnósticos, informes de evolución, fotos, y la configuración de recordatorios, idioma y riego estacional.</li>
+<li>Se guarda en la carpeta privada de <strong>datos de la app</strong> de Drive correspondiente a esta aplicación. Esa carpeta no aparece en la interfaz normal de Drive y no es visible para otras apps.</li>
+<li>La app solicita solo el alcance <code>https://www.googleapis.com/auth/drive.appdata</code>, más la información básica de perfil (<code>openid</code>, <code>email</code>, <code>profile</code>) para mostrar el nombre y el correo de la cuenta conectada. No solicita los alcances <code>drive</code>, <code>drive.readonly</code> ni <code>drive.file</code>, y no recibe tu contraseña de Google. El desarrollador no opera un servidor de copias de seguridad y no recibe tus copias.</li>
+</ul>
+<p>La <strong>copia manual</strong> y la <strong>restauración</strong> son gratis y solo se ejecutan cuando tú las pulsas.</p>
+<p>La <strong>copia automática diaria</strong> es una función Premium. Se ejecuta como máximo una vez por día local, solo si tú la has activado, y solo mientras la app está abierta o vuelve al primer plano. No se ejecuta en segundo plano.</p>
+<p>La app conserva las últimas <strong>3</strong> copias completas en esa carpeta.</p>
+<ul>
+<li><strong>Restaurar</strong> reemplaza el jardín de este dispositivo (no lo fusiona con lo que ya hay), después de que lo confirmes. Un usuario de la versión gratuita puede restaurar más de 5 plantas; el límite gratuito solo se aplica al añadir otra planta después.</li>
+<li>Después de restaurar, los recordatorios de cuidado se programan de nuevo en el dispositivo (los identificadores de recordatorio son propios de cada dispositivo y no se incluyen en la copia).</li>
+<li><strong>Desconectar</strong> cierra la sesión en el teléfono y deja en su sitio tanto las copias en Drive como el jardín local.</li>
+<li><strong>Eliminar mis copias de Drive</strong> es una acción aparte que pide confirmación. Borra solo los archivos de PlantCare en la carpeta de datos de la app, no el jardín del teléfono ni tus otros archivos de Drive.</li>
+</ul>
+<p>La clave de API de Gemini, los tokens de OAuth y los datos de compra o de Premium <strong>no</strong> se envían a Drive.</p>
+<p>La app sigue desactivando la copia de seguridad en la nube de Android para sus datos. Una copia en Drive es lo que puede sobrevivir a una desinstalación o a un teléfono nuevo, después de que conectes la misma cuenta de Google y la restaures. Desinstalar o restablecer la app elimina el jardín local, pero <strong>no</strong> borra tus copias de Drive.</p>
+<p>El único otro archivo que la app crea para ti es el PDF del informe de evolución, que tú decides compartir (sección 4).</p>
+<p>El tratamiento por parte de Google de los datos guardados en Drive se rige por la <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Política de Privacidad de Google</a>, según el acuerdo entre tú y Google para tu cuenta de Google.</p>
+<h2 id="es-7">7. Compartición de datos</h2>
+<p>El desarrollador no vende ni alquila tus datos y no los comparte con fines publicitarios. Los datos solo llegan a terceros en los casos descritos arriba: las solicitudes que tú inicias a Google Gemini (sección 4), el procesamiento de la compra por Google Play (sección 5) y, si conectas una cuenta de Google, las copias que guardas en tu propio Google Drive (sección 6). Esas copias se almacenan en tu carpeta privada de datos de la app; el desarrollador no las recibe.</p>
+<h2 id="es-8">8. Conservación y eliminación</h2>
+<p>Tus datos permanecen en tu dispositivo hasta que tú los borres. Si usas la copia de seguridad en Drive, las copias también permanecen en tu Google Drive hasta que las elimines. Puedes:</p>
+<ul>
+<li>Restablecer la app a una instalación limpia desde Configuración. Esto borra tus plantas, diario, fotos, diagnósticos, informes y clave de API, y cancela los recordatorios programados. No borra las copias en Drive.</li>
 <li>Eliminar tu clave de API desde Configuración.</li>
-<li>Borrar los datos de la app desde los ajustes de Android, o <strong>desinstalar la app</strong>, lo que elimina todos sus datos locales.</li>
+<li>Borrar los datos de la app desde los ajustes de Android, o <strong>desinstalar la app</strong>, lo que elimina todos sus datos locales pero no borra las copias en Drive.</li>
+<li>Desconectar tu cuenta de Google desde Configuración. Esto cierra la sesión en el teléfono y deja en su sitio tanto el jardín local como las copias en Drive.</li>
+<li>Usar <strong>Eliminar mis copias de Drive</strong> desde Configuración, después de confirmarlo. Esto borra solo los archivos de PlantCare en la carpeta de datos de la app, no el jardín del teléfono ni tus otros archivos de Drive.</li>
 </ul>
 <p><strong>Datos de compra:</strong> el desarrollador no guarda datos de compra propios. Google conserva los registros de compra y suscripción según la Política de Privacidad de Google. Los registros de pedido que Google muestra al desarrollador en Play Console los conserva Google y el desarrollador no puede eliminarlos. Para cualquier pregunta o solicitud de privacidad, escribe a <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (si se refiere a una compra, indica el <strong>ID de pedido de Google Play</strong>, que empieza por <code>GPA.</code>). Te responderé en un plazo máximo de 30 días.</p>
 <p>Para datos ya enviados a Google Gemini, consulta las políticas de Google para tu clave de API.</p>
+<p>Para las copias ya guardadas en Google Drive, usa la acción de eliminación de la app descrita arriba, o consulta la Política de Privacidad de Google para tu cuenta. El desarrollador no puede borrar esas copias, porque no tiene acceso a ellas.</p>
 <h2 id="es-9">9. Seguridad</h2>
-<p>Las comunicaciones con Google Gemini y Google Play usan HTTPS. Tu clave de API se guarda en el almacenamiento seguro del dispositivo. Los datos locales están protegidos por el aislamiento de almacenamiento de Android, y la app desactiva la copia de seguridad en la nube de Android para sus datos. Te recomendamos proteger tu dispositivo con bloqueo de pantalla.</p>
+<p>Las comunicaciones con Google Gemini, Google Drive y Google Play usan HTTPS. Tu clave de API se guarda en el almacenamiento seguro del dispositivo. Los datos locales están protegidos por el aislamiento de almacenamiento de Android, y la app desactiva la copia de seguridad en la nube de Android para sus datos. Te recomendamos proteger tu dispositivo con bloqueo de pantalla.</p>
 <h2 id="es-10">10. Menores</h2>
 <p>PlantCare Journal está pensada para personas adultas <strong>mayores de 18 años</strong>, de acuerdo con los términos de la API de Google Gemini. No está dirigida a niños y no recopila conscientemente información de menores.</p>
 <h2 id="es-11">11. Cambios en esta política</h2>
@@ -171,14 +221,14 @@ section,h2[id]{scroll-margin-top:56px}
 <hr>
 <section id="fr" lang="fr">
 <h1>Politique de confidentialité de PlantCare Journal</h1>
-<p><strong>Date d&#x27;entrée en vigueur :</strong> 26 octobre 2026</p>
-<p>PlantCare Journal (« l&#x27;application ») est une application d&#x27;entretien des plantes développée par <strong>Edwin Ramos Madera</strong>, développeur indépendant établi en République dominicaine (« je », « le développeur »). L&#x27;application est gratuite et propose un abonnement payant facultatif, <strong>Premium</strong>. Cette politique explique quelles informations l&#x27;application traite, comment elles sont utilisées et quel contrôle vous avez sur elles.</p>
+<p><strong>Date d&#x27;entrée en vigueur :</strong> 9 novembre 2026</p>
+<p>PlantCare Journal (« l&#x27;application ») est une application d&#x27;entretien des plantes développée par <strong>Edwin Ramos Madera</strong>, développeur indépendant établi en République dominicaine (« je », « le développeur »). L&#x27;application est gratuite et propose un abonnement payant facultatif, <strong>Premium</strong>. Vous pouvez, de façon facultative, connecter un compte Google pour sauvegarder votre jardin sur votre propre Google Drive. Cette politique explique quelles informations l&#x27;application traite, comment elles sont utilisées et quel contrôle vous avez sur elles.</p>
 <h2 id="fr-1">1. En bref</h2>
 <ul>
-<li>PlantCare Journal <strong>ne nécessite aucun compte</strong> ni connexion.</li>
+<li>PlantCare Journal <strong>ne nécessite aucun compte</strong> ni connexion. La connexion d&#x27;un compte Google est facultative et n&#x27;est nécessaire que si vous souhaitez utiliser la sauvegarde sur Drive.</li>
 <li>Le développeur <strong>n&#x27;exploite aucun serveur</strong> et <strong>ne reçoit ni ne stocke</strong> vos plantes, photos, notes ou autres contenus.</li>
 <li>L&#x27;application ne contient <strong>ni publicité, ni outils d&#x27;analyse, ni suivi, ni Firebase</strong>.</li>
-<li>Vos plantes, votre journal et vos photos sont stockés <strong>uniquement sur votre appareil</strong>. L&#x27;application n&#x27;a aucune fonction de sauvegarde ni d&#x27;export.</li>
+<li>Vos plantes, votre journal et vos photos sont stockés <strong>sur votre appareil</strong>. Si vous connectez un compte Google, vous pouvez aussi conserver une copie privée sur votre propre Google Drive (voir la section 6).</li>
 <li>Ce n&#x27;est que lorsque vous utilisez une <strong>fonction d&#x27;IA</strong> (diagnostic, assistant ou rapport d&#x27;évolution) que les informations nécessaires sont envoyées directement à l&#x27;<strong>API Google Gemini</strong>, avec une clé d&#x27;API que vous fournissez vous-même.</li>
 <li>Si vous vous abonnez à <strong>Premium</strong>, l&#x27;achat est traité par <strong>Google Play</strong>. L&#x27;application vérifie seulement l&#x27;état de votre abonnement sur votre appareil via Google Play Billing ; aucun autre service n&#x27;intervient (voir la section 5).</li>
 </ul>
@@ -190,15 +240,17 @@ section,h2[id]{scroll-margin-top:56px}
 <li>Les entrées du journal botanique, notes, étiquettes, estimations d&#x27;humidité et photos.</li>
 <li>Les diagnostics IA et rapports d&#x27;évolution enregistrés.</li>
 <li>Les préférences de l&#x27;application (par exemple la langue) et une copie en cache de votre statut Premium.</li>
+<li>Si vous connectez un compte Google, le nom et l&#x27;adresse e-mail de ce compte, afin que l&#x27;application affiche le compte connecté.</li>
 <li>Votre clé d&#x27;API Google Gemini, si vous en configurez une. Elle est conservée dans le <strong>stockage sécurisé</strong> de l&#x27;appareil (adossé à Android Keystore, via expo-secure-store), séparément des autres données.</li>
 </ul>
-<p>Ces informations ne quittent jamais votre appareil, sauf dans les cas décrits à la section 4. Le développeur n&#x27;y a pas accès.</p>
+<p>Ces informations ne quittent jamais votre appareil, sauf dans les cas décrits aux sections 4 et 6. Le développeur n&#x27;y a pas accès.</p>
 <h2 id="fr-3">3. Autorisations</h2>
 <ul>
 <li><strong>Appareil photo :</strong> pour photographier vos plantes lorsque vous le décidez (ajout d&#x27;une plante ou d&#x27;une entrée de journal, ou pour un diagnostic). Les photos sont stockées localement.</li>
 <li><strong>Sélection de photos :</strong> vous pouvez choisir des images de votre galerie via le sélecteur de photos du système ; l&#x27;application n&#x27;accède qu&#x27;aux images que vous sélectionnez.</li>
 <li><strong>Notifications :</strong> pour vous rappeler les tâches d&#x27;entretien comme l&#x27;arrosage. Les rappels sont <strong>programmés localement sur votre appareil</strong> ; l&#x27;application n&#x27;utilise aucun serveur de notifications push et ne demande aucun jeton push. Vous pouvez les désactiver dans l&#x27;application ou dans les paramètres Android.</li>
-<li><strong>Internet :</strong> pour envoyer les requêtes d&#x27;IA à Google Gemini. Les achats passent par l&#x27;application Google Play de votre appareil.</li>
+<li><strong>Internet :</strong> pour envoyer les requêtes d&#x27;IA à Google Gemini et, si vous connectez un compte Google, pour sauvegarder ou restaurer votre jardin via Google Drive. Les achats passent par l&#x27;application Google Play de votre appareil.</li>
+<li><strong>Compte Google (facultatif) :</strong> si vous choisissez de connecter votre compte Google pour la sauvegarde, l&#x27;application demande uniquement l&#x27;étendue des données de l&#x27;application dans Drive et le profil de base (nom et e-mail). Elle ne demande pas l&#x27;accès au reste de votre Drive.</li>
 <li><strong>Facturation Google Play :</strong> ajoutée par la bibliothèque Google Play Billing pour que vous puissiez acheter l&#x27;abonnement Premium et que l&#x27;application puisse vérifier s&#x27;il est actif.</li>
 <li><strong>Presse-papiers :</strong> uniquement lorsque vous appuyez sur coller ou copier : l&#x27;application lit le presse-papiers pour coller votre clé API Gemini et peut y copier une réponse de l&#x27;IA. Ce contenu n&#x27;est ni stocké ni envoyé ailleurs.</li>
 </ul>
@@ -217,22 +269,45 @@ section,h2[id]{scroll-margin-top:56px}
 <p>Premium est un abonnement facultatif à renouvellement automatique vendu via <strong>Google Play Billing</strong>. Le paiement est entièrement traité par Google : ni l&#x27;application ni le développeur ne voient votre carte ou vos données de paiement. Le traitement de votre achat par Google est régi par les <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Règles de confidentialité de Google</a>.</p>
 <p>Pour activer Premium, l&#x27;application demande à Google Play, <strong>sur votre appareil</strong>, si ce compte Google a un abonnement actif, et conserve une copie en cache de ce statut sur l&#x27;appareil. L&#x27;application n&#x27;envoie vos informations d&#x27;achat ni au développeur ni à aucun autre service, et n&#x27;utilise aucun service d&#x27;abonnement tiers.</p>
 <p>En tant que vendeur, le développeur reçoit de Google, dans la Google Play Console, les enregistrements de commande que Google fournit pour chaque vente (par exemple numéro de commande, produit, prix, date et pays). Ils servent uniquement à la comptabilité des ventes, aux remboursements et à l&#x27;assistance, jamais à la publicité ni au suivi.</p>
+<p>Premium inclut également une sauvegarde automatique quotidienne facultative sur Google Drive, décrite à la section 6. La sauvegarde manuelle et la restauration restent gratuites.</p>
 <p>Vous pouvez gérer ou résilier votre abonnement à tout moment dans <strong>Google Play → Paiements et abonnements → Abonnements</strong>, ou depuis l&#x27;écran Premium de l&#x27;application. Désinstaller l&#x27;application ne résilie pas l&#x27;abonnement.</p>
-<h2 id="fr-6">6. Pas de sauvegarde</h2>
-<p>L&#x27;application <strong>n&#x27;a aucune fonction de sauvegarde, d&#x27;export ni d&#x27;import</strong>, et elle désactive la sauvegarde cloud d&#x27;Android pour ses données. Vos plantes, votre journal, vos photos et vos réglages n&#x27;existent que sur votre appareil : si vous désinstallez l&#x27;application, effacez ses données ou la réinitialisez, ils sont <strong>définitivement perdus</strong> et le développeur ne peut pas les récupérer. Le seul fichier que l&#x27;application crée pour vous est le PDF du rapport d&#x27;évolution, que vous choisissez de partager (section 4).</p>
-<h2 id="fr-7">7. Partage des données</h2>
-<p>Le développeur ne vend ni ne loue vos données et ne les partage pas à des fins publicitaires. Les données ne parviennent à des tiers que dans les cas décrits ci-dessus : les requêtes que vous lancez vers Google Gemini (section 4) et le traitement de l&#x27;achat par Google Play (section 5).</p>
-<h2 id="fr-8">8. Conservation et suppression</h2>
-<p>Vos données restent sur votre appareil jusqu&#x27;à ce que vous les supprimiez. Vous pouvez :</p>
+<h2 id="fr-6">6. Sauvegarde facultative sur Google Drive</h2>
+<p>La connexion d&#x27;un compte Google est <strong>facultative</strong>. Le journal fonctionne sans connexion, et vos plantes, votre journal et vos photos restent sur votre appareil.</p>
+<p>Si vous choisissez de connecter votre compte Google, PlantCare peut envoyer une copie de votre jardin sur <strong>votre propre Google Drive</strong>, via l&#x27;API Google Drive (v3), par une connexion HTTPS chiffrée :</p>
 <ul>
-<li>Réinitialiser l&#x27;application (installation vierge) depuis les Paramètres. Cela supprime vos plantes, votre journal, vos photos, diagnostics, rapports et votre clé d&#x27;API, et annule les rappels programmés.</li>
+<li>La copie comprend vos plantes, vos tâches d&#x27;entretien, votre journal, vos diagnostics, vos rapports d&#x27;évolution, vos photos, ainsi que les réglages des rappels, de la langue et de l&#x27;arrosage saisonnier.</li>
+<li>Elle est stockée dans le dossier privé de <strong>données de l&#x27;application</strong> de Drive correspondant à cette application. Ce dossier n&#x27;apparaît pas dans l&#x27;interface habituelle de Drive et n&#x27;est pas visible par d&#x27;autres applications.</li>
+<li>L&#x27;application demande uniquement l&#x27;étendue <code>https://www.googleapis.com/auth/drive.appdata</code>, plus les informations de profil de base (<code>openid</code>, <code>email</code>, <code>profile</code>) afin d&#x27;afficher le nom et l&#x27;e-mail du compte connecté. Elle ne demande pas les étendues <code>drive</code>, <code>drive.readonly</code> ni <code>drive.file</code>, et elle ne reçoit pas votre mot de passe Google. Le développeur n&#x27;exploite aucun serveur de sauvegarde et ne reçoit pas vos copies.</li>
+</ul>
+<p>La <strong>sauvegarde manuelle</strong> et la <strong>restauration</strong> sont gratuites et ne s&#x27;exécutent que lorsque vous les lancez.</p>
+<p>La <strong>sauvegarde automatique quotidienne</strong> est une fonction Premium. Elle s&#x27;exécute au plus une fois par jour local, uniquement si vous l&#x27;avez activée, et uniquement lorsque l&#x27;application est ouverte ou revient au premier plan. Elle ne s&#x27;exécute pas en arrière-plan.</p>
+<p>L&#x27;application conserve les <strong>3</strong> dernières copies complètes dans ce dossier.</p>
+<ul>
+<li><strong>Restaurer</strong> remplace le jardin de cet appareil (il ne le fusionne pas avec ce qui s&#x27;y trouve déjà), après votre confirmation. Un utilisateur de la version gratuite peut restaurer plus de 5 plantes ; la limite gratuite s&#x27;applique uniquement lors de l&#x27;ajout d&#x27;une autre plante par la suite.</li>
+<li>Après une restauration, les rappels d&#x27;entretien sont reprogrammés sur l&#x27;appareil (les identifiants de rappel sont propres à chaque appareil et ne sont pas inclus dans la copie).</li>
+<li><strong>Déconnecter</strong> ferme la session sur le téléphone et laisse en place aussi bien les copies sur Drive que le jardin local.</li>
+<li><strong>Supprimer mes copies Drive</strong> est une action distincte qui demande confirmation. Elle supprime uniquement les fichiers de PlantCare dans le dossier de données de l&#x27;application, pas le jardin du téléphone ni vos autres fichiers Drive.</li>
+</ul>
+<p>La clé d&#x27;API Gemini, les jetons OAuth et les données d&#x27;achat ou Premium ne sont <strong>pas</strong> envoyés sur Drive.</p>
+<p>L&#x27;application continue de désactiver la sauvegarde cloud d&#x27;Android pour ses données. Une copie sur Drive est ce qui peut survivre à une désinstallation ou à un nouvel appareil, après que vous avez connecté le même compte Google et restauré la copie. Désinstaller ou réinitialiser l&#x27;application supprime le jardin local, mais ne supprime <strong>pas</strong> vos copies Drive.</p>
+<p>Le seul autre fichier que l&#x27;application crée pour vous est le PDF du rapport d&#x27;évolution, que vous choisissez de partager (section 4).</p>
+<p>Le traitement par Google des données stockées sur Drive est régi par les <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Règles de confidentialité de Google</a>, selon l&#x27;accord entre vous et Google pour votre compte Google.</p>
+<h2 id="fr-7">7. Partage des données</h2>
+<p>Le développeur ne vend ni ne loue vos données et ne les partage pas à des fins publicitaires. Les données ne parviennent à des tiers que dans les cas décrits ci-dessus : les requêtes que vous lancez vers Google Gemini (section 4), le traitement de l&#x27;achat par Google Play (section 5) et, si vous connectez un compte Google, les copies que vous conservez sur votre propre Google Drive (section 6). Ces copies sont stockées dans votre dossier privé de données d&#x27;application ; le développeur ne les reçoit pas.</p>
+<h2 id="fr-8">8. Conservation et suppression</h2>
+<p>Vos données restent sur votre appareil jusqu&#x27;à ce que vous les supprimiez. Si vous utilisez la sauvegarde sur Drive, les copies restent également sur votre Google Drive jusqu&#x27;à ce que vous les supprimiez. Vous pouvez :</p>
+<ul>
+<li>Réinitialiser l&#x27;application (installation vierge) depuis les Paramètres. Cela supprime vos plantes, votre journal, vos photos, diagnostics, rapports et votre clé d&#x27;API, et annule les rappels programmés. Cela ne supprime pas les copies sur Drive.</li>
 <li>Supprimer votre clé d&#x27;API depuis les Paramètres.</li>
-<li>Effacer les données de l&#x27;application dans les paramètres Android, ou <strong>désinstaller l&#x27;application</strong>, ce qui supprime toutes ses données locales.</li>
+<li>Effacer les données de l&#x27;application dans les paramètres Android, ou <strong>désinstaller l&#x27;application</strong>, ce qui supprime toutes ses données locales mais pas les copies sur Drive.</li>
+<li>Déconnecter votre compte Google depuis les Paramètres. Cela ferme la session sur le téléphone et laisse en place aussi bien le jardin local que les copies sur Drive.</li>
+<li>Utiliser <strong>Supprimer mes copies Drive</strong> depuis les Paramètres, après confirmation. Cela supprime uniquement les fichiers de PlantCare dans le dossier de données de l&#x27;application, pas le jardin du téléphone ni vos autres fichiers Drive.</li>
 </ul>
 <p><strong>Données d&#x27;achat :</strong> le développeur ne conserve aucune donnée d&#x27;achat propre. Google conserve les enregistrements d&#x27;achat et d&#x27;abonnement selon les Règles de confidentialité de Google. Les enregistrements de commande que Google affiche au développeur dans la Play Console sont conservés par Google et le développeur ne peut pas les supprimer. Pour toute question ou demande relative à la confidentialité, écrivez à <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (s&#x27;il s&#x27;agit d&#x27;un achat, indiquez le <strong>numéro de commande Google Play</strong>, qui commence par <code>GPA.</code>). Je vous répondrai dans un délai maximal de 30 jours.</p>
 <p>Pour les données déjà envoyées à Google Gemini, consultez les règles de Google applicables à votre clé d&#x27;API.</p>
+<p>Pour les copies déjà stockées sur Google Drive, utilisez l&#x27;action de suppression dans l&#x27;application décrite ci-dessus, ou consultez les Règles de confidentialité de Google pour votre compte. Le développeur ne peut pas supprimer ces copies, car il n&#x27;y a pas accès.</p>
 <h2 id="fr-9">9. Sécurité</h2>
-<p>Les communications avec Google Gemini et Google Play utilisent HTTPS. Votre clé d&#x27;API est conservée dans le stockage sécurisé de l&#x27;appareil. Les données locales sont protégées par le cloisonnement du stockage des applications Android, et l&#x27;application désactive la sauvegarde cloud d&#x27;Android pour ses données. Nous vous recommandons de protéger votre appareil par un verrouillage d&#x27;écran.</p>
+<p>Les communications avec Google Gemini, Google Drive et Google Play utilisent HTTPS. Votre clé d&#x27;API est conservée dans le stockage sécurisé de l&#x27;appareil. Les données locales sont protégées par le cloisonnement du stockage des applications Android, et l&#x27;application désactive la sauvegarde cloud d&#x27;Android pour ses données. Nous vous recommandons de protéger votre appareil par un verrouillage d&#x27;écran.</p>
 <h2 id="fr-10">10. Enfants</h2>
 <p>PlantCare Journal est destinée aux adultes de <strong>18 ans et plus</strong>, conformément aux conditions de l&#x27;API Google Gemini. Elle ne s&#x27;adresse pas aux enfants et ne collecte pas sciemment d&#x27;informations les concernant.</p>
 <h2 id="fr-11">11. Modifications de cette politique</h2>
@@ -244,14 +319,14 @@ section,h2[id]{scroll-margin-top:56px}
 <hr>
 <section id="it" lang="it">
 <h1>Informativa sulla privacy di PlantCare Journal</h1>
-<p><strong>Data di entrata in vigore:</strong> 26 ottobre 2026</p>
-<p>PlantCare Journal (&quot;l&#x27;app&quot;) è un&#x27;app per la cura delle piante sviluppata da <strong>Edwin Ramos Madera</strong>, sviluppatore indipendente con sede nella Repubblica Dominicana (&quot;io&quot;, &quot;lo sviluppatore&quot;). Il download dell&#x27;app è gratuito e l&#x27;app offre un abbonamento a pagamento facoltativo, <strong>Premium</strong>. Questa informativa spiega quali informazioni gestisce l&#x27;app, come vengono utilizzate e quale controllo hai su di esse.</p>
+<p><strong>Data di entrata in vigore:</strong> 9 novembre 2026</p>
+<p>PlantCare Journal (&quot;l&#x27;app&quot;) è un&#x27;app per la cura delle piante sviluppata da <strong>Edwin Ramos Madera</strong>, sviluppatore indipendente con sede nella Repubblica Dominicana (&quot;io&quot;, &quot;lo sviluppatore&quot;). Il download dell&#x27;app è gratuito e l&#x27;app offre un abbonamento a pagamento facoltativo, <strong>Premium</strong>. Puoi collegare facoltativamente un account Google per eseguire il backup del tuo giardino sul tuo Google Drive. Questa informativa spiega quali informazioni gestisce l&#x27;app, come vengono utilizzate e quale controllo hai su di esse.</p>
 <h2 id="it-1">1. Riepilogo</h2>
 <ul>
-<li>PlantCare Journal <strong>non richiede un account</strong> né l&#x27;accesso.</li>
+<li>PlantCare Journal <strong>non richiede un account</strong> né l&#x27;accesso. Collegare un account Google è facoltativo e serve solo se vuoi usare il backup su Drive.</li>
 <li>Lo sviluppatore <strong>non gestisce alcun server</strong> e <strong>non riceve né conserva</strong> le tue piante, foto, note o altri contenuti.</li>
 <li>L&#x27;app non contiene <strong>pubblicità, analisi, tracciamento né Firebase</strong>.</li>
-<li>Le tue piante, il diario e le foto sono conservati <strong>solo sul tuo dispositivo</strong>. L&#x27;app non ha funzioni di backup o esportazione.</li>
+<li>Le tue piante, il diario e le foto sono conservati <strong>sul tuo dispositivo</strong>. Se colleghi un account Google, puoi anche conservare una copia privata sul tuo Google Drive (vedi sezione 6).</li>
 <li>Solo quando usi una <strong>funzione di IA</strong> (diagnosi, assistente o rapporto di evoluzione) le informazioni necessarie vengono inviate direttamente alla <strong>Google Gemini API</strong>, usando una chiave API che fornisci tu stesso.</li>
 <li>Se ti abboni a <strong>Premium</strong>, l&#x27;acquisto viene elaborato da <strong>Google Play</strong>. L&#x27;app verifica lo stato dell&#x27;abbonamento solo sul tuo dispositivo tramite Google Play Billing; non è coinvolto nessun altro servizio (vedi sezione 5).</li>
 </ul>
@@ -263,15 +338,17 @@ section,h2[id]{scroll-margin-top:56px}
 <li>Voci del diario delle piante, note, etichette, stime di umidità e foto.</li>
 <li>Diagnosi IA e rapporti di evoluzione salvati.</li>
 <li>Preferenze dell&#x27;app (come la lingua) e una copia in cache del tuo stato Premium.</li>
+<li>Se colleghi un account Google, il nome e l&#x27;e-mail di quell&#x27;account, così l&#x27;app può mostrare quale account è collegato.</li>
 <li>La tua chiave API di Google Gemini, se ne imposti una. È conservata nella <strong>memoria sicura</strong> del dispositivo (basata su Android Keystore, tramite expo-secure-store), separata dal resto dei dati dell&#x27;app.</li>
 </ul>
-<p>Queste informazioni non lasciano mai il tuo dispositivo, salvo quanto descritto nella sezione 4. Lo sviluppatore non vi ha accesso.</p>
+<p>Queste informazioni non lasciano mai il tuo dispositivo, salvo quanto descritto nelle sezioni 4 e 6. Lo sviluppatore non vi ha accesso.</p>
 <h2 id="it-3">3. Autorizzazioni</h2>
 <ul>
 <li><strong>Fotocamera:</strong> per scattare foto alle tue piante quando lo scegli (quando aggiungi una pianta o una voce del diario, o per una diagnosi). Le foto sono conservate localmente.</li>
 <li><strong>Selezione di foto:</strong> puoi scegliere immagini dalla galleria tramite il selettore di foto di sistema; l&#x27;app accede solo alle immagini che selezioni.</li>
 <li><strong>Notifiche:</strong> per ricordarti attività di cura come l&#x27;irrigazione. I promemoria sono <strong>programmati localmente sul tuo dispositivo</strong>; l&#x27;app non usa server push e non richiede token push. Puoi disattivare i promemoria nell&#x27;app o nelle impostazioni di Android.</li>
-<li><strong>Internet:</strong> per inviare richieste di IA a Google Gemini. Gli acquisti passano attraverso l&#x27;app Google Play sul tuo dispositivo.</li>
+<li><strong>Internet:</strong> per inviare richieste di IA a Google Gemini e, se colleghi un account Google, per eseguire il backup o ripristinare il tuo giardino tramite Google Drive. Gli acquisti passano attraverso l&#x27;app Google Play sul tuo dispositivo.</li>
+<li><strong>Account Google (facoltativo):</strong> se scegli di collegare il tuo account Google per il backup, l&#x27;app richiede solo l&#x27;ambito dei dati dell&#x27;app in Drive e il profilo di base (nome ed e-mail). Non richiede l&#x27;accesso al resto del tuo Drive.</li>
 <li><strong>Fatturazione Google Play:</strong> aggiunta dalla libreria Google Play Billing affinché tu possa acquistare l&#x27;abbonamento Premium e l&#x27;app possa verificare se è attivo.</li>
 <li><strong>Appunti:</strong> solo quando tocchi incolla o copia: l&#x27;app legge gli appunti per incollare la tua chiave API di Gemini e può copiarvi una risposta dell&#x27;IA. Il contenuto degli appunti non viene conservato né inviato altrove.</li>
 </ul>
@@ -290,22 +367,45 @@ section,h2[id]{scroll-margin-top:56px}
 <p>Premium è un abbonamento facoltativo a rinnovo automatico venduto tramite <strong>Google Play Billing</strong>. Il pagamento è elaborato interamente da Google: l&#x27;app e lo sviluppatore non vedono mai i dati della tua carta o di pagamento. Il trattamento del tuo acquisto da parte di Google è regolato dalle <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Norme sulla privacy di Google</a>.</p>
 <p>Per sbloccare Premium, l&#x27;app chiede a Google Play, <strong>sul tuo dispositivo</strong>, se questo account Google ha un abbonamento attivo e conserva sul dispositivo una copia in cache di tale stato. L&#x27;app non invia le informazioni sui tuoi acquisti allo sviluppatore né ad altri servizi e non usa servizi di abbonamento di terze parti.</p>
 <p>In qualità di venditore, lo sviluppatore riceve da Google, in Google Play Console, i registri degli ordini che Google fornisce per ogni vendita (ad esempio ID ordine, prodotto, prezzo, data e paese). Sono usati solo per la contabilità delle vendite, i rimborsi e l&#x27;assistenza, mai per pubblicità o tracciamento.</p>
+<p>Premium include anche un backup automatico giornaliero facoltativo su Google Drive, descritto nella sezione 6. Il backup manuale e il ripristino restano gratuiti.</p>
 <p>Puoi gestire o annullare il tuo abbonamento in qualsiasi momento in <strong>Google Play → Pagamenti e abbonamenti → Abbonamenti</strong>, oppure dalla schermata Premium dell&#x27;app. La disinstallazione dell&#x27;app non annulla l&#x27;abbonamento.</p>
-<h2 id="it-6">6. Nessun backup</h2>
-<p>L&#x27;app <strong>non ha funzioni di backup, esportazione o importazione</strong> e disattiva il backup su cloud di Android per i suoi dati. Le tue piante, il diario, le foto e le impostazioni esistono solo sul tuo dispositivo: se disinstalli l&#x27;app, ne cancelli i dati o la reimposti, vengono <strong>persi definitivamente</strong> e lo sviluppatore non può recuperarli. L&#x27;unico file che l&#x27;app crea per te è il PDF del rapporto di evoluzione, che sei tu a scegliere di condividere (sezione 4).</p>
-<h2 id="it-7">7. Condivisione dei dati</h2>
-<p>Lo sviluppatore non vende né affitta i tuoi dati e non li condivide a fini pubblicitari. I dati arrivano a terzi solo come descritto sopra: le richieste che avvii verso Google Gemini (sezione 4) e l&#x27;elaborazione degli acquisti da parte di Google Play (sezione 5).</p>
-<h2 id="it-8">8. Conservazione ed eliminazione</h2>
-<p>I tuoi dati restano sul tuo dispositivo finché non li elimini. Puoi:</p>
+<h2 id="it-6">6. Backup facoltativo su Google Drive</h2>
+<p>Collegare un account Google è <strong>facoltativo</strong>. Il diario funziona senza accedere e le tue piante, il diario e le foto restano sul tuo dispositivo.</p>
+<p>Se scegli di collegare il tuo account Google, PlantCare può inviare una copia del tuo giardino sul <strong>tuo Google Drive</strong>, tramite Google Drive API (v3), con una connessione HTTPS crittografata:</p>
 <ul>
-<li>Reimpostare l&#x27;app come appena installata dalle Impostazioni. Questo elimina piante, diario, foto, diagnosi, rapporti e chiave API, e annulla i promemoria programmati.</li>
+<li>La copia include le piante, le attività di cura, il diario, le diagnosi, i rapporti di evoluzione, le foto e le impostazioni dei promemoria, della lingua e dell&#x27;irrigazione stagionale.</li>
+<li>È conservata nella cartella privata dei <strong>dati dell&#x27;app</strong> di Drive corrispondente a questa applicazione. Quella cartella non compare nell&#x27;interfaccia normale di Drive e non è visibile ad altre app.</li>
+<li>L&#x27;app richiede solo l&#x27;ambito <code>https://www.googleapis.com/auth/drive.appdata</code>, più le informazioni di profilo di base (<code>openid</code>, <code>email</code>, <code>profile</code>) per mostrare il nome e l&#x27;e-mail dell&#x27;account collegato. Non richiede gli ambiti <code>drive</code>, <code>drive.readonly</code> o <code>drive.file</code> e non riceve la tua password di Google. Lo sviluppatore non gestisce un server di backup e non riceve le tue copie.</li>
+</ul>
+<p>Il <strong>backup manuale</strong> e il <strong>ripristino</strong> sono gratuiti e vengono eseguiti solo quando li avvii tu.</p>
+<p>Il <strong>backup automatico giornaliero</strong> è una funzione Premium. Viene eseguito al massimo una volta al giorno locale, solo se lo hai attivato e solo mentre l&#x27;app è aperta o torna in primo piano. Non viene eseguito in background.</p>
+<p>L&#x27;app conserva le ultime <strong>3</strong> copie complete in quella cartella.</p>
+<ul>
+<li><strong>Ripristina</strong> sostituisce il giardino su questo dispositivo (non lo unisce a quello già presente), dopo la tua conferma. Un utente della versione gratuita può ripristinare più di 5 piante; il limite gratuito si applica solo quando aggiungi un&#x27;altra pianta in seguito.</li>
+<li>Dopo un ripristino, i promemoria di cura vengono riprogrammati sul dispositivo (gli identificatori dei promemoria sono specifici del dispositivo e non sono inclusi nella copia).</li>
+<li><strong>Disconnetti</strong> chiude la sessione sul telefono e lascia al loro posto sia le copie su Drive sia il giardino locale.</li>
+<li><strong>Elimina le mie copie di Drive</strong> è un&#x27;azione distinta che chiede conferma. Elimina solo i file di PlantCare nella cartella dei dati dell&#x27;app, non il giardino del telefono né gli altri file del tuo Drive.</li>
+</ul>
+<p>La chiave API di Gemini, i token OAuth e i dati di acquisto o Premium <strong>non</strong> vengono inviati a Drive.</p>
+<p>L&#x27;app continua a disattivare il backup su cloud di Android per i suoi dati. Una copia su Drive è ciò che può sopravvivere a una disinstallazione o a un nuovo telefono, dopo che colleghi lo stesso account Google e la ripristini. Disinstallare o reimpostare l&#x27;app elimina il giardino locale, ma <strong>non</strong> elimina le tue copie su Drive.</p>
+<p>L&#x27;unico altro file che l&#x27;app crea per te è il PDF del rapporto di evoluzione, che sei tu a scegliere di condividere (sezione 4).</p>
+<p>Il trattamento da parte di Google dei dati conservati su Drive è regolato dalle <a rel="noopener" target="_blank" href="https://policies.google.com/privacy">Norme sulla privacy di Google</a>, in base all&#x27;accordo tra te e Google per il tuo account Google.</p>
+<h2 id="it-7">7. Condivisione dei dati</h2>
+<p>Lo sviluppatore non vende né affitta i tuoi dati e non li condivide a fini pubblicitari. I dati arrivano a terzi solo come descritto sopra: le richieste che avvii verso Google Gemini (sezione 4), l&#x27;elaborazione degli acquisti da parte di Google Play (sezione 5) e, se colleghi un account Google, le copie che conservi sul tuo Google Drive (sezione 6). Quelle copie sono conservate nella tua cartella privata dei dati dell&#x27;app; lo sviluppatore non le riceve.</p>
+<h2 id="it-8">8. Conservazione ed eliminazione</h2>
+<p>I tuoi dati restano sul tuo dispositivo finché non li elimini. Se usi il backup su Drive, le copie restano anche sul tuo Google Drive finché non le elimini. Puoi:</p>
+<ul>
+<li>Reimpostare l&#x27;app come appena installata dalle Impostazioni. Questo elimina piante, diario, foto, diagnosi, rapporti e chiave API, e annulla i promemoria programmati. Non elimina le copie su Drive.</li>
 <li>Eliminare la tua chiave API dalle Impostazioni.</li>
-<li>Cancellare i dati dell&#x27;app nelle impostazioni di Android, oppure <strong>disinstallare l&#x27;app</strong>, operazione che elimina tutti i suoi dati locali.</li>
+<li>Cancellare i dati dell&#x27;app nelle impostazioni di Android, oppure <strong>disinstallare l&#x27;app</strong>, operazione che elimina tutti i suoi dati locali ma non le copie su Drive.</li>
+<li>Disconnettere il tuo account Google dalle Impostazioni. Questo chiude la sessione sul telefono e lascia al loro posto sia il giardino locale sia le copie su Drive.</li>
+<li>Usare <strong>Elimina le mie copie di Drive</strong> dalle Impostazioni, dopo la conferma. Questo elimina solo i file di PlantCare nella cartella dei dati dell&#x27;app, non il giardino del telefono né gli altri file del tuo Drive.</li>
 </ul>
 <p><strong>Dati di acquisto:</strong> lo sviluppatore non conserva dati di acquisto propri. Google conserva i registri di acquisto e abbonamento secondo le Norme sulla privacy di Google. I registri degli ordini che Google mostra allo sviluppatore in Play Console sono conservati da Google e lo sviluppatore non può eliminarli. Per qualsiasi domanda o richiesta relativa alla privacy, scrivi a <a href="mailto:edwinramos.93@gmail.com">edwinramos.93@gmail.com</a> (se riguarda un acquisto, indica l&#x27;<strong>ID ordine di Google Play</strong>, che inizia con <code>GPA.</code>). Risponderò entro un massimo di 30 giorni.</p>
 <p>Per i dati già inviati a Google Gemini, consulta le norme di Google relative alla tua chiave API.</p>
+<p>Per le copie già conservate su Google Drive, usa l&#x27;azione di eliminazione nell&#x27;app descritta sopra, oppure consulta le Norme sulla privacy di Google per il tuo account. Lo sviluppatore non può eliminare quelle copie, perché non vi ha accesso.</p>
 <h2 id="it-9">9. Sicurezza</h2>
-<p>Le comunicazioni con Google Gemini e Google Play usano HTTPS. La tua chiave API è conservata nella memoria sicura del dispositivo. I dati locali sono protetti dalla sandbox di archiviazione delle app di Android e l&#x27;app disattiva il backup su cloud di Android per i suoi dati. Ti consigliamo di proteggere il dispositivo con un blocco schermo.</p>
+<p>Le comunicazioni con Google Gemini, Google Drive e Google Play usano HTTPS. La tua chiave API è conservata nella memoria sicura del dispositivo. I dati locali sono protetti dalla sandbox di archiviazione delle app di Android e l&#x27;app disattiva il backup su cloud di Android per i suoi dati. Ti consigliamo di proteggere il dispositivo con un blocco schermo.</p>
 <h2 id="it-10">10. Minori</h2>
 <p>PlantCare Journal è destinata ad adulti di <strong>almeno 18 anni</strong>, in linea con i termini della Google Gemini API. Non è rivolta ai minori e non raccoglie consapevolmente informazioni da minori.</p>
 <h2 id="it-11">11. Modifiche a questa informativa</h2>
